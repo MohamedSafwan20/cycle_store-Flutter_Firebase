@@ -77,6 +77,7 @@ flutter:
     - family: TitilliumWeb
       fonts:
         - asset: assets/fonts/TitilliumWeb/TitilliumWeb-Regular.ttf
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
