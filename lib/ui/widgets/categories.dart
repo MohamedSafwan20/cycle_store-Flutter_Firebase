@@ -1,4 +1,5 @@
 import 'package:cycle_store/config/colors.dart';
+import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/data/controllers/category_controller.dart';
 import 'package:cycle_store/ui/widgets/product_card.dart';
 import 'package:cycle_store/ui/widgets/search.dart';
@@ -32,11 +33,11 @@ class Categories extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
                   "Categories",
-                  style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
+                  style: HEADING_1,
                 ),
               ),
               const SizedBox(
