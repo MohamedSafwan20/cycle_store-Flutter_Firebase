@@ -25,14 +25,19 @@ class NewArrivals extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: 246,
+          height: 240,
           child: ListView.builder(
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               itemCount: 4,
               itemBuilder: (context, index) {
-                return const ProductCard();
+                return Padding(
+                  padding: index == 0
+                      ? const EdgeInsets.only(right: 3)
+                      : const EdgeInsets.symmetric(horizontal: 3),
+                  child: const ProductCard(),
+                );
               }),
         )
       ],

@@ -6,12 +6,11 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const title = "TDR 300000000000000000000";
+    const title = "TDR 3000000";
 
     return SizedBox(
-      width: 200,
+      width: 190,
       child: Card(
-        margin: const EdgeInsets.symmetric(horizontal: 8),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,12 +29,12 @@ class ProductCard extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: Text(
-                  title.length > 13 ? "${title.substring(0, 12)}.." : title,
-                  style: const TextStyle(
-                    fontSize: 22,
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              child: Text(title,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   )),
             ),
@@ -44,32 +43,39 @@ class ProductCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    children: [
-                      Row(
-                        children: const [
-                          Icon(
-                            Icons.star,
-                            color: GOLD_COLOR,
-                            size: 18,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 5.0),
-                            child: Text(
-                              "4.8 (2200)",
-                              style: TextStyle(color: SECONDARY_TEXT_COLOR),
+                  SizedBox(
+                    width: 70,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.star,
+                              color: GOLD_COLOR,
+                              size: 18,
                             ),
-                          )
-                        ],
-                      ),
-                      const Text(
-                        "₹14000",
-                        style: TextStyle(
-                            color: PRIMARY_COLOR,
-                            fontWeight: FontWeight.w900,
-                            fontSize: 20),
-                      ),
-                    ],
+                            Container(
+                              padding: const EdgeInsets.only(left: 5.0),
+                              width: 50,
+                              child: const Text(
+                                "4.8 (2200)",
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(color: SECONDARY_TEXT_COLOR),
+                              ),
+                            )
+                          ],
+                        ),
+                        const Text(
+                          "₹14000",
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              color: PRIMARY_COLOR,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20),
+                        ),
+                      ],
+                    ),
                   ),
                   Container(
                       width: 55,

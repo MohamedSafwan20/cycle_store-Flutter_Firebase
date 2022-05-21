@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        fontFamily: "TitilliumWeb",
+        // fontFamily: "TitilliumWeb",
         primarySwatch: Colors.blue,
       ),
       initialRoute: HOME_ROUTE,

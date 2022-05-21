@@ -18,7 +18,7 @@ class Home extends StatelessWidget {
               children: const [
                 NewArrivals(),
                 SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
                 TopSelling(),
                 SizedBox(

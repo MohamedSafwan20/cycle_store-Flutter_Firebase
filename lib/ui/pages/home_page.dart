@@ -1,5 +1,6 @@
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/data/controllers/home_controller.dart';
+import 'package:cycle_store/ui/widgets/categories.dart';
 import 'package:cycle_store/ui/widgets/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,11 +42,12 @@ class HomePage extends StatelessWidget {
           index: controller.currentPageIndex.value,
           children: const [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 28.0),
+              padding: EdgeInsets.symmetric(horizontal: 18.0),
               child: Home(),
             ),
-            Center(
-              child: Text("hi"),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              child: Categories(),
             ),
             Center(
               child: Text("hi"),

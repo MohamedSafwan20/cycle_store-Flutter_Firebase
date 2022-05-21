@@ -13,6 +13,7 @@ class Search extends StatelessWidget {
             hintText: "Search your bike here...",
             fillColor: Colors.white,
             filled: true,
+            hintStyle: const TextStyle(fontSize: 13),
             suffixIcon: Container(
               margin: const EdgeInsets.only(right: 10, top: 4, bottom: 4),
               child: const Icon(
