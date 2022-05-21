@@ -1,4 +1,5 @@
 import 'package:cycle_store/config/colors.dart';
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/controllers/home_controller.dart';
 import 'package:cycle_store/ui/widgets/categories.dart';
 import 'package:cycle_store/ui/widgets/home.dart';
@@ -49,9 +50,7 @@ class HomePage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10.0),
               child: Categories(),
             ),
-            Center(
-              child: Text("hi"),
-            ),
+            SizedBox(),
             Center(
               child: Text("hi"),
             ),
@@ -64,6 +63,11 @@ class HomePage extends StatelessWidget {
         return BottomNavigationBar(
           currentIndex: currentPage,
           onTap: (index) {
+            if (index == 2) {
+              Get.toNamed(CART_ROUTE);
+              return;
+            }
+
             controller.onPageChange(index: index);
           },
           showSelectedLabels: false,

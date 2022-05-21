@@ -11,7 +11,7 @@ class ProductCard extends StatelessWidget {
     return SizedBox(
       width: 190,
       child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -21,8 +21,7 @@ class ProductCard extends StatelessWidget {
               height: 150,
               child: ClipRRect(
                 borderRadius: const BorderRadius.only(
-                    topRight: Radius.circular(15),
-                    topLeft: Radius.circular(15)),
+                    topRight: Radius.circular(8), topLeft: Radius.circular(8)),
                 child: Image.network(
                   "http://picsum.photos/300/300",
                   fit: BoxFit.fill,
@@ -65,6 +64,9 @@ class ProductCard extends StatelessWidget {
                               ),
                             )
                           ],
+                        ),
+                        const SizedBox(
+                          height: 3,
                         ),
                         const Text(
                           "₹14000",

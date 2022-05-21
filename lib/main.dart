@@ -1,4 +1,5 @@
 import 'package:cycle_store/config/routes.dart';
+import 'package:cycle_store/ui/pages/cart_page.dart';
 import 'package:cycle_store/ui/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,7 +20,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialRoute: HOME_ROUTE,
-      getPages: [GetPage(name: HOME_ROUTE, page: () => const HomePage())],
+      getPages: [
+        GetPage(name: HOME_ROUTE, page: () => const HomePage()),
+        GetPage(name: CART_ROUTE, page: () => const CartPage())
+      ],
     );
   }
 }
