@@ -37,7 +37,7 @@ class CartPage extends StatelessWidget {
             Expanded(
                 child: ListView.builder(
                     physics: const BouncingScrollPhysics(),
-                    itemCount: 5,
+                    itemCount: 4,
                     itemBuilder: (_, index) {
                       return const CartItem();
                     })),

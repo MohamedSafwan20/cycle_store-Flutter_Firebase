@@ -1,6 +1,7 @@
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/controllers/home_controller.dart';
+import 'package:cycle_store/ui/widgets/account.dart';
 import 'package:cycle_store/ui/widgets/categories.dart';
 import 'package:cycle_store/ui/widgets/home.dart';
 import 'package:flutter/material.dart';
@@ -51,9 +52,7 @@ class HomePage extends StatelessWidget {
               child: Categories(),
             ),
             SizedBox(),
-            Center(
-              child: Text("hi"),
-            ),
+            Account(),
           ],
         );
       }),

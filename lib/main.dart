@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       initialRoute: HOME_ROUTE,
       getPages: [
         GetPage(name: HOME_ROUTE, page: () => const HomePage()),
-        GetPage(name: CART_ROUTE, page: () => const CartPage())
+        GetPage(name: CART_ROUTE, page: () => const CartPage()),
       ],
     );
   }
