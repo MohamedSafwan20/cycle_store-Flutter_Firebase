@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: SECONDARY_COLOR,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Image.asset(
           "assets/images/logo.jpg",
           fit: BoxFit.cover,

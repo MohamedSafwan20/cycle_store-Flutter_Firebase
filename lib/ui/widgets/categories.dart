@@ -105,11 +105,12 @@ class Categories extends StatelessWidget {
                     physics: const BouncingScrollPhysics(),
                     itemCount: 10,
                     gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 200 / 260,
-                            mainAxisSpacing: 8,
-                            crossAxisSpacing: 1),
+                        SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio:
+                            200 / (MediaQuery.of(context).size.width - 130),
+                        mainAxisSpacing: 8,
+                        crossAxisSpacing: 1),
                     itemBuilder: (_, index) {
                       return const ProductCard();
                     }),

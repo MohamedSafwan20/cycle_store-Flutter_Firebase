@@ -1,4 +1,5 @@
 import 'package:cycle_store/config/colors.dart';
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/config/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -73,7 +74,7 @@ class SearchPage extends StatelessWidget {
                       itemCount: 14,
                       itemBuilder: (_, index) {
                         return InkWell(
-                          onTap: () {},
+                          onTap: () => Get.toNamed(PRODUCT_LIST_ROUTE),
                           child: Container(
                             width: double.infinity,
                             height: 90,
