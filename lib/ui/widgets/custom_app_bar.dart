@@ -34,24 +34,28 @@ class CustomAppBar extends StatelessWidget {
           title,
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
-        Row(
-          children: actions
-              .map(
-                (action) => SizedBox(
-                    width: 40,
-                    child: TextButton(
-                      onPressed: action["onPressed"],
-                      child: Icon(
-                        action["icon"],
-                        size: 28,
-                      ),
-                      style: ButtonStyle(
-                          foregroundColor:
-                              MaterialStateProperty.all(SECONDARY_TEXT_COLOR)),
-                    )),
+        actions.isNotEmpty
+            ? Row(
+                children: actions
+                    .map(
+                      (action) => SizedBox(
+                          width: 40,
+                          child: TextButton(
+                            onPressed: action["onPressed"],
+                            child: Icon(
+                              action["icon"],
+                              size: 28,
+                            ),
+                            style: ButtonStyle(
+                                foregroundColor: MaterialStateProperty.all(
+                                    SECONDARY_TEXT_COLOR)),
+                          )),
+                    )
+                    .toList(),
               )
-              .toList(),
-        )
+            : const SizedBox(
+                width: 50,
+              ),
       ],
     );
   }

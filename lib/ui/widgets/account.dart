@@ -1,6 +1,8 @@
 import 'package:cycle_store/config/colors.dart';
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/config/typography.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Account extends StatelessWidget {
   const Account({Key? key}) : super(key: key);
@@ -96,7 +98,7 @@ class Account extends StatelessWidget {
             child: Column(
               children: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () => Get.toNamed(ADDRESS_ROUTE),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 30, vertical: 15),
