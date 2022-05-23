@@ -1,8 +1,10 @@
 import 'dart:developer';
 
 import 'package:cycle_store/config/colors.dart';
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AddressPage extends StatelessWidget {
   const AddressPage({Key? key}) : super(key: key);
@@ -23,7 +25,9 @@ class AddressPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              TextButton(onPressed: () {}, child: const Text("+ Add address")),
+              TextButton(
+                  onPressed: () => Get.toNamed(ADD_EDIT_ROUTE),
+                  child: const Text("+ Add address")),
               const SizedBox(
                 height: 10,
               ),
