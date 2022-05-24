@@ -6,3 +6,4 @@ const ADDRESS_ROUTE = "/address";
 const ADD_EDIT_ROUTE = "/add-edit-address";
 const PRODUCT_DETAILS_ROUTE = "/product";
 const PROFILE_ROUTE = "/profile";
+const MY_ORDERS_ROUTE = "/my-orders";

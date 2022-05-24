@@ -16,8 +16,8 @@ class CartItem extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.only(bottom: 10),
-            width: 110,
-            height: 110,
+            width: 95,
+            height: 95,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(

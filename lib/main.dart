@@ -3,6 +3,7 @@ import 'package:cycle_store/ui/pages/add_edit_address.dart';
 import 'package:cycle_store/ui/pages/address_page.dart';
 import 'package:cycle_store/ui/pages/cart_page.dart';
 import 'package:cycle_store/ui/pages/home_page.dart';
+import 'package:cycle_store/ui/pages/my_orders_page.dart';
 import 'package:cycle_store/ui/pages/product_details_page.dart';
 import 'package:cycle_store/ui/pages/product_list_page.dart';
 import 'package:cycle_store/ui/pages/profile_page.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
             page: () => const ProductDetailsPage(),
             transition: Transition.zoom),
         GetPage(name: PROFILE_ROUTE, page: () => const ProfilePage()),
+        GetPage(name: MY_ORDERS_ROUTE, page: () => const MyOrdersPage()),
       ],
     );
   }

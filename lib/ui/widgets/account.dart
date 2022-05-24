@@ -138,7 +138,7 @@ class Account extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () => Get.toNamed(MY_ORDERS_ROUTE),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 30, vertical: 15),
