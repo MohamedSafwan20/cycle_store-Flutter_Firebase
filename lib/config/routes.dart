@@ -5,3 +5,4 @@ const PRODUCT_LIST_ROUTE = "/product-list";
 const ADDRESS_ROUTE = "/address";
 const ADD_EDIT_ROUTE = "/add-edit-address";
 const PRODUCT_DETAILS_ROUTE = "/product";
+const PROFILE_ROUTE = "/profile";

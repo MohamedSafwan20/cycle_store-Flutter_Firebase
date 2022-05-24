@@ -4,6 +4,7 @@ import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/data/controllers/product_details_controller.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
 import 'package:cycle_store/ui/widgets/primary_button.dart';
+import 'package:cycle_store/ui/widgets/secondary_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -275,21 +276,12 @@ class ProductDetailsPage extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        SizedBox(
+                        SecondaryIconButton(
+                          icon: Icons.shopping_bag_outlined,
+                          onPressed: () {},
                           width: 50,
-                          child: TextButton(
-                            onPressed: () {},
-                            child: const Icon(Icons.shopping_bag_outlined),
-                            style: ButtonStyle(
-                                foregroundColor: MaterialStateProperty.all(
-                                    SECONDARY_TEXT_COLOR),
-                                backgroundColor:
-                                    MaterialStateProperty.all(SECONDARY_COLOR),
-                                shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(7)))),
-                          ),
+                          borderRadius: 7,
+                          height: 42,
                         ),
                         const SizedBox(
                           width: 10,

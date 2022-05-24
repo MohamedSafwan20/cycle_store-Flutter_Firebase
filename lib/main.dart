@@ -5,6 +5,7 @@ import 'package:cycle_store/ui/pages/cart_page.dart';
 import 'package:cycle_store/ui/pages/home_page.dart';
 import 'package:cycle_store/ui/pages/product_details_page.dart';
 import 'package:cycle_store/ui/pages/product_list_page.dart';
+import 'package:cycle_store/ui/pages/profile_page.dart';
 import 'package:cycle_store/ui/pages/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
             name: PRODUCT_DETAILS_ROUTE,
             page: () => const ProductDetailsPage(),
             transition: Transition.zoom),
+        GetPage(name: PROFILE_ROUTE, page: () => const ProfilePage()),
       ],
     );
   }
