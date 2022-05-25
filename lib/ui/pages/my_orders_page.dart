@@ -1,4 +1,5 @@
 import 'package:cycle_store/config/colors.dart';
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/controllers/my_orders_controller.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -120,7 +121,7 @@ class MyOrdersPage extends StatelessWidget {
                             Material(
                               color: BG_COLOR,
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () => Get.toNamed(ORDER_SUMMARY_ROUTE),
                                 child: Container(
                                   width: double.infinity,
                                   padding: const EdgeInsets.symmetric(
