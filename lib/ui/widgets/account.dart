@@ -221,33 +221,39 @@ class Account extends StatelessWidget {
             ),
           ),
         ),
-        Container(
+        Material(
           color: SUCCESS_TEXT_COLOR,
-          padding: const EdgeInsets.all(30),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: const [
-                  Icon(
-                    Icons.headset_mic_outlined,
+          child: InkWell(
+            onTap: () => Get.toNamed(CONTACT_ROUTE),
+            child: Container(
+              padding: const EdgeInsets.all(30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: const [
+                      Icon(
+                        Icons.headset_mic_outlined,
+                        color: SUCCESS_COLOR,
+                        size: 36,
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        "Contact Us",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w800),
+                      ),
+                    ],
+                  ),
+                  const Icon(
+                    Icons.keyboard_double_arrow_right_outlined,
                     color: SUCCESS_COLOR,
-                    size: 36,
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    "Contact Us",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
                   ),
                 ],
               ),
-              const Icon(
-                Icons.keyboard_double_arrow_right_outlined,
-                color: SUCCESS_COLOR,
-              ),
-            ],
+            ),
           ),
         )
       ],

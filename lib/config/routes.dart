@@ -8,3 +8,4 @@ const PRODUCT_DETAILS_ROUTE = "/product";
 const PROFILE_ROUTE = "/profile";
 const MY_ORDERS_ROUTE = "/my-orders";
 const ORDER_SUMMARY_ROUTE = "/order";
+const CONTACT_ROUTE = "/contact";

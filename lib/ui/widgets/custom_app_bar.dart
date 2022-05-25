@@ -3,11 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({Key? key, this.title = "", this.actions = const []})
+  const CustomAppBar(
+      {Key? key,
+      this.title = "",
+      this.actions = const [],
+      this.textStyle = const TextStyle()})
       : super(key: key);
 
   final String title;
   final List<Map> actions;
+  final TextStyle textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +37,7 @@ class CustomAppBar extends StatelessWidget {
             )),
         Text(
           title,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          style: textStyle.copyWith(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         actions.isNotEmpty
             ? Row(
