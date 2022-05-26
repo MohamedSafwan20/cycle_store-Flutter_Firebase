@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cycle_store/config/colors.dart';
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/data/controllers/product_details_controller.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
@@ -288,7 +289,7 @@ class ProductDetailsPage extends StatelessWidget {
                         ),
                         PrimaryButton(
                           text: "Buy now",
-                          onPressed: () {},
+                          onPressed: () => Get.toNamed(CHECKOUT_ROUTE),
                           height: 42,
                           borderRadius: 8,
                         )
