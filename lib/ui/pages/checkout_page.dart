@@ -90,9 +90,9 @@ class CheckoutPage extends StatelessWidget {
                 const SizedBox(
                   height: 40,
                 ),
-                Text(
+                const Text(
                   "Payment Method",
-                  style: HEADING_1,
+                  style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(
                   height: 10,
@@ -103,19 +103,22 @@ class CheckoutPage extends StatelessWidget {
                       value: true,
                       onChanged: (value) {},
                     ),
-                    const Text(
-                      "Cash on delivery (COD)",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 17),
+                    GestureDetector(
+                      onTap: () {},
+                      child: const Text(
+                        "Cash on delivery (COD)",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 17),
+                      ),
                     )
                   ],
                 ),
                 const SizedBox(
                   height: 30,
                 ),
-                Text(
+                const Text(
                   "Order Info",
-                  style: HEADING_1,
+                  style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(
                   height: 10,
@@ -159,7 +162,10 @@ class CheckoutPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                )
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
               ],
             ),
           )),

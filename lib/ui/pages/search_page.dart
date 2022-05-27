@@ -30,13 +30,12 @@ class SearchPage extends StatelessWidget {
                           fillColor: SECONDARY_COLOR,
                           filled: true,
                           hintStyle: const TextStyle(fontSize: 13),
-                          suffixIcon: IconButton(
-                            onPressed: () {},
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            icon: const Icon(
+                          contentPadding: EdgeInsets.zero,
+                          suffixIcon: const InkWell(
+                            child: Icon(
                               Icons.cancel,
                               color: SECONDARY_TEXT_COLOR,
+                              size: 18,
                             ),
                           ),
                           prefixIcon: const Icon(
@@ -77,7 +76,7 @@ class SearchPage extends StatelessWidget {
                           onTap: () => Get.toNamed(PRODUCT_LIST_ROUTE),
                           child: Container(
                             width: double.infinity,
-                            height: 90,
+                            height: 75,
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -88,8 +87,8 @@ class SearchPage extends StatelessWidget {
                                     Container(
                                       padding:
                                           const EdgeInsets.only(bottom: 10),
-                                      width: 65,
-                                      height: 65,
+                                      width: 60,
+                                      height: 60,
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(10),
                                         child: Image.network(
@@ -113,11 +112,11 @@ class SearchPage extends StatelessWidget {
                                             "Roadbike S2",
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(fontSize: 18),
+                                            style: TextStyle(fontSize: 16),
                                           ),
                                         ),
                                         SizedBox(
-                                          height: 4,
+                                          height: 2,
                                         ),
                                         SizedBox(
                                           width: 170,
@@ -125,7 +124,7 @@ class SearchPage extends StatelessWidget {
                                             "in Roadbike",
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
-                                                fontSize: 15,
+                                                fontSize: 12,
                                                 color: SECONDARY_TEXT_COLOR),
                                           ),
                                         ),

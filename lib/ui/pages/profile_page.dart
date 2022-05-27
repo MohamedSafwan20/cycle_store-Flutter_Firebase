@@ -259,10 +259,12 @@ class ProfilePage extends StatelessWidget {
                           child: PrimaryButton(
                             text: "Save",
                             onPressed: () {},
-                            height: 42,
-                            textStyle: const TextStyle(fontSize: 17),
-                            borderRadius: 10,
-                          ))
+                            height: 48,
+                            width: 180,
+                          )),
+                      const SizedBox(
+                        height: 30,
+                      ),
                     ],
                   ),
                 ),

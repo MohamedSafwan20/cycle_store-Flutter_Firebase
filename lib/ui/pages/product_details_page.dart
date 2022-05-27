@@ -89,7 +89,12 @@ class ProductDetailsPage extends StatelessWidget {
                                           decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                               border: Border.all(
-                                                  color: SECONDARY_TEXT_COLOR),
+                                                  color: entry.key ==
+                                                          _controller
+                                                              .currentCarouselImage
+                                                              .value
+                                                      ? PRIMARY_COLOR
+                                                      : SECONDARY_TEXT_COLOR),
                                               color: entry.key ==
                                                       _controller
                                                           .currentCarouselImage

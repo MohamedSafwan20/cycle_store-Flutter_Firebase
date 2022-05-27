@@ -9,15 +9,15 @@ class CartItem extends StatelessWidget {
     return Container(
       color: BG_COLOR,
       width: double.infinity,
-      height: 150,
+      height: 120,
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             padding: const EdgeInsets.only(bottom: 10),
-            width: 95,
-            height: 95,
+            width: 70,
+            height: 70,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
@@ -39,22 +39,22 @@ class CartItem extends StatelessWidget {
                   "Roadbike S2",
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                 ),
               ),
               const SizedBox(
-                height: 6,
+                height: 2,
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width - 180,
                 child: const Text(
                   "S ·  Black Orange",
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 15, color: SECONDARY_TEXT_COLOR),
+                  style: TextStyle(fontSize: 14, color: SECONDARY_TEXT_COLOR),
                 ),
               ),
               const SizedBox(
-                height: 6,
+                height: 2,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -65,7 +65,7 @@ class CartItem extends StatelessWidget {
                       "₹14000",
                       overflow: TextOverflow.ellipsis,
                       style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 19),
+                          TextStyle(fontWeight: FontWeight.w700, fontSize: 17),
                     ),
                   ),
                   const SizedBox(

@@ -32,6 +32,7 @@ class LoginPage extends StatelessWidget {
                 height: 35,
               ),
               Container(
+                height: 52,
                 decoration: BoxDecoration(
                   boxShadow: const [
                     BoxShadow(
@@ -48,6 +49,7 @@ class LoginPage extends StatelessWidget {
                 child: TextField(
                   onChanged: (value) {},
                   decoration: InputDecoration(
+                    isDense: true,
                     hintText: "Email Address",
                     fillColor: Colors.white,
                     filled: true,
@@ -67,6 +69,7 @@ class LoginPage extends StatelessWidget {
                 height: 20,
               ),
               Container(
+                height: 52,
                 decoration: BoxDecoration(
                   boxShadow: const [
                     BoxShadow(
@@ -84,6 +87,7 @@ class LoginPage extends StatelessWidget {
                   obscureText: true,
                   onChanged: (value) {},
                   decoration: InputDecoration(
+                    isDense: true,
                     hintText: "Password",
                     fillColor: Colors.white,
                     filled: true,

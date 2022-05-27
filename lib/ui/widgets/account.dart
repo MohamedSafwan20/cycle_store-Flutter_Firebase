@@ -23,7 +23,7 @@ class Account extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 20,
+          height: 10,
         ),
         const Divider(
           color: SECONDARY_TEXT_COLOR,
@@ -73,7 +73,7 @@ class Account extends StatelessWidget {
                 ],
               ),
               IconButton(
-                  onPressed: () => Get.toNamed(LOGIN_ROUTE),
+                  onPressed: () => Get.offAllNamed(LOGIN_ROUTE),
                   icon: const Icon(
                     Icons.logout_outlined,
                     size: 26,
@@ -89,9 +89,6 @@ class Account extends StatelessWidget {
           thickness: 0.2,
           height: 0.2,
         ),
-        const SizedBox(
-          height: 20,
-        ),
         Expanded(
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
@@ -100,23 +97,23 @@ class Account extends StatelessWidget {
                 InkWell(
                   onTap: () => Get.toNamed(ADDRESS_ROUTE),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30, vertical: 15),
+                    padding: const EdgeInsets.only(
+                        left: 30, right: 30, top: 15, bottom: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
                           children: [
                             Container(
-                              width: 55,
-                              height: 55,
+                              width: 45,
+                              height: 45,
                               decoration: BoxDecoration(
                                   color: const Color(0xFFFFF5E5),
                                   borderRadius: BorderRadius.circular(5)),
                               child: const Icon(
                                 Icons.place_outlined,
                                 color: Color(0xFFFBD790),
-                                size: 30,
+                                size: 25,
                               ),
                             ),
                             const SizedBox(
@@ -125,7 +122,7 @@ class Account extends StatelessWidget {
                             const Text(
                               "My Address",
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w700),
+                                  fontSize: 15, fontWeight: FontWeight.w700),
                             )
                           ],
                         ),
@@ -140,23 +137,23 @@ class Account extends StatelessWidget {
                 InkWell(
                   onTap: () => Get.toNamed(MY_ORDERS_ROUTE),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30, vertical: 15),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
                           children: [
                             Container(
-                              width: 55,
-                              height: 55,
+                              width: 45,
+                              height: 45,
                               decoration: BoxDecoration(
                                   color: const Color(0xFFFFEDF8),
                                   borderRadius: BorderRadius.circular(5)),
                               child: const Icon(
                                 Icons.local_shipping_outlined,
                                 color: Color(0xFFFBB4D0),
-                                size: 30,
+                                size: 25,
                               ),
                             ),
                             const SizedBox(
@@ -165,7 +162,7 @@ class Account extends StatelessWidget {
                             const Text(
                               "My Orders",
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w700),
+                                  fontSize: 15, fontWeight: FontWeight.w700),
                             )
                           ],
                         ),
@@ -180,23 +177,23 @@ class Account extends StatelessWidget {
                 InkWell(
                   onTap: () => Get.toNamed(PROFILE_ROUTE),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30, vertical: 15),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
                           children: [
                             Container(
-                              width: 55,
-                              height: 55,
+                              width: 45,
+                              height: 45,
                               decoration: BoxDecoration(
                                   color: const Color(0xFFF5F0FD),
                                   borderRadius: BorderRadius.circular(5)),
                               child: const Icon(
                                 Icons.perm_identity_outlined,
                                 color: Color(0xFFBEAFE9),
-                                size: 30,
+                                size: 25,
                               ),
                             ),
                             const SizedBox(
@@ -205,7 +202,7 @@ class Account extends StatelessWidget {
                             const Text(
                               "Profile",
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w700),
+                                  fontSize: 15, fontWeight: FontWeight.w700),
                             )
                           ],
                         ),
@@ -226,7 +223,7 @@ class Account extends StatelessWidget {
           child: InkWell(
             onTap: () => Get.toNamed(CONTACT_ROUTE),
             child: Container(
-              padding: const EdgeInsets.all(30),
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -235,15 +232,17 @@ class Account extends StatelessWidget {
                       Icon(
                         Icons.headset_mic_outlined,
                         color: SUCCESS_COLOR,
-                        size: 36,
+                        size: 30,
                       ),
                       SizedBox(
                         width: 20,
                       ),
                       Text(
-                        "Contact Us",
+                        "Need help? Contact Us",
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w800),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: SECONDARY_TEXT_COLOR),
                       ),
                     ],
                   ),

@@ -290,10 +290,13 @@ class AddEditAddress extends StatelessWidget {
                       Row(
                         children: [
                           Checkbox(value: false, onChanged: (value) {}),
-                          const Text(
-                            "Select this address",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
+                          GestureDetector(
+                            onTap: () {},
+                            child: const Text(
+                              "Select this address",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16),
+                            ),
                           )
                         ],
                       ),

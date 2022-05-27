@@ -125,7 +125,7 @@ class MyOrdersPage extends StatelessWidget {
                                 child: Container(
                                   width: double.infinity,
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 20.0, vertical: 16),
+                                      horizontal: 20.0, vertical: 13),
                                   child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
@@ -133,8 +133,8 @@ class MyOrdersPage extends StatelessWidget {
                                       Container(
                                         padding:
                                             const EdgeInsets.only(bottom: 10),
-                                        width: 90,
-                                        height: 90,
+                                        width: 75,
+                                        height: 75,
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(10),
@@ -164,11 +164,11 @@ class MyOrdersPage extends StatelessWidget {
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 21),
+                                                  fontSize: 17),
                                             ),
                                           ),
                                           const SizedBox(
-                                            height: 6,
+                                            height: 5,
                                           ),
                                           SizedBox(
                                             width: MediaQuery.of(context)
@@ -179,12 +179,12 @@ class MyOrdersPage extends StatelessWidget {
                                               "S ·  Black Orange",
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
-                                                  fontSize: 15,
+                                                  fontSize: 12,
                                                   color: SECONDARY_TEXT_COLOR),
                                             ),
                                           ),
                                           const SizedBox(
-                                            height: 6,
+                                            height: 5,
                                           ),
                                           Row(
                                             mainAxisAlignment:
@@ -199,7 +199,7 @@ class MyOrdersPage extends StatelessWidget {
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w700,
-                                                      fontSize: 19),
+                                                      fontSize: 17),
                                                 ),
                                               ),
                                               SizedBox(
@@ -217,11 +217,11 @@ class MyOrdersPage extends StatelessWidget {
                             Material(
                               color: BG_COLOR,
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () => Get.toNamed(ORDER_SUMMARY_ROUTE),
                                 child: Container(
                                   width: double.infinity,
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 20.0, vertical: 16),
+                                      horizontal: 20.0, vertical: 13),
                                   child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
@@ -229,8 +229,8 @@ class MyOrdersPage extends StatelessWidget {
                                       Container(
                                         padding:
                                             const EdgeInsets.only(bottom: 10),
-                                        width: 90,
-                                        height: 90,
+                                        width: 75,
+                                        height: 75,
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(10),
@@ -260,11 +260,11 @@ class MyOrdersPage extends StatelessWidget {
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 21),
+                                                  fontSize: 17),
                                             ),
                                           ),
                                           const SizedBox(
-                                            height: 6,
+                                            height: 5,
                                           ),
                                           SizedBox(
                                             width: MediaQuery.of(context)
@@ -275,12 +275,12 @@ class MyOrdersPage extends StatelessWidget {
                                               "S ·  Black Orange",
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
-                                                  fontSize: 15,
+                                                  fontSize: 12,
                                                   color: SECONDARY_TEXT_COLOR),
                                             ),
                                           ),
                                           const SizedBox(
-                                            height: 6,
+                                            height: 5,
                                           ),
                                           Row(
                                             mainAxisAlignment:
@@ -295,7 +295,7 @@ class MyOrdersPage extends StatelessWidget {
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w700,
-                                                      fontSize: 19),
+                                                      fontSize: 17),
                                                 ),
                                               ),
                                               SizedBox(
@@ -313,11 +313,11 @@ class MyOrdersPage extends StatelessWidget {
                             Material(
                               color: BG_COLOR,
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () => Get.toNamed(ORDER_SUMMARY_ROUTE),
                                 child: Container(
                                   width: double.infinity,
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 20.0, vertical: 16),
+                                      horizontal: 20.0, vertical: 13),
                                   child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
@@ -325,8 +325,8 @@ class MyOrdersPage extends StatelessWidget {
                                       Container(
                                         padding:
                                             const EdgeInsets.only(bottom: 10),
-                                        width: 90,
-                                        height: 90,
+                                        width: 75,
+                                        height: 75,
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(10),
@@ -356,11 +356,11 @@ class MyOrdersPage extends StatelessWidget {
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 21),
+                                                  fontSize: 17),
                                             ),
                                           ),
                                           const SizedBox(
-                                            height: 6,
+                                            height: 5,
                                           ),
                                           SizedBox(
                                             width: MediaQuery.of(context)
@@ -371,12 +371,12 @@ class MyOrdersPage extends StatelessWidget {
                                               "S ·  Black Orange",
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
-                                                  fontSize: 15,
+                                                  fontSize: 12,
                                                   color: SECONDARY_TEXT_COLOR),
                                             ),
                                           ),
                                           const SizedBox(
-                                            height: 6,
+                                            height: 5,
                                           ),
                                           Row(
                                             mainAxisAlignment:
@@ -391,7 +391,7 @@ class MyOrdersPage extends StatelessWidget {
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w700,
-                                                      fontSize: 19),
+                                                      fontSize: 17),
                                                 ),
                                               ),
                                               SizedBox(

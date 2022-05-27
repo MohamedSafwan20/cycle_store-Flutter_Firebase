@@ -60,94 +60,105 @@ class HomePage extends StatelessWidget {
       bottomNavigationBar: Obx(() {
         int currentPage = controller.currentPageIndex.value;
 
-        return BottomNavigationBar(
-          currentIndex: currentPage,
-          onTap: (index) {
-            if (index == 2) {
-              Get.toNamed(CART_ROUTE);
-              return;
-            }
+        return SizedBox(
+          height: 55,
+          child: BottomNavigationBar(
+            currentIndex: currentPage,
+            onTap: (index) {
+              if (index == 2) {
+                Get.toNamed(CART_ROUTE);
+                return;
+              }
 
-            controller.onPageChange(index: index);
-          },
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          selectedItemColor: PRIMARY_COLOR,
-          unselectedItemColor: SECONDARY_TEXT_COLOR,
-          items: [
-            BottomNavigationBarItem(
-                icon: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.cottage_outlined),
-                    currentPage == 0
-                        ? Container(
-                            width: 5,
-                            height: 5,
-                            margin: const EdgeInsets.only(top: 2),
-                            decoration: const BoxDecoration(
-                                color: PRIMARY_COLOR, shape: BoxShape.circle),
-                          )
-                        : const SizedBox()
-                  ],
-                ),
-                label: ""),
-            BottomNavigationBarItem(
-                icon: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.category_outlined),
-                    currentPage == 1
-                        ? Container(
-                            width: 5,
-                            height: 5,
-                            margin: const EdgeInsets.only(top: 2),
-                            decoration: const BoxDecoration(
-                                color: PRIMARY_COLOR, shape: BoxShape.circle),
-                          )
-                        : const SizedBox()
-                  ],
-                ),
-                label: ""),
-            BottomNavigationBarItem(
-                icon: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.shopping_bag_outlined),
-                    currentPage == 2
-                        ? Container(
-                            width: 5,
-                            height: 5,
-                            margin: const EdgeInsets.only(top: 2),
-                            decoration: const BoxDecoration(
-                                color: PRIMARY_COLOR, shape: BoxShape.circle),
-                          )
-                        : const SizedBox()
-                  ],
-                ),
-                label: ""),
-            BottomNavigationBarItem(
-                icon: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.perm_identity_outlined),
-                    currentPage == 3
-                        ? Container(
-                            width: 5,
-                            height: 5,
-                            margin: const EdgeInsets.only(top: 2),
-                            decoration: const BoxDecoration(
-                                color: PRIMARY_COLOR, shape: BoxShape.circle),
-                          )
-                        : const SizedBox()
-                  ],
-                ),
-                label: ""),
-          ],
+              controller.onPageChange(index: index);
+            },
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            selectedItemColor: PRIMARY_COLOR,
+            unselectedItemColor: SECONDARY_TEXT_COLOR,
+            items: [
+              BottomNavigationBarItem(
+                  icon: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.cottage_outlined,
+                        size: 22,
+                      ),
+                      currentPage == 0
+                          ? Container(
+                              width: 3,
+                              height: 3,
+                              decoration: const BoxDecoration(
+                                  color: PRIMARY_COLOR, shape: BoxShape.circle),
+                            )
+                          : const SizedBox()
+                    ],
+                  ),
+                  label: ""),
+              BottomNavigationBarItem(
+                  icon: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.category_outlined,
+                        size: 22,
+                      ),
+                      currentPage == 1
+                          ? Container(
+                              width: 3,
+                              height: 3,
+                              decoration: const BoxDecoration(
+                                  color: PRIMARY_COLOR, shape: BoxShape.circle),
+                            )
+                          : const SizedBox()
+                    ],
+                  ),
+                  label: ""),
+              BottomNavigationBarItem(
+                  icon: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.shopping_bag_outlined,
+                        size: 22,
+                      ),
+                      currentPage == 2
+                          ? Container(
+                              width: 3,
+                              height: 3,
+                              decoration: const BoxDecoration(
+                                  color: PRIMARY_COLOR, shape: BoxShape.circle),
+                            )
+                          : const SizedBox()
+                    ],
+                  ),
+                  label: ""),
+              BottomNavigationBarItem(
+                  icon: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.perm_identity_outlined,
+                        size: 22,
+                      ),
+                      currentPage == 3
+                          ? Container(
+                              width: 3,
+                              height: 3,
+                              decoration: const BoxDecoration(
+                                  color: PRIMARY_COLOR, shape: BoxShape.circle),
+                            )
+                          : const SizedBox()
+                    ],
+                  ),
+                  label: ""),
+            ],
+          ),
         );
       }),
     );

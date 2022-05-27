@@ -30,8 +30,8 @@ class EmailSentPage extends StatelessWidget {
                           alignment: Alignment.topCenter,
                           child: Image.asset(
                             "assets/images/email_sent.png",
-                            width: 280,
-                            height: 280,
+                            width: 220,
+                            height: 220,
                           )),
                       const SizedBox(
                         height: 30,

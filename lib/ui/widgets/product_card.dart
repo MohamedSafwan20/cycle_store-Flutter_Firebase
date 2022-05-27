@@ -13,7 +13,7 @@ class ProductCard extends StatelessWidget {
     return InkWell(
       onTap: () => Get.toNamed(PRODUCT_DETAILS_ROUTE),
       child: SizedBox(
-        width: 190,
+        width: 170,
         child: Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           child: Column(
@@ -38,7 +38,7 @@ class ProductCard extends StatelessWidget {
                 child: Text(title,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                     )),
               ),
@@ -65,7 +65,9 @@ class ProductCard extends StatelessWidget {
                                 child: const Text(
                                   "4.8 (2200)",
                                   overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(color: SECONDARY_TEXT_COLOR),
+                                  style: TextStyle(
+                                      color: SECONDARY_TEXT_COLOR,
+                                      fontSize: 12),
                                 ),
                               )
                             ],
@@ -79,7 +81,7 @@ class ProductCard extends StatelessWidget {
                             style: TextStyle(
                                 color: PRIMARY_COLOR,
                                 fontWeight: FontWeight.w700,
-                                fontSize: 20),
+                                fontSize: 18),
                           ),
                         ],
                       ),

@@ -46,12 +46,12 @@ class CartPage extends StatelessWidget {
                           child: const CartItem());
                     })),
             Container(
-              height: 170,
+              height: 120,
               decoration: const BoxDecoration(
                   color: PRIMARY_COLOR,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(35),
-                      topRight: Radius.circular(35))),
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30))),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,14 +65,14 @@ class CartPage extends StatelessWidget {
                           "Total",
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 20,
+                              fontSize: 17,
                               fontWeight: FontWeight.w600),
                         ),
                         Text(
                           "₹42000",
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 20,
+                              fontSize: 17,
                               fontWeight: FontWeight.w600),
                         ),
                       ],
@@ -85,7 +85,7 @@ class CartPage extends StatelessWidget {
                       onPressed: () => Get.toNamed(CHECKOUT_ROUTE),
                       child: const Text(
                         "Proceed to Payment",
-                        style: TextStyle(color: Colors.black, fontSize: 20),
+                        style: TextStyle(color: Colors.black, fontSize: 17),
                       ),
                       style: ButtonStyle(
                         backgroundColor:

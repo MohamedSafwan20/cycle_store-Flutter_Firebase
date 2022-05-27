@@ -2,7 +2,6 @@ import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/data/controllers/category_controller.dart';
 import 'package:cycle_store/ui/widgets/product_card.dart';
-import 'package:cycle_store/ui/widgets/search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,12 +22,10 @@ class Categories extends StatelessWidget {
 
     return Stack(
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.0),
-          child: Search(),
+        const SizedBox(
+          height: 10,
         ),
-        Container(
-          margin: const EdgeInsets.only(top: 100),
+        SizedBox(
           width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,18 +94,14 @@ class Categories extends StatelessWidget {
                       }),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
               Expanded(
                 child: GridView.builder(
                     physics: const BouncingScrollPhysics(),
                     itemCount: 10,
-                    gridDelegate:
-                        SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         childAspectRatio:
-                            200 / (MediaQuery.of(context).size.width - 130),
+                            (MediaQuery.of(context).size.width / 510),
                         mainAxisSpacing: 8,
                         crossAxisSpacing: 1),
                     itemBuilder: (_, index) {

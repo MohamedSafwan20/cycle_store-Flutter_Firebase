@@ -40,7 +40,7 @@ class OrderSummaryPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 350,
+                  height: 290,
                   child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: 3,
@@ -51,7 +51,7 @@ class OrderSummaryPage extends StatelessWidget {
                           beforeLineStyle: const LineStyle(
                               thickness: 2, color: PRIMARY_COLOR),
                           indicatorStyle: const IndicatorStyle(
-                              height: 25, color: PRIMARY_COLOR
+                              height: 15, color: PRIMARY_COLOR, width: 15
                               // indicator: Container(
                               //   decoration: BoxDecoration(
                               //     border: Border.all(color: PRIMARY_COLOR, width: 3),
@@ -63,14 +63,14 @@ class OrderSummaryPage extends StatelessWidget {
                           isFirst: index == 0 ? true : false,
                           isLast: index == 2 ? true : false,
                           endChild: Container(
-                            height: (350 / 3),
+                            height: (290 / 3),
                             padding: const EdgeInsets.only(left: 15.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.all(15.0),
+                                  padding: const EdgeInsets.all(3.0),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -78,7 +78,7 @@ class OrderSummaryPage extends StatelessWidget {
                                       Text(
                                         "Order Placed on 25 july",
                                         style: TextStyle(
-                                            fontSize: 17,
+                                            fontSize: 12,
                                             fontWeight: FontWeight.w500,
                                             color: SECONDARY_TEXT_COLOR),
                                       ),

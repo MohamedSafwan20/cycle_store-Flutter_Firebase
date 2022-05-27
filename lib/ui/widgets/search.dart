@@ -11,6 +11,7 @@ class Search extends StatelessWidget {
     return GestureDetector(
       onTap: () => Get.toNamed(SEARCH_ROUTE),
       child: Container(
+        height: 50,
         margin: const EdgeInsets.symmetric(vertical: 20),
         child: TextField(
           enabled: false,
