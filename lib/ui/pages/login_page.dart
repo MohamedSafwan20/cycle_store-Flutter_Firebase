@@ -4,8 +4,8 @@ import 'package:cycle_store/ui/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SignupPage extends StatelessWidget {
-  const SignupPage({Key? key}) : super(key: key);
+class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,56 +25,11 @@ class SignupPage extends StatelessWidget {
                     height: 180,
                   )),
               const Text(
-                "Hello!",
+                "Welcome back!",
                 style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                height: 5,
-              ),
-              const Text(
-                "Sign up to get started",
-                style: TextStyle(
-                    color: SECONDARY_TEXT_COLOR,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600),
-              ),
-              const SizedBox(
                 height: 35,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  boxShadow: const [
-                    BoxShadow(
-                        color: SHADOW_COLOR,
-                        offset: Offset(0, 0.5),
-                        blurRadius: 5),
-                    BoxShadow(
-                        color: SHADOW_COLOR,
-                        offset: Offset(0.5, 0),
-                        blurRadius: 5),
-                  ],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: TextField(
-                  onChanged: (value) {},
-                  decoration: InputDecoration(
-                    hintText: "Name",
-                    fillColor: Colors.white,
-                    filled: true,
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: Colors.transparent),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: Colors.transparent),
-                    ),
-                    hintStyle: const TextStyle(color: SECONDARY_TEXT_COLOR),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
               ),
               Container(
                 decoration: BoxDecoration(
@@ -145,46 +100,22 @@ class SignupPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 4,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  boxShadow: const [
-                    BoxShadow(
-                        color: SHADOW_COLOR,
-                        offset: Offset(0, 0.5),
-                        blurRadius: 5),
-                    BoxShadow(
-                        color: SHADOW_COLOR,
-                        offset: Offset(0.5, 0),
-                        blurRadius: 5),
-                  ],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: TextField(
-                  obscureText: true,
-                  onChanged: (value) {},
-                  decoration: InputDecoration(
-                    hintText: "Confirm Password",
-                    fillColor: Colors.white,
-                    filled: true,
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: Colors.transparent),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: Colors.transparent),
-                    ),
-                    hintStyle: const TextStyle(color: SECONDARY_TEXT_COLOR),
-                  ),
-                ),
-              ),
+              Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        "Forgot Password?",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 15),
+                      ))),
               const SizedBox(
-                height: 40,
+                height: 30,
               ),
               PrimaryButton(
-                text: "Signup",
+                text: "Sign in",
                 onPressed: () {},
                 width: double.infinity,
                 height: 50,
@@ -199,13 +130,13 @@ class SignupPage extends StatelessWidget {
                 child: Row(
                   children: [
                     const Text(
-                      "Already Have An Account?",
+                      "Don’t Have An Account?",
                       style: TextStyle(fontWeight: FontWeight.w700),
                     ),
                     TextButton(
-                        onPressed: () => Get.toNamed(LOGIN_ROUTE),
+                        onPressed: () => Get.toNamed(SIGNUP_ROUTE),
                         child: const Text(
-                          "Sign in",
+                          "Sign up",
                           style:
                               TextStyle(decoration: TextDecoration.underline),
                         ))

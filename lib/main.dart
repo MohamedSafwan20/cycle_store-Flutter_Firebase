@@ -5,6 +5,7 @@ import 'package:cycle_store/ui/pages/cart_page.dart';
 import 'package:cycle_store/ui/pages/checkout_page.dart';
 import 'package:cycle_store/ui/pages/contact_page.dart';
 import 'package:cycle_store/ui/pages/home_page.dart';
+import 'package:cycle_store/ui/pages/login_page.dart';
 import 'package:cycle_store/ui/pages/my_orders_page.dart';
 import 'package:cycle_store/ui/pages/order_summary_page.dart';
 import 'package:cycle_store/ui/pages/product_details_page.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: CONTACT_ROUTE, page: () => const ContactPage()),
         GetPage(name: CHECKOUT_ROUTE, page: () => const CheckoutPage()),
         GetPage(name: SIGNUP_ROUTE, page: () => const SignupPage()),
+        GetPage(name: LOGIN_ROUTE, page: () => const LoginPage()),
       ],
     );
   }
