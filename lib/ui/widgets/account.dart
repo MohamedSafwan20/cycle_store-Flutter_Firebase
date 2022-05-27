@@ -73,7 +73,7 @@ class Account extends StatelessWidget {
                 ],
               ),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () => Get.toNamed(LOGIN_ROUTE),
                   icon: const Icon(
                     Icons.logout_outlined,
                     size: 26,

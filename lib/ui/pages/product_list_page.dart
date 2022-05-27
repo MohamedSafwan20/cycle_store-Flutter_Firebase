@@ -1,6 +1,8 @@
 import 'package:cycle_store/config/colors.dart';
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/ui/widgets/product_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProductListPage extends StatelessWidget {
   const ProductListPage({Key? key}) : super(key: key);
@@ -21,7 +23,7 @@ class ProductListPage extends StatelessWidget {
         elevation: 0,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => Get.toNamed(SEARCH_ROUTE),
             icon: const Icon(
               Icons.search_outlined,
               size: 28,
@@ -39,7 +41,7 @@ class ProductListPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 10.0),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () => Get.toNamed(CART_ROUTE),
               icon: const Icon(
                 Icons.shopping_bag_outlined,
                 size: 28,

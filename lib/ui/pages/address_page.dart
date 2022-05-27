@@ -110,9 +110,8 @@ class AddressPage extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
-                                          onTap: () {
-                                            log("edit");
-                                          },
+                                          onTap: () =>
+                                              Get.toNamed(ADD_EDIT_ROUTE),
                                           child: const Text(
                                             "Edit",
                                             style: TextStyle(
@@ -211,7 +210,8 @@ class AddressPage extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
-                                          onTap: () {},
+                                          onTap: () =>
+                                              Get.toNamed(ADD_EDIT_ROUTE),
                                           child: const Text(
                                             "Edit",
                                             style: TextStyle(

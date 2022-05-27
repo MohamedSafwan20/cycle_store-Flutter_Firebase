@@ -1,7 +1,9 @@
 import 'package:cycle_store/config/colors.dart';
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
 class OrderSummaryPage extends StatelessWidget {
@@ -17,7 +19,10 @@ class OrderSummaryPage extends StatelessWidget {
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           CustomAppBar(
             actions: [
-              {"icon": Icons.headset_mic_outlined, "onPressed": () {}}
+              {
+                "icon": Icons.headset_mic_outlined,
+                "onPressed": () => Get.toNamed(CONTACT_ROUTE)
+              }
             ],
           ),
           const SizedBox(

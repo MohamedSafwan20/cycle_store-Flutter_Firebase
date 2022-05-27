@@ -1,5 +1,7 @@
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/ui/widgets/product_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NewArrivals extends StatelessWidget {
   const NewArrivals({Key? key}) : super(key: key);
@@ -17,7 +19,7 @@ class NewArrivals extends StatelessWidget {
               style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900),
             ),
             TextButton(
-                onPressed: () {},
+                onPressed: () => Get.toNamed(PRODUCT_LIST_ROUTE),
                 child: const Text(
                   "See all",
                   style: TextStyle(fontWeight: FontWeight.w700),

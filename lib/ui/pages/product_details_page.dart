@@ -29,7 +29,10 @@ class ProductDetailsPage extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
                 child: CustomAppBar(
                   actions: [
-                    {"icon": Icons.shopping_bag_outlined, "onPressed": () {}}
+                    {
+                      "icon": Icons.shopping_bag_outlined,
+                      "onPressed": () => Get.toNamed(CART_ROUTE)
+                    }
                   ],
                 ),
               ),
@@ -291,6 +294,7 @@ class ProductDetailsPage extends StatelessWidget {
                           text: "Buy now",
                           onPressed: () => Get.toNamed(CHECKOUT_ROUTE),
                           height: 42,
+                          width: 120,
                           borderRadius: 8,
                         )
                       ],

@@ -1,8 +1,10 @@
 import 'package:cycle_store/config/colors.dart';
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/ui/widgets/cart_item.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -39,7 +41,9 @@ class CartPage extends StatelessWidget {
                     physics: const BouncingScrollPhysics(),
                     itemCount: 4,
                     itemBuilder: (_, index) {
-                      return const CartItem();
+                      return InkWell(
+                          onTap: () => Get.toNamed(PRODUCT_DETAILS_ROUTE),
+                          child: const CartItem());
                     })),
             Container(
               height: 170,
@@ -78,7 +82,7 @@ class CartPage extends StatelessWidget {
                     width: 260,
                     height: 50,
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () => Get.toNamed(CHECKOUT_ROUTE),
                       child: const Text(
                         "Proceed to Payment",
                         style: TextStyle(color: Colors.black, fontSize: 20),
