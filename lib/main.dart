@@ -4,6 +4,7 @@ import 'package:cycle_store/ui/pages/address_page.dart';
 import 'package:cycle_store/ui/pages/cart_page.dart';
 import 'package:cycle_store/ui/pages/checkout_page.dart';
 import 'package:cycle_store/ui/pages/contact_page.dart';
+import 'package:cycle_store/ui/pages/email_verification_page.dart';
 import 'package:cycle_store/ui/pages/home_page.dart';
 import 'package:cycle_store/ui/pages/login_page.dart';
 import 'package:cycle_store/ui/pages/my_orders_page.dart';
@@ -51,6 +52,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: CHECKOUT_ROUTE, page: () => const CheckoutPage()),
         GetPage(name: SIGNUP_ROUTE, page: () => const SignupPage()),
         GetPage(name: LOGIN_ROUTE, page: () => const LoginPage()),
+        GetPage(
+            name: EMAIL_VERIFICATION_ROUTE,
+            page: () => const EmailVerificationPage()),
       ],
     );
   }

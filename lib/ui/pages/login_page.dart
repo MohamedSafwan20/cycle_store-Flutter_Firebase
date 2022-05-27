@@ -116,7 +116,7 @@ class LoginPage extends StatelessWidget {
               ),
               PrimaryButton(
                 text: "Sign in",
-                onPressed: () {},
+                onPressed: () => Get.toNamed(EMAIL_VERIFICATION_ROUTE),
                 width: double.infinity,
                 height: 50,
                 textStyle: const TextStyle(fontSize: 18),
