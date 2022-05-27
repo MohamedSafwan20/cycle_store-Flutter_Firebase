@@ -105,7 +105,7 @@ class LoginPage extends StatelessWidget {
               Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
-                      onPressed: () {},
+                      onPressed: () => Get.toNamed(RESET_PASSWORD_ROUTE),
                       child: const Text(
                         "Forgot Password?",
                         style: TextStyle(

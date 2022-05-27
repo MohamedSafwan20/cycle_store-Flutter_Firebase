@@ -12,6 +12,7 @@ import 'package:cycle_store/ui/pages/order_summary_page.dart';
 import 'package:cycle_store/ui/pages/product_details_page.dart';
 import 'package:cycle_store/ui/pages/product_list_page.dart';
 import 'package:cycle_store/ui/pages/profile_page.dart';
+import 'package:cycle_store/ui/pages/reset_password_page.dart';
 import 'package:cycle_store/ui/pages/search_page.dart';
 import 'package:cycle_store/ui/pages/signup_page.dart';
 import 'package:flutter/material.dart';
@@ -55,6 +56,8 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: EMAIL_VERIFICATION_ROUTE,
             page: () => const EmailVerificationPage()),
+        GetPage(
+            name: RESET_PASSWORD_ROUTE, page: () => const ResetPasswordPage()),
       ],
     );
   }

@@ -67,10 +67,6 @@ class EmailVerificationPage extends StatelessWidget {
                       PrimaryButton(
                         text: "Open Email App",
                         onPressed: () {},
-                        width: double.infinity,
-                        height: 50,
-                        textStyle: const TextStyle(fontSize: 18),
-                        borderRadius: 8,
                       )
                     ],
                   ),

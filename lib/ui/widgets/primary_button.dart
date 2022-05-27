@@ -5,9 +5,9 @@ class PrimaryButton extends StatelessWidget {
   const PrimaryButton(
       {Key? key,
       required this.text,
-      this.height = 30,
-      this.width = 100,
-      this.borderRadius = 2,
+      this.height = 50,
+      this.width = double.infinity,
+      this.borderRadius = 8,
       required this.onPressed,
       this.textStyle = const TextStyle()})
       : super(key: key);
@@ -32,7 +32,7 @@ class PrimaryButton extends StatelessWidget {
         child: Text(
           text,
           style: textStyle.copyWith(
-              color: Colors.white, fontWeight: FontWeight.bold),
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
         ),
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(PRIMARY_COLOR),
