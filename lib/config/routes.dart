@@ -10,3 +10,4 @@ const MY_ORDERS_ROUTE = "/my-orders";
 const ORDER_SUMMARY_ROUTE = "/order";
 const CONTACT_ROUTE = "/contact";
 const CHECKOUT_ROUTE = "/checkout";
+const SIGNUP_ROUTE = "/register";

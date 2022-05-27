@@ -11,6 +11,7 @@ import 'package:cycle_store/ui/pages/product_details_page.dart';
 import 'package:cycle_store/ui/pages/product_list_page.dart';
 import 'package:cycle_store/ui/pages/profile_page.dart';
 import 'package:cycle_store/ui/pages/search_page.dart';
+import 'package:cycle_store/ui/pages/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         // fontFamily: "TitilliumWeb",
         primarySwatch: Colors.blue,
       ),
-      initialRoute: HOME_ROUTE,
+      initialRoute: SIGNUP_ROUTE,
       getPages: [
         GetPage(name: HOME_ROUTE, page: () => const HomePage()),
         GetPage(name: CART_ROUTE, page: () => const CartPage()),
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
             name: ORDER_SUMMARY_ROUTE, page: () => const OrderSummaryPage()),
         GetPage(name: CONTACT_ROUTE, page: () => const ContactPage()),
         GetPage(name: CHECKOUT_ROUTE, page: () => const CheckoutPage()),
+        GetPage(name: SIGNUP_ROUTE, page: () => const SignupPage()),
       ],
     );
   }
