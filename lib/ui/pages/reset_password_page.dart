@@ -1,8 +1,10 @@
 import 'package:cycle_store/config/colors.dart';
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
 import 'package:cycle_store/ui/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ResetPasswordPage extends StatelessWidget {
   const ResetPasswordPage({Key? key}) : super(key: key);
@@ -77,7 +79,9 @@ class ResetPasswordPage extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      PrimaryButton(text: "Send Reset Link", onPressed: () {})
+                      PrimaryButton(
+                          text: "Send Reset Link",
+                          onPressed: () => Get.toNamed(EMAIL_SENT_ROUTE))
                     ],
                   ),
                 ),

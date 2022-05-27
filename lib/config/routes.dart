@@ -14,3 +14,4 @@ const SIGNUP_ROUTE = "/register";
 const LOGIN_ROUTE = "/login";
 const EMAIL_VERIFICATION_ROUTE = "/email-verify";
 const RESET_PASSWORD_ROUTE = "/reset-password";
+const EMAIL_SENT_ROUTE = "/email-sent";

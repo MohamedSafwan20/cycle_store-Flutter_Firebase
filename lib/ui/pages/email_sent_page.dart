@@ -4,8 +4,8 @@ import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
 import 'package:cycle_store/ui/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 
-class EmailVerificationPage extends StatelessWidget {
-  const EmailVerificationPage({Key? key}) : super(key: key);
+class EmailSentPage extends StatelessWidget {
+  const EmailSentPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +17,7 @@ class EmailVerificationPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomAppBar(
-                title: "Verification",
-              ),
+              const CustomAppBar(),
               const SizedBox(
                 height: 20,
               ),
@@ -31,15 +29,15 @@ class EmailVerificationPage extends StatelessWidget {
                       Align(
                           alignment: Alignment.topCenter,
                           child: Image.asset(
-                            "assets/images/email_verification.png",
-                            width: 240,
-                            height: 240,
+                            "assets/images/email_sent.png",
+                            width: 280,
+                            height: 280,
                           )),
                       const SizedBox(
                         height: 30,
                       ),
                       Text(
-                        "Verify Your Email",
+                        "Check Your Email",
                         style: HEADING_1,
                       ),
                       const SizedBox(
@@ -48,7 +46,7 @@ class EmailVerificationPage extends StatelessWidget {
                       const SizedBox(
                           width: 320,
                           child: Text(
-                            "Please verify your email by clicking the link we sent to your email",
+                            "We have sent a password reset mail to your email",
                             style: TextStyle(
                                 color: SECONDARY_TEXT_COLOR, fontSize: 16),
                             textAlign: TextAlign.center,
@@ -56,18 +54,19 @@ class EmailVerificationPage extends StatelessWidget {
                       const SizedBox(
                         height: 30,
                       ),
-                      const Text(
-                        "example@gmail.com",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                      const SizedBox(
-                        height: 50,
-                      ),
                       PrimaryButton(
                         text: "Open Email App",
                         onPressed: () {},
-                      )
+                      ),
+                      const SizedBox(height: 40),
+                      const SizedBox(
+                          width: 280,
+                          child: Text(
+                            "Did not receive the email? check your spam folder",
+                            style: TextStyle(
+                                color: SECONDARY_TEXT_COLOR, fontSize: 14),
+                            textAlign: TextAlign.center,
+                          )),
                     ],
                   ),
                 ),
