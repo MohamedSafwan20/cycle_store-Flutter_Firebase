@@ -1,8 +1,11 @@
 import 'package:cycle_store/config/colors.dart';
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
 import 'package:cycle_store/ui/widgets/primary_button.dart';
+import 'package:cycle_store/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class EmailSentPage extends StatelessWidget {
   const EmailSentPage({Key? key}) : super(key: key);
@@ -56,8 +59,19 @@ class EmailSentPage extends StatelessWidget {
                       ),
                       PrimaryButton(
                         text: "Open Email App",
-                        onPressed: () {},
+                        onPressed: () => Utils.openMailApp(),
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      TextButton(
+                          onPressed: () => Get.toNamed(LOGIN_ROUTE),
+                          child: const Text(
+                            "Go to login",
+                            style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                fontWeight: FontWeight.w700),
+                          )),
                       const SizedBox(height: 40),
                       const SizedBox(
                           width: 280,

@@ -1,6 +1,7 @@
 import 'package:cycle_store/config/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
   static void showErrorSnackbar({required String text}) {
@@ -25,5 +26,13 @@ class Utils {
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: SUCCESS_COLOR,
     );
+  }
+
+  static void openMailApp() async {
+    try {
+      await launchUrl(Uri.parse("mailto: "));
+    } catch (_) {
+      Utils.showErrorSnackbar(text: "Couldn't open mail app");
+    }
   }
 }

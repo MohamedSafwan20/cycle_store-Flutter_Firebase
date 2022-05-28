@@ -1,3 +1,4 @@
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/services/auth_service.dart';
 import 'package:cycle_store/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,7 +35,12 @@ class LoginController extends GetxController {
 
     AuthService.login(
             email: emailController.text, password: passwordController.text)
-        .then((value) {
+        .then((res) {
+      if (res["status"] && !res["data"].emailVerified) {
+        Get.toNamed(EMAIL_VERIFICATION_ROUTE,
+            arguments: {"email": res["data"].email});
+      }
+
       isLoading.value = false;
     }).catchError((_) {
       Utils.showErrorSnackbar(text: "Couldn't login");

@@ -4,6 +4,7 @@ import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/data/controllers/email_verification_controller.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
 import 'package:cycle_store/ui/widgets/primary_button.dart';
+import 'package:cycle_store/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -78,9 +79,7 @@ class EmailVerificationPage extends StatelessWidget {
                         ),
                         PrimaryButton(
                           text: "Open Email App",
-                          onPressed: () {
-                            _controller.openMailApp();
-                          },
+                          onPressed: () => Utils.openMailApp(),
                         ),
                         const SizedBox(
                           height: 10,
