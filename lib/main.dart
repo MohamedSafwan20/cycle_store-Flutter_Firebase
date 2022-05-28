@@ -1,4 +1,5 @@
 import 'package:cycle_store/config/routes.dart';
+import 'package:cycle_store/firebase_options.dart';
 import 'package:cycle_store/ui/pages/add_edit_address.dart';
 import 'package:cycle_store/ui/pages/address_page.dart';
 import 'package:cycle_store/ui/pages/cart_page.dart';
@@ -16,10 +17,19 @@ import 'package:cycle_store/ui/pages/profile_page.dart';
 import 'package:cycle_store/ui/pages/reset_password_page.dart';
 import 'package:cycle_store/ui/pages/search_page.dart';
 import 'package:cycle_store/ui/pages/signup_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
