@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/services/auth_service.dart';
 import 'package:cycle_store/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -52,10 +55,18 @@ class SignupController extends GetxController {
 
     AuthService.signup(
             email: emailController.text, password: passwordController.text)
-        .then((value) {
-      Utils.showSuccessSnackbar(text: "Account created");
+        .then((value) async {
+      // Utils.showSuccessSnackbar(text: "Account created");
       isLoading.value = false;
-    }).catchError((_) {
+
+      if (value != null) {
+        await value.updateDisplayName(nameController.text);
+
+        Get.toNamed(EMAIL_VERIFICATION_ROUTE,
+            arguments: {"email": value.email});
+      }
+    }).catchError((e) {
+      log(e.toString());
       Utils.showErrorSnackbar(text: "Couldn't signup");
       isLoading.value = false;
     });

@@ -37,4 +37,26 @@ class AuthService {
 
     return null;
   }
+
+  static User getCurrentUser() {
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      throw Exception();
+    }
+
+    return user;
+  }
+
+  static Future<bool> sendVerificationEmail() async {
+    try {
+      User user = AuthService.getCurrentUser();
+
+      await user.sendEmailVerification();
+
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
 }
