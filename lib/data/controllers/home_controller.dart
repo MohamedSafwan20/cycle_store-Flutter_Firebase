@@ -4,20 +4,36 @@ import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   RxList<Product> newArrivals = <Product>[].obs;
+  RxList<Product> topSelling = <Product>[].obs;
 
-  RxBool isLoading = false.obs;
+  RxBool isNewArrivalsLoading = false.obs;
+  RxBool isTopSellingLoading = false.obs;
 
   void getNewArrivedProducts() {
-    isLoading.value = true;
+    isNewArrivalsLoading.value = true;
 
     ProductService.getNewArrivedProducts().then((res) {
       if (!res["status"]) throw Exception();
 
       newArrivals.value = res["data"];
 
-      isLoading.value = false;
+      isNewArrivalsLoading.value = false;
     }).catchError((e) {
-      isLoading.value = false;
+      isNewArrivalsLoading.value = false;
+    });
+  }
+
+  void getTopSellingProducts() {
+    isTopSellingLoading.value = true;
+
+    ProductService.getTopSellingProducts().then((res) {
+      if (!res["status"]) throw Exception();
+
+      topSelling.value = res["data"];
+
+      isTopSellingLoading.value = false;
+    }).catchError((e) {
+      isTopSellingLoading.value = false;
     });
   }
 }

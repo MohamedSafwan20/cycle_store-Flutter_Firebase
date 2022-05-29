@@ -13,6 +13,7 @@ class Home extends StatelessWidget {
     final _controller = Get.put(HomeController());
 
     _controller.getNewArrivedProducts();
+    _controller.getTopSellingProducts();
 
     return Column(
       children: [
@@ -25,11 +26,13 @@ class Home extends StatelessWidget {
                 children: [
                   NewArrivals(
                       products: _controller.newArrivals,
-                      isLoading: _controller.isLoading.value),
+                      isLoading: _controller.isNewArrivalsLoading.value),
                   const SizedBox(
                     height: 20,
                   ),
-                  const TopSelling(),
+                  TopSelling(
+                      products: _controller.topSelling,
+                      isLoading: _controller.isTopSellingLoading.value),
                   const SizedBox(
                     height: 40,
                   ),

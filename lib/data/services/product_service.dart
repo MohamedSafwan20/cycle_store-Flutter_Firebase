@@ -19,4 +19,22 @@ class ProductService {
       return {"status": false, "data": []};
     }
   }
+
+  static Future<Map> getTopSellingProducts() async {
+    try {
+      QuerySnapshot res = await FirebaseFirestore.instance
+          .collection("products")
+          .orderBy("buy_count")
+          .limit(15)
+          .get();
+
+      List<Product> data = res.docs.map((e) {
+        return Product.toProduct(e.data() as Map);
+      }).toList();
+
+      return {"status": true, "data": data};
+    } catch (e) {
+      return {"status": false, "data": []};
+    }
+  }
 }
