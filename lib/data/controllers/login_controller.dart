@@ -36,9 +36,13 @@ class LoginController extends GetxController {
     AuthService.login(
             email: emailController.text, password: passwordController.text)
         .then((res) {
-      if (res["status"] && !res["data"].emailVerified) {
-        Get.toNamed(EMAIL_VERIFICATION_ROUTE,
-            arguments: {"email": res["data"].email});
+      if (res["status"]) {
+        if (!res["data"].emailVerified) {
+          Get.toNamed(EMAIL_VERIFICATION_ROUTE,
+              arguments: {"email": res["data"].email});
+        }
+
+        Get.toNamed(HOME_ROUTE);
       }
 
       isLoading.value = false;

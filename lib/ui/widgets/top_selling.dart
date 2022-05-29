@@ -1,5 +1,4 @@
 import 'package:cycle_store/config/routes.dart';
-import 'package:cycle_store/ui/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +8,7 @@ class TopSelling extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -26,22 +26,22 @@ class TopSelling extends StatelessWidget {
                 ))
           ],
         ),
-        SizedBox(
-          height: 240,
-          child: ListView.builder(
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              itemCount: 4,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: index == 0
-                      ? const EdgeInsets.only(right: 3)
-                      : const EdgeInsets.symmetric(horizontal: 3),
-                  child: const ProductCard(),
-                );
-              }),
-        )
+        // SizedBox(
+        //   height: 240,
+        //   child: ListView.builder(
+        //       shrinkWrap: true,
+        //       physics: const BouncingScrollPhysics(),
+        //       scrollDirection: Axis.horizontal,
+        //       itemCount: 4,
+        //       itemBuilder: (context, index) {
+        //         return Padding(
+        //           padding: index == 0
+        //               ? const EdgeInsets.only(right: 3)
+        //               : const EdgeInsets.symmetric(horizontal: 3),
+        //           child: const ProductCard(),
+        //         );
+        //       }),
+        // )
       ],
     );
   }

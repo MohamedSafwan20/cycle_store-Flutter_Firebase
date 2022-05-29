@@ -1,7 +1,6 @@
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/data/controllers/category_controller.dart';
-import 'package:cycle_store/ui/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -94,20 +93,20 @@ class Categories extends StatelessWidget {
                       }),
                 ),
               ),
-              Expanded(
-                child: GridView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: 10,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio:
-                            (MediaQuery.of(context).size.width / 510),
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 1),
-                    itemBuilder: (_, index) {
-                      return const ProductCard();
-                    }),
-              ),
+              // Expanded(
+              //   child: GridView.builder(
+              //       physics: const BouncingScrollPhysics(),
+              //       itemCount: 10,
+              //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //           crossAxisCount: 2,
+              //           childAspectRatio:
+              //               (MediaQuery.of(context).size.width / 510),
+              //           mainAxisSpacing: 8,
+              //           crossAxisSpacing: 1),
+              //       itemBuilder: (_, index) {
+              //         return const ProductCard();
+              //       }),
+              // ),
             ],
           ),
         )

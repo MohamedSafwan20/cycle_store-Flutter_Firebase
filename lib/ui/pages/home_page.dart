@@ -1,6 +1,6 @@
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/routes.dart';
-import 'package:cycle_store/data/controllers/home_controller.dart';
+import 'package:cycle_store/data/controllers/home_page_controller.dart';
 import 'package:cycle_store/ui/widgets/account.dart';
 import 'package:cycle_store/ui/widgets/categories.dart';
 import 'package:cycle_store/ui/widgets/home.dart';
@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(HomeController());
+    final _controller = Get.put(HomePageController());
 
     return Scaffold(
       backgroundColor: SECONDARY_COLOR,
@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Obx(() {
         return IndexedStack(
-          index: controller.currentPageIndex.value,
+          index: _controller.currentPageIndex.value,
           children: const [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 18.0),
@@ -58,7 +58,7 @@ class HomePage extends StatelessWidget {
         );
       }),
       bottomNavigationBar: Obx(() {
-        int currentPage = controller.currentPageIndex.value;
+        int currentPage = _controller.currentPageIndex.value;
 
         return SizedBox(
           height: 55,
@@ -70,7 +70,7 @@ class HomePage extends StatelessWidget {
                 return;
               }
 
-              controller.onPageChange(index: index);
+              _controller.onPageChange(index: index);
             },
             showSelectedLabels: false,
             showUnselectedLabels: false,

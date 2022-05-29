@@ -1,6 +1,5 @@
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/routes.dart';
-import 'package:cycle_store/ui/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -77,20 +76,20 @@ class ProductListPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Expanded(
-                child: GridView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: 10,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio:
-                            (MediaQuery.of(context).size.width / 510),
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 1),
-                    itemBuilder: (_, index) {
-                      return const ProductCard();
-                    }),
-              ),
+              // Expanded(
+              //   child: GridView.builder(
+              //       physics: const BouncingScrollPhysics(),
+              //       itemCount: 10,
+              //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //           crossAxisCount: 2,
+              //           childAspectRatio:
+              //               (MediaQuery.of(context).size.width / 510),
+              //           mainAxisSpacing: 8,
+              //           crossAxisSpacing: 1),
+              //       itemBuilder: (_, index) {
+              //         return const ProductCard();
+              //       }),
+              // ),
             ],
           ),
         ),

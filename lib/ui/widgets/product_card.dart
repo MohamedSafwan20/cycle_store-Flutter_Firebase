@@ -1,15 +1,16 @@
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/routes.dart';
+import 'package:cycle_store/data/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({Key? key}) : super(key: key);
+  const ProductCard({Key? key, required this.product}) : super(key: key);
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
-    const title = "TDR 3000000";
-
     return InkWell(
       onTap: () => Get.toNamed(PRODUCT_DETAILS_ROUTE),
       child: SizedBox(
@@ -28,16 +29,16 @@ class ProductCard extends StatelessWidget {
                       topRight: Radius.circular(8),
                       topLeft: Radius.circular(8)),
                   child: Image.network(
-                    "http://picsum.photos/300/300",
+                    product.thumbnail,
                     fit: BoxFit.fill,
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0),
-                child: Text(title,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Text(product.name,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     )),
@@ -54,20 +55,22 @@ class ProductCard extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              const Icon(
-                                Icons.star,
-                                color: GOLD_COLOR,
-                                size: 18,
+                              const SizedBox(
+                                width: 48,
+                                child: Text("In stock:",
+                                    style: TextStyle(
+                                        color: SUCCESS_COLOR,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600)),
                               ),
-                              Container(
-                                padding: const EdgeInsets.only(left: 5.0),
-                                width: 50,
-                                child: const Text(
-                                  "4.8 (2200)",
+                              SizedBox(
+                                width: 22,
+                                child: Text(
+                                  product.stock.toString(),
                                   overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                      color: SECONDARY_TEXT_COLOR,
-                                      fontSize: 12),
+                                  style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400),
                                 ),
                               )
                             ],
@@ -75,10 +78,10 @@ class ProductCard extends StatelessWidget {
                           const SizedBox(
                             height: 3,
                           ),
-                          const Text(
-                            "₹14000",
+                          Text(
+                            "₹${product.price}",
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: PRIMARY_COLOR,
                                 fontWeight: FontWeight.w700,
                                 fontSize: 18),
