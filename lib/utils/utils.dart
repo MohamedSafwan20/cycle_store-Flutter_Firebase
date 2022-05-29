@@ -1,4 +1,5 @@
 import 'package:cycle_store/config/colors.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -34,5 +35,12 @@ class Utils {
     } catch (_) {
       Utils.showErrorSnackbar(text: "Couldn't open mail app");
     }
+  }
+
+  static Future<String> getImageFromStorage({required String path}) async {
+    final ref = FirebaseStorage.instance.ref().child(path);
+
+    String url = await ref.getDownloadURL();
+    return url;
   }
 }

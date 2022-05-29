@@ -42,7 +42,7 @@ class LoginController extends GetxController {
               arguments: {"email": res["data"].email});
         }
 
-        Get.toNamed(HOME_ROUTE);
+        Get.offAllNamed(HOME_ROUTE);
       }
 
       isLoading.value = false;

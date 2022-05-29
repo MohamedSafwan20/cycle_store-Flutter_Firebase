@@ -1,8 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/models/product_model.dart';
+import 'package:cycle_store/ui/widgets/loading.dart';
+import 'package:cycle_store/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({Key? key, required this.product}) : super(key: key);
@@ -28,10 +32,28 @@ class ProductCard extends StatelessWidget {
                   borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(8),
                       topLeft: Radius.circular(8)),
-                  child: Image.network(
-                    product.thumbnail,
-                    fit: BoxFit.fill,
-                  ),
+                  child: FutureBuilder(
+                      future:
+                          Utils.getImageFromStorage(path: product.thumbnail),
+                      builder: (_, AsyncSnapshot<String> snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          return CachedNetworkImage(
+                            imageUrl: snapshot.data!,
+                            imageBuilder: (_, imageProvider) {
+                              return Image(
+                                image: imageProvider,
+                                fit: BoxFit.fill,
+                              );
+                            },
+                          );
+                        }
+
+                        return const Loading(
+                          width: 25,
+                          height: 25,
+                          loader: LoadingAnimationWidget.staggeredDotsWave,
+                        );
+                      }),
                 ),
               ),
               Padding(
@@ -69,8 +91,8 @@ class ProductCard extends StatelessWidget {
                                   product.stock.toString(),
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400),
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w600),
                                 ),
                               )
                             ],
@@ -97,12 +119,12 @@ class ProductCard extends StatelessWidget {
                           child: const Icon(Icons.shopping_bag_outlined),
                           style: ButtonStyle(
                               backgroundColor:
-                                  MaterialStateProperty.all(PRIMARY_COLOR),
+                              MaterialStateProperty.all(PRIMARY_COLOR),
                               shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5))),
                               foregroundColor:
-                                  MaterialStateProperty.all(Colors.white)),
+                              MaterialStateProperty.all(Colors.white)),
                         ))
                   ],
                 ),
