@@ -8,6 +8,7 @@ import 'package:cycle_store/ui/pages/contact_page.dart';
 import 'package:cycle_store/ui/pages/email_sent_page.dart';
 import 'package:cycle_store/ui/pages/email_verification_page.dart';
 import 'package:cycle_store/ui/pages/home_page.dart';
+import 'package:cycle_store/ui/pages/initial_page.dart';
 import 'package:cycle_store/ui/pages/login_page.dart';
 import 'package:cycle_store/ui/pages/my_orders_page.dart';
 import 'package:cycle_store/ui/pages/order_summary_page.dart';
@@ -44,8 +45,9 @@ class MyApp extends StatelessWidget {
         // fontFamily: "TitilliumWeb",
         primarySwatch: Colors.blue,
       ),
-      initialRoute: SIGNUP_ROUTE,
+      initialRoute: INITIAL_ROUTE,
       getPages: [
+        GetPage(name: INITIAL_ROUTE, page: () => const InitialPage()),
         GetPage(name: HOME_ROUTE, page: () => const HomePage()),
         GetPage(name: CART_ROUTE, page: () => const CartPage()),
         GetPage(name: SEARCH_ROUTE, page: () => const SearchPage()),

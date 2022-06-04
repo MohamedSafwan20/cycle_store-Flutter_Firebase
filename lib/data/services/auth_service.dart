@@ -1,9 +1,10 @@
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 
 class AuthService {
-  static Future<User?> signup(
-      {required String email, required String password}) async {
+  static Future<User?> signup({required String email, required String password}) async {
     try {
       UserCredential res = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -18,8 +19,7 @@ class AuthService {
     return null;
   }
 
-  static Future<Map> login(
-      {required String email, required String password}) async {
+  static Future<Map> login({required String email, required String password}) async {
     try {
       UserCredential res = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
@@ -42,7 +42,7 @@ class AuthService {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user == null) {
-      throw Exception();
+      throw Exception("User not logged in");
     }
 
     return user;
@@ -72,5 +72,11 @@ class AuthService {
 
       return false;
     }
+  }
+
+  static logout() async {
+    await FirebaseAuth.instance.signOut();
+
+    Get.offAllNamed(LOGIN_ROUTE);
   }
 }

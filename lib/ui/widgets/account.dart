@@ -1,6 +1,7 @@
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/config/typography.dart';
+import 'package:cycle_store/data/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -73,7 +74,7 @@ class Account extends StatelessWidget {
                 ],
               ),
               IconButton(
-                  onPressed: () => Get.offAllNamed(LOGIN_ROUTE),
+                  onPressed: () => AuthService.logout(),
                   icon: const Icon(
                     Icons.logout_outlined,
                     size: 26,
