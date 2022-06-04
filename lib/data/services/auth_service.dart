@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cycle_store/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -68,7 +66,6 @@ class AuthService {
 
       return true;
     } on FirebaseAuthException catch (e) {
-      log(e.code.toString());
       if (e.code == "user-not-found") {
         Utils.showErrorSnackbar(text: "Account doesn't exist");
       }

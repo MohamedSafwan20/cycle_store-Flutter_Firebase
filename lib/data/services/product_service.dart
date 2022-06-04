@@ -11,7 +11,8 @@ class ProductService {
           .get();
 
       List<Product> data = res.docs.map((e) {
-        return Product.toProduct(e.data() as Map);
+        Map data = {"id": e.id, ...e.data() as Map};
+        return Product.toProduct(data);
       }).toList();
 
       return {"status": true, "data": data};
@@ -24,12 +25,14 @@ class ProductService {
     try {
       QuerySnapshot res = await FirebaseFirestore.instance
           .collection("products")
-          .orderBy("buy_count")
+          .orderBy("buy_count", descending: true)
           .limit(15)
           .get();
 
       List<Product> data = res.docs.map((e) {
-        return Product.toProduct(e.data() as Map);
+        Map data = {"id": e.id, ...e.data() as Map};
+
+        return Product.toProduct(data);
       }).toList();
 
       return {"status": true, "data": data};

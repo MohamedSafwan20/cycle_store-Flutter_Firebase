@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
@@ -38,7 +36,6 @@ class AddressPage extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          log("main");
                         },
                         highlightColor: Colors.transparent,
                         splashColor: Colors.transparent,
@@ -121,7 +118,6 @@ class AddressPage extends StatelessWidget {
                                           )),
                                       InkWell(
                                           onTap: () {
-                                            log("delete");
                                           },
                                           child: const Text(
                                             "Delete",

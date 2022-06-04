@@ -13,7 +13,7 @@ class HomeController extends GetxController {
     isNewArrivalsLoading.value = true;
 
     ProductService.getNewArrivedProducts().then((res) {
-      if (!res["status"]) throw Exception();
+      if (!res["status"]) throw Exception("Failed to get new arrived products");
 
       newArrivals.value = res["data"];
 
@@ -27,7 +27,7 @@ class HomeController extends GetxController {
     isTopSellingLoading.value = true;
 
     ProductService.getTopSellingProducts().then((res) {
-      if (!res["status"]) throw Exception();
+      if (!res["status"]) throw Exception("Failed to get top selling products");
 
       topSelling.value = res["data"];
 

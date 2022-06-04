@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/services/auth_service.dart';
 import 'package:cycle_store/utils/utils.dart';
@@ -66,7 +64,6 @@ class SignupController extends GetxController {
             arguments: {"email": value.email});
       }
     }).catchError((e) {
-      log(e.toString());
       Utils.showErrorSnackbar(text: "Couldn't signup");
       isLoading.value = false;
     });
