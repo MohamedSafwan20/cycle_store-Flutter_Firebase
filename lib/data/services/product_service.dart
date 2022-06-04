@@ -40,4 +40,40 @@ class ProductService {
       return {"status": false, "data": []};
     }
   }
+
+  static Future<Map> getAllProducts() async {
+    try {
+      QuerySnapshot res =
+          await FirebaseFirestore.instance.collection("products").get();
+
+      List<Product> data = res.docs.map((e) {
+        Map data = {"id": e.id, ...e.data() as Map};
+
+        return Product.toProduct(data);
+      }).toList();
+
+      return {"status": true, "data": data};
+    } catch (e) {
+      return {"status": false, "data": []};
+    }
+  }
+
+  static getProductsByCategory(String category) async {
+    try {
+      QuerySnapshot res = await FirebaseFirestore.instance
+          .collection("products")
+          .where("category", isEqualTo: category)
+          .get();
+
+      List<Product> data = res.docs.map((e) {
+        Map data = {"id": e.id, ...e.data() as Map};
+
+        return Product.toProduct(data);
+      }).toList();
+
+      return {"status": true, "data": data};
+    } catch (e) {
+      return {"status": false, "data": []};
+    }
+  }
 }

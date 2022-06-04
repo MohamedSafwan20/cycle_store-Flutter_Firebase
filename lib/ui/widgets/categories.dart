@@ -1,6 +1,8 @@
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/data/controllers/category_controller.dart';
+import 'package:cycle_store/ui/widgets/loading.dart';
+import 'package:cycle_store/ui/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,15 +11,18 @@ class Categories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     const categories = [
       "All",
       "Roadbike",
       "Mountain",
       "Kids",
       "Urban",
-      "Urban"
     ];
     final _controller = Get.put(CategoryController());
+
+    _controller.getAllProducts();
 
     return Stack(
       children: [
@@ -60,7 +65,7 @@ class Categories extends StatelessWidget {
                               padding: index == 0
                                   ? const EdgeInsets.only(right: 10.0)
                                   : const EdgeInsets.symmetric(
-                                      horizontal: 10.0),
+                                  horizontal: 10.0),
                               child: Column(
                                 children: [
                                   Text(
@@ -77,12 +82,12 @@ class Categories extends StatelessWidget {
                                   ),
                                   isSelected
                                       ? Container(
-                                          width: 5,
-                                          height: 5,
-                                          margin: const EdgeInsets.only(top: 2),
-                                          decoration: const BoxDecoration(
-                                              color: PRIMARY_COLOR,
-                                              shape: BoxShape.circle),
+                                    width: 5,
+                                    height: 5,
+                                    margin: const EdgeInsets.only(top: 2),
+                                    decoration: const BoxDecoration(
+                                        color: PRIMARY_COLOR,
+                                        shape: BoxShape.circle),
                                         )
                                       : const SizedBox()
                                 ],
@@ -93,20 +98,37 @@ class Categories extends StatelessWidget {
                       }),
                 ),
               ),
-              // Expanded(
-              //   child: GridView.builder(
-              //       physics: const BouncingScrollPhysics(),
-              //       itemCount: 10,
-              //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              //           crossAxisCount: 2,
-              //           childAspectRatio:
-              //               (MediaQuery.of(context).size.width / 510),
-              //           mainAxisSpacing: 8,
-              //           crossAxisSpacing: 1),
-              //       itemBuilder: (_, index) {
-              //         return const ProductCard();
-              //       }),
-              // ),
+              Obx(() {
+                return _controller.isLoading.value
+                    ? Container(
+                        height: size.height - 300,
+                        alignment: Alignment.center,
+                        child: const Loading())
+                    : _controller.products.isNotEmpty
+                        ? Expanded(
+                            child: GridView.builder(
+                                physics: const BouncingScrollPhysics(),
+                                itemCount: _controller.products.length,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        childAspectRatio: (size.width / 510),
+                                        mainAxisSpacing: 8,
+                                        crossAxisSpacing: 1),
+                                itemBuilder: (_, index) {
+                                  return ProductCard(
+                                      product: _controller.products[index]);
+                                }),
+                          )
+                        : Container(
+                            height: size.height - 300,
+                            alignment: Alignment.center,
+                            child: Text(
+                              "No Bikes",
+                              style: HEADING_1.copyWith(
+                                  color: SECONDARY_TEXT_COLOR),
+                            ));
+              }),
             ],
           ),
         )
