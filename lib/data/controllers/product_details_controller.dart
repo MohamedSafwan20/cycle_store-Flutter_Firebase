@@ -1,17 +1,18 @@
 import 'package:carousel_slider/carousel_controller.dart';
+import 'package:cycle_store/data/models/product_model.dart';
 import 'package:get/get.dart';
 
 class ProductDetailsController extends GetxController {
   final carouselController = CarouselController();
+  final product = Get.arguments["product"] as Product;
 
-  final images = [
-    "assets/images/product.png",
-    "assets/images/product2.png",
-    "assets/images/logo.jpg"
-  ];
+  RxList images = [].obs;
   RxInt currentCarouselImage = 0.obs;
-
   RxInt selectedSizeIndex = 0.obs;
+
+  ProductDetailsController() {
+    images.value = product.images.map((e) => e["url"]).toList();
+  }
 
   void onCarouselChange(currentIndex, _) =>
       currentCarouselImage.value = currentIndex;

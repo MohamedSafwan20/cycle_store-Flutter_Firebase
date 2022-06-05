@@ -1,13 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/data/controllers/product_details_controller.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
+import 'package:cycle_store/ui/widgets/loading.dart';
 import 'package:cycle_store/ui/widgets/primary_button.dart';
 import 'package:cycle_store/ui/widgets/secondary_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class ProductDetailsPage extends StatelessWidget {
   const ProductDetailsPage({Key? key}) : super(key: key);
@@ -19,37 +22,37 @@ class ProductDetailsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: SECONDARY_COLOR,
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              color: Colors.white,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-                child: CustomAppBar(
-                  actions: [
-                    {
-                      "icon": Icons.shopping_bag_outlined,
-                      "onPressed": () => Get.toNamed(CART_ROUTE)
-                    }
-                  ],
+        child: Obx(() {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 10),
+                  child: CustomAppBar(
+                    actions: [
+                      {
+                        "icon": Icons.shopping_bag_outlined,
+                        "onPressed": () => Get.toNamed(CART_ROUTE)
+                      }
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                      height: 260,
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                              bottomRight: Radius.circular(100),
-                              bottomLeft: Radius.circular(100))),
-                      child: Obx(() {
-                        return Column(
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 260,
+                        decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(100),
+                                bottomLeft: Radius.circular(100))),
+                        child: Column(
                           children: [
                             CarouselSlider.builder(
                                 carouselController:
@@ -65,8 +68,18 @@ class ProductDetailsPage extends StatelessWidget {
                                 itemCount: _controller.images.length,
                                 itemBuilder: (BuildContext context,
                                     int itemIndex, int pageViewIndex) {
-                                  return Image.asset(
-                                      _controller.images[itemIndex]);
+                                  return CachedNetworkImage(
+                                    imageUrl: _controller.images[itemIndex],
+                                    imageBuilder: (_, imageProvider) {
+                                      return Image(
+                                        image: imageProvider,
+                                      );
+                                    },
+                                    placeholder: (context, value) {
+                                      return const Loading(
+                                          loader: LoadingAnimationWidget.beat);
+                                    },
+                                  );
                                 }),
                             const SizedBox(
                               height: 10,
@@ -106,210 +119,143 @@ class ProductDetailsPage extends StatelessWidget {
                                   .toList(),
                             ),
                           ],
-                        );
-                      }),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "TDR 3000",
-                            style: HEADING_1,
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          const Text(
-                            "Lorem ipsum dolor sit amet consecteturadipisicing elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatumng elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatumng elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatumng elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatumng elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatumng elit. Maximesint commodi repudiandae consequuntur voluptatumng elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatumng elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatumng elit. Maximesint commodi repudiandae consequuntur voluptatumng elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatumng elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatumng elit. Maxime",
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          Obx(() {
-                            return Row(
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    _controller.onSizeChange(selectedSize: 0);
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: _controller
-                                                          .selectedSizeIndex
-                                                          .value ==
-                                                      0
-                                                  ? PRIMARY_COLOR
-                                                  : SHADOW_COLOR,
-                                              offset: const Offset(1, 1),
-                                              blurRadius: 6),
-                                        ],
-                                        borderRadius: BorderRadius.circular(5),
-                                        color: _controller
-                                                    .selectedSizeIndex.value ==
-                                                0
-                                            ? PRIMARY_COLOR
-                                            : Colors.white),
-                                    height: 36,
-                                    width: 36,
-                                    alignment: Alignment.center,
-                                    child: Text("S",
-                                        style: TextStyle(
-                                            color: _controller.selectedSizeIndex
-                                                        .value ==
-                                                    0
-                                                ? Colors.white
-                                                : Colors.black,
-                                            fontWeight: FontWeight.bold)),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    _controller.onSizeChange(selectedSize: 1);
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: _controller.selectedSizeIndex
-                                                        .value ==
-                                                    1
-                                                ? PRIMARY_COLOR
-                                                : SHADOW_COLOR,
-                                            offset: const Offset(1, 1),
-                                            blurRadius: 6,
-                                          )
-                                        ],
-                                        borderRadius: BorderRadius.circular(5),
-                                        color: _controller
-                                                    .selectedSizeIndex.value ==
-                                                1
-                                            ? PRIMARY_COLOR
-                                            : Colors.white),
-                                    height: 36,
-                                    width: 36,
-                                    alignment: Alignment.center,
-                                    child: Text("M",
-                                        style: TextStyle(
-                                            color: _controller.selectedSizeIndex
-                                                        .value ==
-                                                    1
-                                                ? Colors.white
-                                                : Colors.black,
-                                            fontWeight: FontWeight.bold)),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    _controller.onSizeChange(selectedSize: 2);
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: _controller
-                                                          .selectedSizeIndex
-                                                          .value ==
-                                                      2
-                                                  ? PRIMARY_COLOR
-                                                  : SHADOW_COLOR,
-                                              offset: const Offset(1, 1),
-                                              blurRadius: 6)
-                                        ],
-                                        borderRadius: BorderRadius.circular(5),
-                                        color: _controller
-                                                    .selectedSizeIndex.value ==
-                                                2
-                                            ? PRIMARY_COLOR
-                                            : Colors.white),
-                                    height: 36,
-                                    width: 36,
-                                    alignment: Alignment.center,
-                                    child: Text("L",
-                                        style: TextStyle(
-                                            color: _controller.selectedSizeIndex
-                                                        .value ==
-                                                    2
-                                                ? Colors.white
-                                                : Colors.black,
-                                            fontWeight: FontWeight.bold)),
-                                  ),
-                                ),
-                              ],
-                            );
-                          })
-                        ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                  ],
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              _controller.product.name,
+                              style: HEADING_1,
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Text(
+                              _controller.product.description,
+                              style: const TextStyle(fontSize: 16),
+                            ),
+                            const SizedBox(
+                              height: 40,
+                            ),
+                            Row(
+                              children: _controller.product.sizes
+                                  .asMap()
+                                  .entries
+                                  .map((size) {
+                                return Row(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        _controller.onSizeChange(
+                                            selectedSize: size.key);
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  color: _controller
+                                                              .selectedSizeIndex
+                                                              .value ==
+                                                          size.key
+                                                      ? PRIMARY_COLOR
+                                                      : SHADOW_COLOR,
+                                                  offset: const Offset(1, 1),
+                                                  blurRadius: 6),
+                                            ],
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            color: _controller.selectedSizeIndex
+                                                        .value ==
+                                                    size.key
+                                                ? PRIMARY_COLOR
+                                                : Colors.white),
+                                        height: 36,
+                                        width: 36,
+                                        alignment: Alignment.center,
+                                        child: Text(size.value,
+                                            style: TextStyle(
+                                                color: _controller
+                                                            .selectedSizeIndex
+                                                            .value ==
+                                                        size.key
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                                fontWeight: FontWeight.bold)),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    )
+                                  ],
+                                );
+                              }).toList(),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Container(
-              height: 80,
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30))),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Flexible(
-                        child: Text(
-                      "₹14000",
-                      overflow: TextOverflow.ellipsis,
-                      style:
-                          TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
-                    )),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Row(
-                      children: [
-                        SecondaryIconButton(
-                          icon: Icons.shopping_bag_outlined,
-                          onPressed: () {},
-                          width: 50,
-                          borderRadius: 7,
-                          height: 42,
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        PrimaryButton(
-                          text: "Buy now",
-                          onPressed: () => Get.toNamed(CHECKOUT_ROUTE),
-                          height: 42,
-                          width: 120,
-                          borderRadius: 8,
-                        )
-                      ],
-                    )
-                  ],
+              Container(
+                height: 80,
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30))),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                          child: Text(
+                        "₹" + _controller.product.price.toString(),
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w800, fontSize: 20),
+                      )),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Row(
+                        children: [
+                          SecondaryIconButton(
+                            icon: Icons.shopping_bag_outlined,
+                            onPressed: () {},
+                            width: 50,
+                            borderRadius: 7,
+                            height: 42,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          PrimaryButton(
+                            text: "Buy now",
+                            onPressed: () => Get.toNamed(CHECKOUT_ROUTE),
+                            height: 42,
+                            width: 120,
+                            borderRadius: 8,
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
-        ),
+              )
+            ],
+          );
+        }),
       ),
     );
   }

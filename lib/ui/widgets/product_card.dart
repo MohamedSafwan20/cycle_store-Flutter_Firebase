@@ -2,8 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/models/product_model.dart';
+import 'package:cycle_store/ui/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({Key? key, required this.product}) : super(key: key);
@@ -13,7 +15,8 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.toNamed(PRODUCT_DETAILS_ROUTE),
+      onTap: () =>
+          Get.toNamed(PRODUCT_DETAILS_ROUTE, arguments: {"product": product}),
       child: SizedBox(
         width: 170,
         child: Card(
@@ -36,6 +39,10 @@ class ProductCard extends StatelessWidget {
                           image: imageProvider,
                           fit: BoxFit.fill,
                         );
+                      },
+                      placeholder: (context, value) {
+                        return const Loading(
+                            loader: LoadingAnimationWidget.beat);
                       },
                     )),
               ),
