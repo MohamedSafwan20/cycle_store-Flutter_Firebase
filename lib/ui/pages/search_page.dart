@@ -65,8 +65,8 @@ class SearchPage extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                          onPressed: () => Get.back(),
-                          child: const Text("Cancel"))
+                          onPressed: () => Get.toNamed(PRODUCT_LIST_ROUTE),
+                          child: const Text("Search"))
                     ],
                   ),
                 ),
@@ -88,7 +88,11 @@ class SearchPage extends StatelessWidget {
                             itemCount: _controller.searchProducts.length,
                             itemBuilder: (_, index) {
                               return InkWell(
-                                onTap: () => Get.toNamed(PRODUCT_LIST_ROUTE),
+                                onTap: () => Get.toNamed(PRODUCT_DETAILS_ROUTE,
+                                    arguments: {
+                                      "product":
+                                          _controller.searchProducts[index]
+                                    }),
                                 child: Container(
                                   width: double.infinity,
                                   height: 75,
