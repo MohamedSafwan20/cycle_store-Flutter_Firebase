@@ -58,7 +58,7 @@ class ProductService {
     }
   }
 
-  static getProductsByCategory(String category) async {
+  static Future<Map> getProductsByCategory(String category) async {
     try {
       QuerySnapshot res = await FirebaseFirestore.instance
           .collection("products")
@@ -69,6 +69,22 @@ class ProductService {
         Map data = {"id": e.id, ...e.data() as Map};
 
         return Product.toProduct(data);
+      }).toList();
+
+      return {"status": true, "data": data};
+    } catch (e) {
+      return {"status": false, "data": []};
+    }
+  }
+
+  static Future<Map> getProductsByName(String searchText) async {
+    try {
+      Map res = await getAllProducts();
+      if (!res["status"]) throw Exception("Failed to fetch all products");
+      List<Product> allProducts = res["data"];
+
+      List<Product> data = allProducts.where((product) {
+        return product.name.toUpperCase().contains(searchText.toUpperCase());
       }).toList();
 
       return {"status": true, "data": data};

@@ -12,9 +12,6 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final _controller = Get.put(HomeController());
 
-    _controller.getNewArrivedProducts();
-    _controller.getTopSellingProducts();
-
     return Column(
       children: [
         const Search(),

@@ -9,6 +9,14 @@ class HomeController extends GetxController {
   RxBool isNewArrivalsLoading = false.obs;
   RxBool isTopSellingLoading = false.obs;
 
+  @override
+  void onInit() {
+    getNewArrivedProducts();
+    getTopSellingProducts();
+
+    super.onInit();
+  }
+
   void getNewArrivedProducts() {
     isNewArrivalsLoading.value = true;
 

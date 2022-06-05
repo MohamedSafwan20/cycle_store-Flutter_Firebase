@@ -1,3 +1,4 @@
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/models/product_model.dart';
 import 'package:cycle_store/data/services/product_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,6 +10,20 @@ class SearchController extends GetxController {
 
   RxList<Product> searchProducts = <Product>[].obs;
   RxBool isLoading = false.obs;
+
+  @override
+  void onInit() {
+    getAllProducts();
+
+    super.onInit();
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+
+    super.dispose();
+  }
 
   void getAllProducts() {
     isLoading.value = true;
@@ -37,5 +52,12 @@ class SearchController extends GetxController {
   void populateSearch(String value) {
     searchController.text = value;
     onSearchValueChange(value);
+  }
+
+  void search() {
+    if (searchController.text.isNotEmpty) {
+      Get.toNamed(PRODUCT_LIST_ROUTE,
+          arguments: {"searchText": searchController.text});
+    }
   }
 }

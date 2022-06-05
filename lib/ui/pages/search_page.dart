@@ -14,8 +14,6 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final _controller = Get.put(SearchController());
 
-    _controller.getAllProducts();
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -65,7 +63,9 @@ class SearchPage extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                          onPressed: () => Get.toNamed(PRODUCT_LIST_ROUTE),
+                          onPressed: () {
+                            _controller.search();
+                          },
                           child: const Text("Search"))
                     ],
                   ),
