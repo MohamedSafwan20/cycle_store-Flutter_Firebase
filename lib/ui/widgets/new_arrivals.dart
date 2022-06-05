@@ -26,7 +26,10 @@ class NewArrivals extends StatelessWidget {
               style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900),
             ),
             TextButton(
-                onPressed: () => Get.toNamed(PRODUCT_LIST_ROUTE),
+                onPressed: () {
+                  Get.toNamed(PRODUCT_LIST_ROUTE,
+                      arguments: {"searchText": "NEW_ARRIVALS"});
+                },
                 child: const Text(
                   "See all",
                   style: TextStyle(fontWeight: FontWeight.w700),

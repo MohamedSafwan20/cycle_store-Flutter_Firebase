@@ -6,7 +6,7 @@ class ProductService {
     try {
       QuerySnapshot res = await FirebaseFirestore.instance
           .collection("products")
-          .orderBy("created_at")
+          .orderBy("created_at", descending: true)
           .limit(15)
           .get();
 
@@ -79,6 +79,22 @@ class ProductService {
 
   static Future<Map> getProductsByName(String searchText) async {
     try {
+      if (searchText == "NEW_ARRIVALS") {
+        Map res = await getNewArrivedProducts();
+        if (!res["status"])
+          throw Exception("Failed to fetch newly arrived products");
+
+        return {"status": true, "data": res["data"] as List<Product>};
+      }
+
+      if (searchText == "TOP_SELLING") {
+        Map res = await getTopSellingProducts();
+        if (!res["status"])
+          throw Exception("Failed to fetch top selling products");
+
+        return {"status": true, "data": res["data"] as List<Product>};
+      }
+
       Map res = await getAllProducts();
       if (!res["status"]) throw Exception("Failed to fetch all products");
       List<Product> allProducts = res["data"];
