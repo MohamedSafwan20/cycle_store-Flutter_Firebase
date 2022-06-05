@@ -51,4 +51,12 @@ class LoginController extends GetxController {
       isLoading.value = false;
     });
   }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+
+    super.dispose();
+  }
 }
