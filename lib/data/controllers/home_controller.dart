@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 class HomeController extends GetxController {
   RxList<Product> newArrivals = <Product>[].obs;
   RxList<Product> topSelling = <Product>[].obs;
+  RxList<Product> cartProducts = <Product>[].obs;
+  RxList<String> productsInCart = <String>[].obs;
 
   RxBool isNewArrivalsLoading = false.obs;
   RxBool isTopSellingLoading = false.obs;
@@ -13,6 +15,7 @@ class HomeController extends GetxController {
   void onInit() {
     getNewArrivedProducts();
     getTopSellingProducts();
+    getAllCartProducts();
 
     super.onInit();
   }
@@ -41,6 +44,43 @@ class HomeController extends GetxController {
 
       isTopSellingLoading.value = false;
     }).catchError((e) {
+      isTopSellingLoading.value = false;
+    });
+  }
+
+  void addToCart(String productId) {
+    ProductService.addToCart(productId).then((res) {
+      if (!res["status"]) {
+        throw Exception("Failed to add to cart");
+      }
+
+      productsInCart.add(productId);
+    });
+  }
+
+  void removeFromCart(String productId) {
+    ProductService.removeFromCart(productId).then((res) {
+      if (!res["status"]) {
+        throw Exception("Failed to remove from cart");
+      }
+
+      productsInCart.remove(productId);
+    });
+  }
+
+  void getAllCartProducts() {
+    isNewArrivalsLoading.value = true;
+    isTopSellingLoading.value = true;
+
+    ProductService.getAllCartProducts().then((res) {
+      if (!res["status"]) throw Exception("Failed to get cart products");
+
+      cartProducts.value = res["data"];
+
+      isNewArrivalsLoading.value = false;
+      isTopSellingLoading.value = false;
+    }).catchError((e) {
+      isNewArrivalsLoading.value = false;
       isTopSellingLoading.value = false;
     });
   }

@@ -1,14 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class AuthService {
-  static Future<User?> signup(
-      {required String email, required String password}) async {
+  static Future<User?> signup({required String email, required String password}) async {
     try {
       UserCredential res = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(res.user?.uid)
+          .set({
+        "cart": [],
+        "orders": [],
+      });
 
       return res.user;
     } on FirebaseAuthException catch (e) {
@@ -20,8 +28,7 @@ class AuthService {
     return null;
   }
 
-  static Future<Map> login(
-      {required String email, required String password}) async {
+  static Future<Map> login({required String email, required String password}) async {
     try {
       UserCredential res = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
