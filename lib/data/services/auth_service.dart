@@ -4,7 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class AuthService {
-  static Future<User?> signup({required String email, required String password}) async {
+  static Future<User?> signup(
+      {required String email, required String password}) async {
     try {
       UserCredential res = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -19,7 +20,8 @@ class AuthService {
     return null;
   }
 
-  static Future<Map> login({required String email, required String password}) async {
+  static Future<Map> login(
+      {required String email, required String password}) async {
     try {
       UserCredential res = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
@@ -55,7 +57,12 @@ class AuthService {
       await user.sendEmailVerification();
 
       return true;
-    } catch (_) {
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'too-many-requests') {
+        return true;
+      }
+      return false;
+    } catch (e) {
       return false;
     }
   }

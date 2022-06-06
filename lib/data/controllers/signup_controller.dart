@@ -54,7 +54,6 @@ class SignupController extends GetxController {
     AuthService.signup(
             email: emailController.text, password: passwordController.text)
         .then((value) async {
-      // Utils.showSuccessSnackbar(text: "Account created");
       isLoading.value = false;
 
       if (value != null) {

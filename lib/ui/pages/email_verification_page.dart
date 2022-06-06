@@ -85,7 +85,7 @@ class EmailVerificationPage extends StatelessWidget {
                           height: 10,
                         ),
                         TextButton(
-                            onPressed: () => Get.toNamed(LOGIN_ROUTE),
+                            onPressed: () => Get.offNamed(LOGIN_ROUTE),
                             child: const Text(
                               "Go to login",
                               style: TextStyle(
