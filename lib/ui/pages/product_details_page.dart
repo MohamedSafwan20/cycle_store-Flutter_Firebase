@@ -156,7 +156,7 @@ class ProductDetailsPage extends StatelessWidget {
                                     InkWell(
                                       onTap: () {
                                         _controller.onSizeChange(
-                                            selectedSize: size.key);
+                                            selectedSize: size.value);
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
@@ -165,7 +165,7 @@ class ProductDetailsPage extends StatelessWidget {
                                                   color: _controller
                                                               .selectedSizeIndex
                                                               .value ==
-                                                          size.key
+                                                      size.value
                                                       ? PRIMARY_COLOR
                                                       : SHADOW_COLOR,
                                                   offset: const Offset(1, 1),
@@ -175,7 +175,7 @@ class ProductDetailsPage extends StatelessWidget {
                                                 BorderRadius.circular(5),
                                             color: _controller.selectedSizeIndex
                                                         .value ==
-                                                    size.key
+                                                size.value
                                                 ? PRIMARY_COLOR
                                                 : Colors.white),
                                         height: 36,
@@ -186,7 +186,7 @@ class ProductDetailsPage extends StatelessWidget {
                                                 color: _controller
                                                             .selectedSizeIndex
                                                             .value ==
-                                                        size.key
+                                                    size.value
                                                     ? Colors.white
                                                     : Colors.black,
                                                 fontWeight: FontWeight.bold)),

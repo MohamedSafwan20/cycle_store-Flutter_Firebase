@@ -1,6 +1,9 @@
 import 'package:cycle_store/data/models/product_model.dart';
 import 'package:cycle_store/data/services/product_service.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../config/colors.dart';
 
 class HomeController extends GetxController {
   RxList<Product> newArrivals = <Product>[].obs;
@@ -39,12 +42,13 @@ class HomeController extends GetxController {
     });
   }
 
-  void addToCart(String productId) {
+  void addToCart({required String productId, required String size}) {
     isCartBtnLoadingList.add(productId);
-    ProductService.addToCart(productId).then((res) {
+    ProductService.addToCart(productId: productId, size: size).then((res) {
       isCartBtnLoadingList.remove(productId);
 
       if (res["status"]) {
+        Get.back();
         productsInCart.add(productId);
         update(["cartBtn - $productId"]);
       }
@@ -61,5 +65,66 @@ class HomeController extends GetxController {
         update(["cartBtn - $productId"]);
       }
     });
+  }
+
+  void showBottomSheet({required List sizes, required String productId}) {
+    showModalBottomSheet(
+        context: Get.context!,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+        ),
+        builder: (context) {
+          return Container(
+            height: 120,
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Select size",
+                  style: TextStyle(fontWeight: FontWeight.w800, fontSize: 18),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: sizes.map((size) {
+                    return Row(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            addToCart(productId: productId, size: size);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                boxShadow: const [
+                                  BoxShadow(
+                                      color: SHADOW_COLOR,
+                                      offset: Offset(1, 1),
+                                      blurRadius: 6),
+                                ],
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.white),
+                            height: 36,
+                            width: 36,
+                            alignment: Alignment.center,
+                            child: Text(size,
+                                style: const TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                      ],
+                    );
+                  }).toList(),
+                )
+              ],
+            ),
+          );
+        });
   }
 }

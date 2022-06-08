@@ -113,7 +113,8 @@ class ProductService {
     }
   }
 
-  static Future<Map> addToCart(String productId) async {
+  static Future<Map> addToCart(
+      {required String productId, required String size}) async {
     try {
       User user = AuthService.getCurrentUser();
 
@@ -125,7 +126,7 @@ class ProductService {
           .doc(user.uid)
           .update({
         "cart": FieldValue.arrayUnion([
-          {"item": productRef, "size": "S"}
+          {"item": productRef, "size": size}
         ]),
       });
 

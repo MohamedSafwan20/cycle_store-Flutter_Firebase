@@ -106,7 +106,7 @@ class ProductCard extends StatelessWidget {
                       ),
                     ),
                     GetBuilder<HomeController>(
-                      assignId: true,
+                        assignId: true,
                         id: "cartBtn - ${product.id}",
                         builder: (logic) {
                           return FutureBuilder(
@@ -131,7 +131,10 @@ class ProductCard extends StatelessWidget {
                                             _controller
                                                 .removeFromCart(product.id);
                                           } else {
-                                            _controller.addToCart(product.id);
+                                            _controller.showBottomSheet(
+                                                sizes: product.sizes,
+                                                productId: product.id);
+                                            // _controller.addToCart(product.id);
                                           }
                                         },
                                         child: _controller.isCartBtnLoadingList

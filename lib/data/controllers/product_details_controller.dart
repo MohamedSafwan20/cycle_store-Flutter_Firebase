@@ -11,11 +11,12 @@ class ProductDetailsController extends GetxController {
 
   RxList images = [].obs;
   RxInt currentCarouselImage = 0.obs;
-  RxInt selectedSizeIndex = 0.obs;
+  RxString selectedSizeIndex = "".obs;
   RxList<String> productsInCart = <String>[].obs;
 
   ProductDetailsController() {
     images.value = product.images.map((e) => e["url"]).toList();
+    selectedSizeIndex.value = product.sizes[0];
   }
 
   @override
@@ -37,12 +38,13 @@ class ProductDetailsController extends GetxController {
     carouselController.animateToPage(currentIndex);
   }
 
-  void onSizeChange({required int selectedSize}) =>
+  void onSizeChange({required String selectedSize}) =>
       selectedSizeIndex.value = selectedSize;
 
   void addToCart() {
     // Updating cart button on home's product card
-    _homeController.addToCart(product.id);
+    _homeController.addToCart(
+        productId: product.id, size: selectedSizeIndex.value);
 
     productsInCart.add(product.id);
   }
