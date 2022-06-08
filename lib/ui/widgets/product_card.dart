@@ -105,50 +105,70 @@ class ProductCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    FutureBuilder(
-                        future: ProductService.isProductInCart(product.id),
-                        builder: (context, AsyncSnapshot<Map> snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.done) {
-                            return Container(
-                                width: 55,
-                                padding: const EdgeInsets.only(right: 5),
-                                child: Obx(() {
-                                  final isProductInCart = _controller
-                                      .productsInCart
-                                      .contains(product.id);
+                    GetBuilder<HomeController>(
+                      assignId: true,
+                      id: "cartBtn",
+                      builder: (logic) {
+                        return FutureBuilder(
+                            future: ProductService.isProductInCart(product.id),
+                            builder: (context, AsyncSnapshot<Map> snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.done) {
+                                return Container(
+                                    width: 55,
+                                    padding: const EdgeInsets.only(right: 5),
+                                    child: Obx(() {
+                                      final isProductInCart = _controller
+                                          .productsInCart
+                                          .contains(product.id);
 
-                                  return TextButton(
-                                    onPressed: () {
-                                      if (isProductInCart) {
-                                        _controller.removeFromCart(product.id);
-                                      } else {
-                                        _controller.addToCart(product.id);
-                                      }
-                                    },
-                                    child: snapshot.data?["status"]
-                                        ? const Icon(Icons.done)
-                                        : isProductInCart
-                                            ? const Icon(Icons.done)
-                                            : const Icon(
-                                                Icons.shopping_bag_outlined),
-                                    style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                PRIMARY_COLOR),
-                                        shape: MaterialStateProperty.all(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(5))),
-                                        foregroundColor:
-                                            MaterialStateProperty.all(
-                                                Colors.white)),
-                                  );
-                                }));
-                          }
+                                      return TextButton(
+                                        onPressed: () {
+                                          if (isProductInCart) {
+                                            _controller
+                                                .removeFromCart(product.id);
+                                          } else if (snapshot.data?["status"]) {
+                                            _controller
+                                                .removeFromCart(product.id);
+                                          } else {
+                                            _controller.addToCart(product.id);
+                                          }
+                                        },
+                                        child: _controller.isCartBtnLoadingList
+                                                .contains(product.id)
+                                            ? const Loading(
+                                                width: 20,
+                                                height: 20,
+                                                color: Colors.white,
+                                                loader: LoadingAnimationWidget
+                                                    .fallingDot,
+                                              )
+                                            : isProductInCart
+                                                ? const Icon(Icons.done)
+                                                : snapshot.data?["status"]
+                                                    ? const Icon(Icons.done)
+                                                    : const Icon(Icons
+                                                        .shopping_bag_outlined),
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                                    PRIMARY_COLOR),
+                                            shape: MaterialStateProperty.all(
+                                                RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5))),
+                                            foregroundColor:
+                                                MaterialStateProperty.all(
+                                                    Colors.white)),
+                                      );
+                                    }));
+                              }
 
-                          return const SizedBox();
-                        }),
+                              return const SizedBox();
+                            });
+                      },
+                    ),
                   ],
                 ),
               )

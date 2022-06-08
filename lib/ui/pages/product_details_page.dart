@@ -23,6 +23,9 @@ class ProductDetailsPage extends StatelessWidget {
       backgroundColor: SECONDARY_COLOR,
       body: SafeArea(
         child: Obx(() {
+          final isProductInCart =
+              _controller.productsInCart.contains(_controller.product.id);
+
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -56,7 +59,7 @@ class ProductDetailsPage extends StatelessWidget {
                           children: [
                             CarouselSlider.builder(
                                 carouselController:
-                                    _controller.carouselController,
+                                _controller.carouselController,
                                 options: CarouselOptions(
                                   onPageChanged: _controller.onCarouselChange,
                                   height: 200,
@@ -90,32 +93,32 @@ class ProductDetailsPage extends StatelessWidget {
                                   .asMap()
                                   .entries
                                   .map((entry) => GestureDetector(
-                                        onTap: () {
-                                          _controller.onCarouselIndicatorChange(
-                                              entry.key);
-                                        },
-                                        child: Container(
-                                          height: 10,
-                                          width: 10,
-                                          margin: const EdgeInsets.symmetric(
-                                              horizontal: 4),
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              border: Border.all(
-                                                  color: entry.key ==
-                                                          _controller
-                                                              .currentCarouselImage
-                                                              .value
-                                                      ? PRIMARY_COLOR
-                                                      : SECONDARY_TEXT_COLOR),
-                                              color: entry.key ==
-                                                      _controller
-                                                          .currentCarouselImage
-                                                          .value
-                                                  ? PRIMARY_COLOR
-                                                  : Colors.transparent),
-                                        ),
-                                      ))
+                                onTap: () {
+                                  _controller.onCarouselIndicatorChange(
+                                      entry.key);
+                                },
+                                child: Container(
+                                  height: 10,
+                                  width: 10,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 4),
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                          color: entry.key ==
+                                              _controller
+                                                  .currentCarouselImage
+                                                  .value
+                                              ? PRIMARY_COLOR
+                                              : SECONDARY_TEXT_COLOR),
+                                      color: entry.key ==
+                                          _controller
+                                              .currentCarouselImage
+                                              .value
+                                          ? PRIMARY_COLOR
+                                          : Colors.transparent),
+                                ),
+                              ))
                                   .toList(),
                             ),
                           ],
@@ -160,19 +163,19 @@ class ProductDetailsPage extends StatelessWidget {
                                             boxShadow: [
                                               BoxShadow(
                                                   color: _controller
-                                                              .selectedSizeIndex
-                                                              .value ==
-                                                          size.key
+                                                      .selectedSizeIndex
+                                                      .value ==
+                                                      size.key
                                                       ? PRIMARY_COLOR
                                                       : SHADOW_COLOR,
                                                   offset: const Offset(1, 1),
                                                   blurRadius: 6),
                                             ],
                                             borderRadius:
-                                                BorderRadius.circular(5),
+                                            BorderRadius.circular(5),
                                             color: _controller.selectedSizeIndex
-                                                        .value ==
-                                                    size.key
+                                                .value ==
+                                                size.key
                                                 ? PRIMARY_COLOR
                                                 : Colors.white),
                                         height: 36,
@@ -181,9 +184,9 @@ class ProductDetailsPage extends StatelessWidget {
                                         child: Text(size.value,
                                             style: TextStyle(
                                                 color: _controller
-                                                            .selectedSizeIndex
-                                                            .value ==
-                                                        size.key
+                                                    .selectedSizeIndex
+                                                    .value ==
+                                                    size.key
                                                     ? Colors.white
                                                     : Colors.black,
                                                 fontWeight: FontWeight.bold)),
@@ -220,19 +223,29 @@ class ProductDetailsPage extends StatelessWidget {
                     children: [
                       Flexible(
                           child: Text(
-                        "₹" + _controller.product.price.toString(),
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w800, fontSize: 20),
-                      )),
+                            "₹" + _controller.product.price.toString(),
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w800, fontSize: 20),
+                          )),
                       const SizedBox(
                         width: 20,
                       ),
                       Row(
                         children: [
                           SecondaryIconButton(
-                            icon: Icons.shopping_bag_outlined,
-                            onPressed: () {},
+                            icon: _controller.isProductInCart.value
+                                ? Icons.done
+                                : isProductInCart
+                                    ? Icons.done
+                                    : Icons.shopping_bag_outlined,
+                            onPressed: () {
+                              if (isProductInCart) {
+                                _controller.removeFromCart();
+                              } else {
+                                _controller.addToCart();
+                              }
+                            },
                             width: 50,
                             borderRadius: 7,
                             height: 42,

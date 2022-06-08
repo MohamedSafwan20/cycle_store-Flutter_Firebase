@@ -75,7 +75,12 @@ class ProductListPage extends StatelessWidget {
                     ),
                     Flexible(
                         child: Text(
-                      _controller.searchText.toUpperCase(),
+                      _controller.searchText.toUpperCase() == "NEW_ARRIVALS"
+                          ? "New Arrivals"
+                          : _controller.searchText.toUpperCase() ==
+                                  "TOP_SELLING"
+                              ? "Top Selling"
+                              : _controller.searchText.capitalize!,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                           fontSize: 20, fontWeight: FontWeight.w500),
