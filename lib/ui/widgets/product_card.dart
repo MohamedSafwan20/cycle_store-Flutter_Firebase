@@ -107,9 +107,9 @@ class ProductCard extends StatelessWidget {
                     ),
                     GetBuilder<HomeController>(
                       assignId: true,
-                      id: "cartBtn",
-                      builder: (logic) {
-                        return FutureBuilder(
+                        id: "cartBtn - ${product.id}",
+                        builder: (logic) {
+                          return FutureBuilder(
                             future: ProductService.isProductInCart(product.id),
                             builder: (context, AsyncSnapshot<Map> snapshot) {
                               if (snapshot.connectionState ==
@@ -166,16 +166,32 @@ class ProductCard extends StatelessWidget {
                               }
 
                               return Container(
-                                width: 50,
-                                height: 40,
-                                margin: const EdgeInsets.only(right: 5, top: 5),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: PRIMARY_COLOR),
+                                width: 55,
+                                padding: const EdgeInsets.only(right: 5),
+                                child: TextButton(
+                                  onPressed: null,
+                                  child: const Loading(
+                                    width: 20,
+                                    height: 20,
+                                    color: Colors.white,
+                                    loader: LoadingAnimationWidget.fallingDot,
+                                  ),
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              PRIMARY_COLOR),
+                                      shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5))),
+                                      foregroundColor:
+                                          MaterialStateProperty.all(
+                                              Colors.white)),
+                                ),
                               );
-                            });
-                      },
-                    ),
+                            },
+                          );
+                        })
                   ],
                 ),
               )

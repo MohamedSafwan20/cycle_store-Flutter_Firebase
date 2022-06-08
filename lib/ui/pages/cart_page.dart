@@ -1,16 +1,21 @@
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/config/typography.dart';
+import 'package:cycle_store/data/controllers/cart_controller.dart';
 import 'package:cycle_store/ui/widgets/cart_item.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../widgets/loading.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final _controller = Get.put(CartController());
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -22,7 +27,7 @@ class CartPage extends StatelessWidget {
             ),
             Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5),
+              const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -36,15 +41,20 @@ class CartPage extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            Expanded(
-                child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: 4,
-                    itemBuilder: (_, index) {
-                      return InkWell(
-                          onTap: () => Get.toNamed(PRODUCT_DETAILS_ROUTE),
-                          child: const CartItem());
-                    })),
+            Obx(() {
+              return Expanded(
+                  child: _controller.isLoading.value
+                      ? const Loading()
+                      : ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: _controller.products.length,
+                          itemBuilder: (_, index) {
+                            return InkWell(
+                                onTap: () => Get.toNamed(PRODUCT_DETAILS_ROUTE),
+                                child: CartItem(
+                                    product: _controller.products[index]));
+                          }));
+            }),
             Container(
               height: 120,
               decoration: const BoxDecoration(
@@ -89,7 +99,7 @@ class CartPage extends StatelessWidget {
                       ),
                       style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(Colors.white),
+                        MaterialStateProperty.all(Colors.white),
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5))),
                       ),

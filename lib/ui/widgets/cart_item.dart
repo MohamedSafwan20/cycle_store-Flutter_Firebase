@@ -1,8 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cycle_store/config/colors.dart';
+import 'package:cycle_store/data/models/product_model.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+
+import 'loading.dart';
 
 class CartItem extends StatelessWidget {
-  const CartItem({Key? key}) : super(key: key);
+  const CartItem({Key? key, required this.product}) : super(key: key);
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +27,17 @@ class CartItem extends StatelessWidget {
             height: 70,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                "http://picsum.photos/300/300",
-                fit: BoxFit.fill,
+              child: CachedNetworkImage(
+                imageUrl: product.thumbnail["url"],
+                imageBuilder: (_, imageProvider) {
+                  return Image(
+                    image: imageProvider,
+                    fit: BoxFit.fill,
+                  );
+                },
+                placeholder: (context, value) {
+                  return const Loading(loader: LoadingAnimationWidget.beat);
+                },
               ),
             ),
           ),
@@ -35,11 +50,12 @@ class CartItem extends StatelessWidget {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width - 180,
-                child: const Text(
-                  "Roadbike S2",
+                child: Text(
+                  product.name,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 17),
                 ),
               ),
               const SizedBox(
@@ -59,13 +75,13 @@ class CartItem extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     width: 80,
                     child: Text(
-                      "₹14000",
+                      "₹" + product.price.toString(),
                       overflow: TextOverflow.ellipsis,
-                      style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 17),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w700, fontSize: 17),
                     ),
                   ),
                   const SizedBox(

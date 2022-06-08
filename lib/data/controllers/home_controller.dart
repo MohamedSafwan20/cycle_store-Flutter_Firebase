@@ -49,7 +49,7 @@ class HomeController extends GetxController {
       }
 
       productsInCart.add(productId);
-      update(["cartBtn"]);
+      update(["cartBtn - $productId"]);
     });
   }
 
@@ -63,7 +63,7 @@ class HomeController extends GetxController {
       }
 
       productsInCart.remove(productId);
-      update(["cartBtn"]);
+      update(["cartBtn - $productId"]);
     });
   }
 }
