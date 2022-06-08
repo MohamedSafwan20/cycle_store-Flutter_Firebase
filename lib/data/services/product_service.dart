@@ -124,7 +124,9 @@ class ProductService {
           .collection("users")
           .doc(user.uid)
           .update({
-        "cart": FieldValue.arrayUnion([productRef]),
+        "cart": FieldValue.arrayUnion([
+          {"item": productRef, "size": "S"}
+        ]),
       });
 
       return {"status": true};
@@ -140,12 +142,20 @@ class ProductService {
       final productRef =
           FirebaseFirestore.instance.collection("products").doc(productId);
 
+      final res = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(user.uid)
+          .get();
+      final data = res.data() as Map;
+
+      final cartData = data["cart"].where((item) {
+        return item["item"] != productRef;
+      }).toList();
+
       await FirebaseFirestore.instance
           .collection("users")
           .doc(user.uid)
-          .update({
-        "cart": FieldValue.arrayRemove([productRef]),
-      });
+          .set({"cart": cartData});
 
       return {"status": true};
     } catch (e) {
@@ -165,8 +175,8 @@ class ProductService {
       final cartData = productsRef.data() as Map;
       List cartList = cartData["cart"];
 
-      List<Product> productData = await Future.wait(cartList.map((ref) async {
-        DocumentSnapshot snapshot = await ref.get();
+      List<Product> productData = await Future.wait(cartList.map((item) async {
+        DocumentSnapshot snapshot = await item["item"].get();
         Map data = {"id": snapshot.id, ...snapshot.data() as Map};
 
         return Product.toProduct(data);
@@ -189,8 +199,8 @@ class ProductService {
 
       final data = productsRef.data() as Map;
 
-      final isInCart = data["cart"].any((productRef) {
-        return productRef.id == productId;
+      final isInCart = data["cart"].any((item) {
+        return item["item"].id == productId;
       });
 
       if (isInCart) {

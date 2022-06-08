@@ -44,12 +44,10 @@ class HomeController extends GetxController {
     ProductService.addToCart(productId).then((res) {
       isCartBtnLoadingList.remove(productId);
 
-      if (!res["status"]) {
-        throw Exception("Failed to add to cart");
+      if (res["status"]) {
+        productsInCart.add(productId);
+        update(["cartBtn - $productId"]);
       }
-
-      productsInCart.add(productId);
-      update(["cartBtn - $productId"]);
     });
   }
 
@@ -58,12 +56,10 @@ class HomeController extends GetxController {
     ProductService.removeFromCart(productId).then((res) {
       isCartBtnLoadingList.remove(productId);
 
-      if (!res["status"]) {
-        throw Exception("Failed to remove from cart");
+      if (res["status"]) {
+        productsInCart.remove(productId);
+        update(["cartBtn - $productId"]);
       }
-
-      productsInCart.remove(productId);
-      update(["cartBtn - $productId"]);
     });
   }
 }
