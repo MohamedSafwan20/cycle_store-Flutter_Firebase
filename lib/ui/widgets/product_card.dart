@@ -165,7 +165,14 @@ class ProductCard extends StatelessWidget {
                                     }));
                               }
 
-                              return const SizedBox();
+                              return Container(
+                                width: 50,
+                                height: 40,
+                                margin: const EdgeInsets.only(right: 5, top: 5),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: PRIMARY_COLOR),
+                              );
                             });
                       },
                     ),
