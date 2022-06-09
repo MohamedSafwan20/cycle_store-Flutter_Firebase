@@ -43,4 +43,15 @@ class Utils {
     String url = await ref.getDownloadURL();
     return url;
   }
+
+  static String getAvatarName(String name) {
+    String avatarName = "";
+
+    final nameList = name.split(" ");
+    for (String name in nameList) {
+      avatarName += name[0].toUpperCase();
+    }
+
+    return avatarName;
+  }
 }

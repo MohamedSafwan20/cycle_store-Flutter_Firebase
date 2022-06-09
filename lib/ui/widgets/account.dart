@@ -2,6 +2,7 @@ import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/data/services/auth_service.dart';
+import 'package:cycle_store/ui/widgets/name_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,6 +11,8 @@ class Account extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userName = AuthService.getCurrentUser().displayName as String;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -40,14 +43,11 @@ class Account extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     width: 60,
                     height: 60,
-                    child: CircleAvatar(
-                      radius: 30.0,
-                      backgroundImage:
-                          NetworkImage("http://picsum.photos/300/300"),
-                      backgroundColor: Colors.transparent,
+                    child: NameAvatar(
+                      name: userName,
                     ),
                   ),
                   const SizedBox(
@@ -55,18 +55,18 @@ class Account extends StatelessWidget {
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
+                    children: [
+                      const Text(
                         "Welcome",
                         style: TextStyle(
                             color: SECONDARY_TEXT_COLOR, fontSize: 16),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Text(
-                        "John Doe",
-                        style: TextStyle(
+                        userName.capitalize!,
+                        style: const TextStyle(
                             fontSize: 19, fontWeight: FontWeight.w800),
                       ),
                     ],
@@ -139,7 +139,7 @@ class Account extends StatelessWidget {
                   onTap: () => Get.toNamed(MY_ORDERS_ROUTE),
                   child: Padding(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -179,7 +179,7 @@ class Account extends StatelessWidget {
                   onTap: () => Get.toNamed(PROFILE_ROUTE),
                   child: Padding(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
