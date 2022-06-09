@@ -3,12 +3,18 @@ import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
 import 'package:cycle_store/ui/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+
+import '../../data/controllers/add_edit_address_controller.dart';
 
 class AddEditAddress extends StatelessWidget {
   const AddEditAddress({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final _controller = Get.put(AddEditAddressController());
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -50,6 +56,7 @@ class AddEditAddress extends StatelessWidget {
                           SizedBox(
                             height: 50,
                             child: TextField(
+                              controller: _controller.nameController,
                               decoration: InputDecoration(
                                 isDense: true,
                                 focusedBorder: OutlineInputBorder(
@@ -84,6 +91,12 @@ class AddEditAddress extends StatelessWidget {
                           SizedBox(
                             height: 50,
                             child: TextField(
+                              controller: _controller.phoneController,
+                              keyboardType: TextInputType.phone,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'[0-9]'))
+                              ],
                               decoration: InputDecoration(
                                 isDense: true,
                                 focusedBorder: OutlineInputBorder(
@@ -114,7 +127,7 @@ class AddEditAddress extends StatelessWidget {
                                   child: Text(
                                     "Pincode",
                                     style:
-                                        TextStyle(color: SECONDARY_TEXT_COLOR),
+                                    TextStyle(color: SECONDARY_TEXT_COLOR),
                                   ),
                                 ),
                                 const SizedBox(
@@ -123,7 +136,16 @@ class AddEditAddress extends StatelessWidget {
                                 SizedBox(
                                   height: 50,
                                   child: TextField(
+                                    maxLength: 6,
+                                    onChanged: _controller.onPincodeChange,
+                                    keyboardType: TextInputType.phone,
+                                    inputFormatters: [
+                                      FilteringTextInputFormatter.allow(
+                                          RegExp(r'[0-9]'))
+                                    ],
+                                    controller: _controller.pincodeController,
                                     decoration: InputDecoration(
+                                      counterText: "",
                                       isDense: true,
                                       focusedBorder: OutlineInputBorder(
                                           borderRadius:
@@ -153,7 +175,7 @@ class AddEditAddress extends StatelessWidget {
                                   child: Text(
                                     "City",
                                     style:
-                                        TextStyle(color: SECONDARY_TEXT_COLOR),
+                                    TextStyle(color: SECONDARY_TEXT_COLOR),
                                   ),
                                 ),
                                 const SizedBox(
@@ -162,6 +184,7 @@ class AddEditAddress extends StatelessWidget {
                                 SizedBox(
                                   height: 50,
                                   child: TextField(
+                                    controller: _controller.cityController,
                                     decoration: InputDecoration(
                                       isDense: true,
                                       focusedBorder: OutlineInputBorder(
@@ -201,6 +224,7 @@ class AddEditAddress extends StatelessWidget {
                           SizedBox(
                             height: 50,
                             child: TextField(
+                              controller: _controller.stateController,
                               decoration: InputDecoration(
                                 isDense: true,
                                 focusedBorder: OutlineInputBorder(
@@ -235,6 +259,7 @@ class AddEditAddress extends StatelessWidget {
                           SizedBox(
                             height: 50,
                             child: TextField(
+                              controller: _controller.localityController,
                               decoration: InputDecoration(
                                 isDense: true,
                                 focusedBorder: OutlineInputBorder(
@@ -269,6 +294,7 @@ class AddEditAddress extends StatelessWidget {
                           SizedBox(
                             height: 50,
                             child: TextField(
+                              controller: _controller.landmarkController,
                               decoration: InputDecoration(
                                 isDense: true,
                                 focusedBorder: OutlineInputBorder(
