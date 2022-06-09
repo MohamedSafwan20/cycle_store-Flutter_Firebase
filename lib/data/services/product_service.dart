@@ -176,11 +176,11 @@ class ProductService {
       final cartData = productsRef.data() as Map;
       List cartList = cartData["cart"];
 
-      List<Product> productData = await Future.wait(cartList.map((item) async {
+      List<Map> productData = await Future.wait(cartList.map((item) async {
         DocumentSnapshot snapshot = await item["item"].get();
         Map data = {"id": snapshot.id, ...snapshot.data() as Map};
 
-        return Product.toProduct(data);
+        return {"product": Product.toProduct(data), "size": item["size"]};
       }), eagerError: true);
 
       return {"status": true, "data": productData};

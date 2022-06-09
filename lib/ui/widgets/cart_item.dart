@@ -1,18 +1,29 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cycle_store/config/colors.dart';
+import 'package:cycle_store/data/controllers/cart_controller.dart';
 import 'package:cycle_store/data/models/product_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import 'loading.dart';
 
 class CartItem extends StatelessWidget {
-  const CartItem({Key? key, required this.product}) : super(key: key);
+  const CartItem(
+      {Key? key,
+      required this.product,
+      required this.size,
+      required this.index})
+      : super(key: key);
 
   final Product product;
+  final String size;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
+    final _controller = Get.find<CartController>();
+
     return Container(
       color: BG_COLOR,
       width: double.infinity,
@@ -63,10 +74,11 @@ class CartItem extends StatelessWidget {
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width - 180,
-                child: const Text(
-                  "S ·  Black Orange",
+                child: Text(
+                  "$size ·  Black Orange",
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 14, color: SECONDARY_TEXT_COLOR),
+                  style: const TextStyle(
+                      fontSize: 14, color: SECONDARY_TEXT_COLOR),
                 ),
               ),
               const SizedBox(
@@ -87,49 +99,61 @@ class CartItem extends StatelessWidget {
                   const SizedBox(
                     width: 30,
                   ),
-                  Row(
-                    children: [
-                      Container(
-                          width: 25,
-                          height: 25,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(
-                                  width: 1, color: SECONDARY_TEXT_COLOR)),
-                          child: IconButton(
-                            onPressed: () {},
-                            padding: EdgeInsets.zero,
-                            alignment: Alignment.center,
-                            icon: const Icon(Icons.remove_outlined,
-                                size: 17, color: SECONDARY_TEXT_COLOR),
-                          )),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      const Text(
-                        "2",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w800, fontSize: 16),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Container(
-                          width: 25,
-                          height: 25,
-                          decoration: BoxDecoration(
-                              color: PRIMARY_COLOR,
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(
-                                  width: 1, color: SECONDARY_TEXT_COLOR)),
-                          child: IconButton(
-                            onPressed: () {},
-                            padding: EdgeInsets.zero,
-                            alignment: Alignment.center,
-                            icon: const Icon(Icons.add_outlined,
-                                size: 17, color: Colors.white),
-                          )),
-                    ],
+                  GetBuilder<CartController>(
+                    assignId: true,
+                    id: "quantity - ${product.id}",
+                    builder: (logic) {
+                      return Row(
+                        children: [
+                          Container(
+                              width: 25,
+                              height: 25,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(
+                                      width: 1, color: SECONDARY_TEXT_COLOR)),
+                              child: IconButton(
+                                onPressed: () {
+                                  _controller.decreaseQuantity(
+                                      productId: product.id, index: index);
+                                },
+                                padding: EdgeInsets.zero,
+                                alignment: Alignment.center,
+                                icon: const Icon(Icons.remove_outlined,
+                                    size: 17, color: SECONDARY_TEXT_COLOR),
+                              )),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            _controller.quantities[index].toString(),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w800, fontSize: 16),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Container(
+                              width: 25,
+                              height: 25,
+                              decoration: BoxDecoration(
+                                  color: PRIMARY_COLOR,
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(
+                                      width: 1, color: SECONDARY_TEXT_COLOR)),
+                              child: IconButton(
+                                onPressed: () {
+                                  _controller.increaseQuantity(
+                                      productId: product.id, index: index);
+                                },
+                                padding: EdgeInsets.zero,
+                                alignment: Alignment.center,
+                                icon: const Icon(Icons.add_outlined,
+                                    size: 17, color: Colors.white),
+                              )),
+                        ],
+                      );
+                    },
                   )
                 ],
               )

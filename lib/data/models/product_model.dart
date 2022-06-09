@@ -5,7 +5,7 @@ class Product {
   String name;
   String description;
   num stock;
-  num price;
+  double price;
   List sizes;
   Map thumbnail;
   List images;
@@ -34,7 +34,7 @@ class Product {
         name = json['name'],
         description = json['description'],
         stock = json['stock'],
-        price = json['price'],
+        price = json['price'].toDouble(),
         sizes = json['sizes'],
         thumbnail = json['thumbnail'],
         images = json['images'],
@@ -48,7 +48,7 @@ class Product {
         name = data['name'],
         description = data['description'],
         stock = data['stock'],
-        price = data['price'],
+        price = data['price'].toDouble(),
         sizes = data['sizes'],
         thumbnail = data['thumbnail'],
         images = data['images'],

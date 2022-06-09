@@ -27,14 +27,16 @@ class CartPage extends StatelessWidget {
             ),
             Padding(
               padding:
-              const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5),
+                  const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("My Bag", style: HEADING_1),
-                  const Text("3 Items",
-                      style:
-                          TextStyle(color: SECONDARY_TEXT_COLOR, fontSize: 14)),
+                  Obx(() {
+                    return Text("${_controller.products.length} Items",
+                        style: const TextStyle(
+                            color: SECONDARY_TEXT_COLOR, fontSize: 14));
+                  }),
                 ],
               ),
             ),
@@ -52,62 +54,68 @@ class CartPage extends StatelessWidget {
                             return InkWell(
                                 onTap: () => Get.toNamed(PRODUCT_DETAILS_ROUTE),
                                 child: CartItem(
-                                    product: _controller.products[index]));
+                                    index: index,
+                                    product: _controller.products[index]
+                                        ["product"],
+                                    size: _controller.products[index]["size"]));
                           }));
             }),
-            Container(
-              height: 120,
-              decoration: const BoxDecoration(
-                  color: PRIMARY_COLOR,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30))),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          "Total",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        Text(
-                          "₹42000",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 260,
-                    height: 50,
-                    child: TextButton(
-                      onPressed: () => Get.toNamed(CHECKOUT_ROUTE),
-                      child: const Text(
-                        "Proceed to Payment",
-                        style: TextStyle(color: Colors.black, fontSize: 17),
-                      ),
-                      style: ButtonStyle(
-                        backgroundColor:
-                        MaterialStateProperty.all(Colors.white),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5))),
+            Obx(() {
+              return Container(
+                height: 120,
+                decoration: const BoxDecoration(
+                    color: PRIMARY_COLOR,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30))),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            "Total",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            "₹" + _controller.price.value.toString(),
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
                       ),
                     ),
-                  )
-                ],
-              ),
-            )
+                    SizedBox(
+                      width: 260,
+                      height: 50,
+                      child: TextButton(
+                        onPressed: () => Get.toNamed(CHECKOUT_ROUTE),
+                        child: const Text(
+                          "Proceed to Payment",
+                          style: TextStyle(color: Colors.black, fontSize: 17),
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.white),
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5))),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              );
+            })
           ],
         ),
       ),
