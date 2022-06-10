@@ -8,19 +8,21 @@ class Loading extends StatelessWidget {
       this.height = 28,
       this.width = 28,
       this.color = PRIMARY_COLOR,
-      this.loader = LoadingAnimationWidget.threeArchedCircle})
+      this.loader = LoadingAnimationWidget.threeArchedCircle,
+      this.alignment = Alignment.center})
       : super(key: key);
 
   final double height;
   final double width;
   final Color color;
+  final Alignment alignment;
   final Widget Function({required Color color, Key? key, required double size})
       loader;
 
   @override
   Widget build(BuildContext context) {
     return Align(
-        alignment: Alignment.center,
+        alignment: alignment,
         child: SizedBox(
             height: height,
             width: width,
