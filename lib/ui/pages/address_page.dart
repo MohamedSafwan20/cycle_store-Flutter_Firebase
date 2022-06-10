@@ -165,7 +165,11 @@ class AddressPage extends StatelessWidget {
                                                             ),
                                                           )),
                                                       InkWell(
-                                                          onTap: () {},
+                                                          onTap: () {
+                                                            _controller
+                                                                .deleteAddress(
+                                                                    address);
+                                                          },
                                                           child: const Text(
                                                             "Delete",
                                                             style: TextStyle(

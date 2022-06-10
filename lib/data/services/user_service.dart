@@ -204,4 +204,34 @@ class UserService {
       return {"status": false};
     }
   }
+
+  static Future<Map> deleteAddress(Address address,
+      {bool isDefault = false}) async {
+    try {
+      final user = AuthService.getCurrentUser();
+
+      Map addressMap = {
+        "name": address.name,
+        "phone": address.phone,
+        "pincode": address.pincode,
+        "city": address.city,
+        "state": address.state,
+        "locality": address.locality,
+        "landmark": address.landmark,
+      };
+
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(user.uid)
+          .update({
+        "addresses": FieldValue.arrayRemove([
+          {"address": addressMap, "isDefault": isDefault}
+        ])
+      });
+
+      return {"status": true};
+    } catch (e) {
+      return {"status": false};
+    }
+  }
 }
