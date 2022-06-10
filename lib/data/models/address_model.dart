@@ -1,5 +1,4 @@
 class Address {
-  String? id;
   String name;
   String phone;
   String pincode;
@@ -7,9 +6,9 @@ class Address {
   String state;
   String locality;
   String landmark;
+  bool? isDefault;
 
   Address({
-    this.id,
     required this.name,
     required this.phone,
     required this.pincode,
@@ -17,30 +16,31 @@ class Address {
     required this.state,
     required this.locality,
     required this.landmark,
+    this.isDefault,
   });
 
   Address.fromJson(Map<String, dynamic> json)
-      : id = json['id'] ?? "",
-        name = json['name'],
+      : name = json['name'],
         phone = json['phone'],
         pincode = json['pincode'],
         city = json['city'],
         state = json['state'],
         locality = json['locality'],
-        landmark = json['landmark'];
+        landmark = json['landmark'],
+        isDefault = json['isDefault'] ?? false;
 
   Address.toAddress(Map data)
-      : id = data['id'] ?? "",
-        name = data['name'],
+      : name = data['name'],
         phone = data['phone'],
         pincode = data['pincode'],
         city = data['city'],
         state = data['state'],
         locality = data['locality'],
-        landmark = data['landmark'];
+        landmark = data['landmark'],
+        isDefault = data['isDefault'] ?? false;
 
   @override
   String toString() {
-    return "id - $id, name - $name";
+    return "name - $name, phone - $phone";
   }
 }
