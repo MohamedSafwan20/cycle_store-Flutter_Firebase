@@ -2,9 +2,11 @@ import 'package:cycle_store/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class NameAvatar extends StatelessWidget {
-  const NameAvatar({Key? key, required this.name}) : super(key: key);
+  const NameAvatar({Key? key, required this.name, this.fontSize = 22})
+      : super(key: key);
 
   final String name;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +16,10 @@ class NameAvatar extends StatelessWidget {
       alignment: Alignment.center,
       child: Text(
         avatarName,
-        style: const TextStyle(
+        style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 22,
+            fontSize: fontSize,
             letterSpacing: 1.2),
       ),
       decoration:

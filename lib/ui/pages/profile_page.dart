@@ -1,14 +1,18 @@
 import 'package:cycle_store/config/colors.dart';
+import 'package:cycle_store/data/controllers/profile_controller.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
+import 'package:cycle_store/ui/widgets/name_avatar.dart';
 import 'package:cycle_store/ui/widgets/primary_button.dart';
-import 'package:cycle_store/ui/widgets/secondary_icon_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final _controller = Get.put(ProfileController());
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -29,33 +33,13 @@ class ProfilePage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 15.0),
                   child: Column(
                     children: [
-                      Stack(
-                        children: [
-                          const SizedBox(
-                            width: 110,
-                            height: 110,
-                            child: CircleAvatar(
-                              radius: 30.0,
-                              backgroundImage:
-                                  NetworkImage("http://picsum.photos/300/300"),
-                              backgroundColor: Colors.transparent,
-                            ),
-                          ),
-                          Positioned(
-                              bottom: 0,
-                              right: 3,
-                              child: Container(
-                                alignment: Alignment.center,
-                                child: SecondaryIconButton(
-                                  onPressed: () {},
-                                  icon: Icons.edit,
-                                  size: 20,
-                                  borderRadius: 50,
-                                  width: 35,
-                                  height: 35,
-                                ),
-                              ))
-                        ],
+                      SizedBox(
+                        width: 100,
+                        height: 100,
+                        child: NameAvatar(
+                          name: _controller.user.displayName!,
+                          fontSize: 35,
+                        ),
                       ),
                       const SizedBox(
                         height: 45,
@@ -72,7 +56,7 @@ class ProfilePage extends StatelessWidget {
                                   child: Text(
                                     "First Name",
                                     style:
-                                        TextStyle(color: SECONDARY_TEXT_COLOR),
+                                    TextStyle(color: SECONDARY_TEXT_COLOR),
                                   ),
                                 ),
                                 const SizedBox(
@@ -81,6 +65,7 @@ class ProfilePage extends StatelessWidget {
                                 SizedBox(
                                   height: 50,
                                   child: TextField(
+                                    controller: _controller.firstNameController,
                                     decoration: InputDecoration(
                                       isDense: true,
                                       focusedBorder: OutlineInputBorder(
@@ -111,7 +96,7 @@ class ProfilePage extends StatelessWidget {
                                   child: Text(
                                     "Last Name",
                                     style:
-                                        TextStyle(color: SECONDARY_TEXT_COLOR),
+                                    TextStyle(color: SECONDARY_TEXT_COLOR),
                                   ),
                                 ),
                                 const SizedBox(
@@ -120,6 +105,7 @@ class ProfilePage extends StatelessWidget {
                                 SizedBox(
                                   height: 50,
                                   child: TextField(
+                                    controller: _controller.lastNameController,
                                     decoration: InputDecoration(
                                       isDense: true,
                                       focusedBorder: OutlineInputBorder(
@@ -156,7 +142,7 @@ class ProfilePage extends StatelessWidget {
                                   child: Text(
                                     "Email",
                                     style:
-                                        TextStyle(color: SECONDARY_TEXT_COLOR),
+                                    TextStyle(color: SECONDARY_TEXT_COLOR),
                                   ),
                                 ),
                                 const SizedBox(
@@ -165,6 +151,8 @@ class ProfilePage extends StatelessWidget {
                                 SizedBox(
                                   height: 50,
                                   child: TextField(
+                                    controller: _controller.emailController,
+                                    keyboardType: TextInputType.emailAddress,
                                     decoration: InputDecoration(
                                       isDense: true,
                                       focusedBorder: OutlineInputBorder(
@@ -211,7 +199,7 @@ class ProfilePage extends StatelessWidget {
                                   child: Text(
                                     "Password",
                                     style:
-                                        TextStyle(color: SECONDARY_TEXT_COLOR),
+                                    TextStyle(color: SECONDARY_TEXT_COLOR),
                                   ),
                                 ),
                                 const SizedBox(
@@ -220,6 +208,7 @@ class ProfilePage extends StatelessWidget {
                                 SizedBox(
                                   height: 50,
                                   child: TextField(
+                                    controller: _controller.passwordController,
                                     obscureText: true,
                                     decoration: InputDecoration(
                                       isDense: true,

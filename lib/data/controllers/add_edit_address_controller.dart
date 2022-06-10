@@ -41,6 +41,19 @@ class AddEditAddressController extends GetxController {
     }
   }
 
+  @override
+  void dispose() {
+    nameController.dispose();
+    phoneController.dispose();
+    pincodeController.dispose();
+    cityController.dispose();
+    stateController.dispose();
+    localityController.dispose();
+    landmarkController.dispose();
+
+    super.dispose();
+  }
+
   void onPincodeChange(String pincode) {
     isInvalidPincode.value = false;
 
