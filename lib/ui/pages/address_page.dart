@@ -55,7 +55,12 @@ class AddressPage extends StatelessWidget {
                                 return Column(
                                   children: [
                                     InkWell(
-                                      onTap: () {},
+                                      onTap: () {
+                                        if (!address.isDefault) {
+                                          _controller
+                                              .makeAddressDefault(address);
+                                        }
+                                      },
                                       highlightColor: Colors.transparent,
                                       splashColor: Colors.transparent,
                                       child: Container(

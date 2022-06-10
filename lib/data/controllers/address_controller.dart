@@ -1,3 +1,4 @@
+import 'package:cycle_store/data/models/address_model.dart';
 import 'package:cycle_store/data/services/user_service.dart';
 import 'package:get/get.dart';
 
@@ -24,5 +25,9 @@ class AddressController extends GetxController {
     }).catchError((e) {
       isLoading.value = false;
     });
+  }
+
+  void makeAddressDefault(Address address) {
+    UserService.makeAddressDefault(address).then((res) {});
   }
 }

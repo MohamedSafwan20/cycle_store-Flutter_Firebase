@@ -1,3 +1,4 @@
+import 'package:cycle_store/data/controllers/address_controller.dart';
 import 'package:cycle_store/data/models/address_model.dart';
 import 'package:cycle_store/data/services/api_service.dart';
 import 'package:cycle_store/data/services/user_service.dart';
@@ -6,6 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class AddEditAddressController extends GetxController {
+  final _addressController = Get.find<AddressController>();
+
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final pincodeController = TextEditingController();
@@ -22,6 +25,7 @@ class AddEditAddressController extends GetxController {
   RxBool isInvalidLocality = false.obs;
 
   RxBool isDefaultAddress = false.obs;
+  RxBool isLoading = false.obs;
 
   void onPincodeChange(String pincode) {
     isInvalidPincode.value = false;
@@ -75,6 +79,8 @@ class AddEditAddressController extends GetxController {
       return;
     }
 
+    isLoading.value = true;
+
     UserService.addAddress(
             Address.toAddress({
               "name": nameController.text,
@@ -85,12 +91,18 @@ class AddEditAddressController extends GetxController {
               "locality": localityController.text,
               "landmark": landmarkController.text,
             }),
-            isDefault: isDefaultAddress.value)
+        isDefault: isDefaultAddress.value)
         .then((res) {
+      isLoading.value = false;
+
       if (!res["status"]) {
         throw Exception("Failed to add address");
       }
+
+      _addressController.getAllAddresses();
+      Get.back();
     }).catchError((e) {
+      isLoading.value = false;
       Utils.showErrorSnackbar(text: e.message);
     });
   }

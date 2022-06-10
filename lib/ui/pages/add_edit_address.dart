@@ -1,6 +1,7 @@
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
+import 'package:cycle_store/ui/widgets/loading.dart';
 import 'package:cycle_store/ui/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -416,16 +417,18 @@ class AddEditAddress extends StatelessWidget {
                         ),
                         Align(
                           alignment: Alignment.center,
-                          child: PrimaryButton(
-                            textStyle: const TextStyle(fontSize: 17),
-                            text: "Save Address",
-                            onPressed: () {
-                              _controller.addAddress();
-                            },
-                            height: 50,
-                            width: MediaQuery.of(context).size.width - 70,
-                            borderRadius: 10,
-                          ),
+                          child: _controller.isLoading.value
+                              ? const Loading()
+                              : PrimaryButton(
+                                  textStyle: const TextStyle(fontSize: 17),
+                                  text: "Save Address",
+                                  onPressed: () {
+                                    _controller.addAddress();
+                                  },
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width - 70,
+                                  borderRadius: 10,
+                                ),
                         ),
                         const SizedBox(
                           height: 20,
