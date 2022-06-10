@@ -153,7 +153,13 @@ class UserService {
           .doc(user.uid)
           .set({"addresses": addresses});
 
-      return {"status": true, "data": addresses};
+      List formattedAddresses = addresses.map((address) {
+        Map data = {"isDefault": address["isDefault"], ...address["address"]};
+
+        return Address.toAddress(data);
+      }).toList();
+
+      return {"status": true, "data": formattedAddresses.reversed.toList()};
     } catch (e) {
       return {"status": false, "data": []};
     }
