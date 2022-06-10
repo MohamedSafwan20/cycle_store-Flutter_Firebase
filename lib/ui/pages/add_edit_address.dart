@@ -192,6 +192,15 @@ class AddEditAddress extends StatelessWidget {
                                           ),
                                         )
                                       : const SizedBox(),
+                                  _controller.isInvalidCity.value
+                                      ? const Padding(
+                                          padding:
+                                              EdgeInsets.only(top: 5, left: 5),
+                                          child: Text(
+                                            "",
+                                          ),
+                                        )
+                                      : const SizedBox(),
                                 ],
                               ),
                             ),
@@ -240,6 +249,15 @@ class AddEditAddress extends StatelessWidget {
                                             "Invalid City",
                                             style:
                                                 TextStyle(color: ERROR_COLOR),
+                                          ),
+                                        )
+                                      : const SizedBox(),
+                                  _controller.isInvalidPincode.value
+                                      ? const Padding(
+                                          padding:
+                                              EdgeInsets.only(top: 5, left: 5),
+                                          child: Text(
+                                            "",
                                           ),
                                         )
                                       : const SizedBox(),

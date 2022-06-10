@@ -15,9 +15,12 @@ class UserService {
             .get();
         final data = res.data() as Map;
 
-        final addresses = data["addresses"].map((address) {
-          return {"address": address["address"], "isDefault": false};
-        }).toList();
+        List addresses = [];
+        if (data["addresses"] != null) {
+          addresses = data["addresses"].map((address) {
+            return {"address": address["address"], "isDefault": false};
+          }).toList();
+        }
 
         addresses.add({
           "address": {
