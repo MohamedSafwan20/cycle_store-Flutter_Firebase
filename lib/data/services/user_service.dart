@@ -164,4 +164,44 @@ class UserService {
       return {"status": false, "data": []};
     }
   }
+
+  static Future<Map> updateAddress(Address address,
+      {bool isDefault = false, required Map oldAddress}) async {
+    try {
+      final user = AuthService.getCurrentUser();
+
+      Map newAddressMap = {
+        "name": address.name,
+        "phone": address.phone,
+        "pincode": address.pincode,
+        "city": address.city,
+        "state": address.state,
+        "locality": address.locality,
+        "landmark": address.landmark,
+      };
+
+      final res = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(user.uid)
+          .get();
+      final data = res.data() as Map;
+
+      List addresses = data["addresses"].map((item) {
+        if (mapEquals(item["address"] as Map, oldAddress)) {
+          return {"address": newAddressMap, "isDefault": isDefault};
+        }
+
+        return {"address": item["address"], "isDefault": false};
+      }).toList();
+
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(user.uid)
+          .set({"addresses": addresses});
+
+      return {"status": true};
+    } catch (e) {
+      return {"status": false};
+    }
+  }
 }

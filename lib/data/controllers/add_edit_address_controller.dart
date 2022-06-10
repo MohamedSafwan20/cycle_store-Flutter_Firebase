@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 
 class AddEditAddressController extends GetxController {
   final _addressController = Get.find<AddressController>();
+  final passedAddress = Get.arguments?["address"] as Address?;
 
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
@@ -26,6 +27,19 @@ class AddEditAddressController extends GetxController {
 
   RxBool isDefaultAddress = false.obs;
   RxBool isLoading = false.obs;
+
+  AddEditAddressController() {
+    if (passedAddress != null) {
+      nameController.text = passedAddress!.name;
+      phoneController.text = passedAddress!.phone;
+      pincodeController.text = passedAddress!.pincode;
+      cityController.text = passedAddress!.city;
+      stateController.text = passedAddress!.state;
+      localityController.text = passedAddress!.locality;
+      landmarkController.text = passedAddress!.landmark;
+      isDefaultAddress.value = passedAddress!.isDefault!;
+    }
+  }
 
   void onPincodeChange(String pincode) {
     isInvalidPincode.value = false;
@@ -81,6 +95,44 @@ class AddEditAddressController extends GetxController {
 
     isLoading.value = true;
 
+    if (passedAddress != null) {
+      UserService.updateAddress(
+          Address.toAddress({
+            "name": nameController.text,
+            "phone": phoneController.text,
+            "pincode": pincodeController.text,
+            "city": cityController.text,
+            "state": stateController.text,
+            "locality": localityController.text,
+            "landmark": landmarkController.text,
+          }),
+          isDefault: isDefaultAddress.value,
+          oldAddress: {
+            "name": passedAddress?.name,
+            "phone": passedAddress?.phone,
+            "pincode": passedAddress?.pincode,
+            "city": passedAddress?.city,
+            "state": passedAddress?.state,
+            "locality": passedAddress?.locality,
+            "landmark": passedAddress?.landmark,
+          }).then((res) {
+        isLoading.value = false;
+
+        if (!res["status"]) {
+          throw Exception("Failed to update address");
+        }
+
+        _addressController.getAllAddresses();
+        Get.back();
+        Utils.showSuccessSnackbar(text: "Address Updated");
+      }).catchError((e) {
+        isLoading.value = false;
+        Utils.showErrorSnackbar(text: e.message);
+      });
+
+      return;
+    }
+
     UserService.addAddress(
             Address.toAddress({
               "name": nameController.text,
@@ -91,7 +143,7 @@ class AddEditAddressController extends GetxController {
               "locality": localityController.text,
               "landmark": landmarkController.text,
             }),
-        isDefault: isDefaultAddress.value)
+            isDefault: isDefaultAddress.value)
         .then((res) {
       isLoading.value = false;
 

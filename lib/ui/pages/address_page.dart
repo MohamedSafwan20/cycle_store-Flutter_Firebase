@@ -149,7 +149,11 @@ class AddressPage extends StatelessWidget {
                                                       InkWell(
                                                           onTap: () =>
                                                               Get.toNamed(
-                                                                  ADD_EDIT_ROUTE),
+                                                                  ADD_EDIT_ROUTE,
+                                                                  arguments: {
+                                                                    "address":
+                                                                        address
+                                                                  }),
                                                           child: const Text(
                                                             "Edit",
                                                             style: TextStyle(
