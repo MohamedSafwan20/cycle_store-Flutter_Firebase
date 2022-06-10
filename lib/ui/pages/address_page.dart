@@ -48,139 +48,145 @@ class AddressPage extends StatelessWidget {
                                   ),
                                   textAlign: TextAlign.center,
                                 )))
-                        : SingleChildScrollView(
-                            physics: const BouncingScrollPhysics(),
-                            child: Column(
-                              children: _controller.addresses.map((address) {
-                                return Column(
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        if (!address.isDefault) {
-                                          _controller
-                                              .makeAddressDefault(address);
-                                        }
-                                      },
-                                      highlightColor: Colors.transparent,
-                                      splashColor: Colors.transparent,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            color: BG_COLOR,
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            boxShadow: const [
-                                              BoxShadow(
-                                                  color: SHADOW_COLOR,
-                                                  offset: Offset(0, 1),
-                                                  blurRadius: 6),
-                                            ]),
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              right: 20.0,
-                                              left: 20,
-                                              bottom: 20,
-                                              top: 25),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Flexible(
-                                                      child: Text(
-                                                    address.name,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: const TextStyle(
-                                                        fontSize: 18,
-                                                        fontWeight:
-                                                            FontWeight.w800),
-                                                  )),
-                                                  address.isDefault
-                                                      ? const Icon(
-                                                          Icons
-                                                              .download_done_outlined,
-                                                          color: SUCCESS_COLOR,
-                                                        )
-                                                      : const SizedBox()
-                                                ],
-                                              ),
-                                              const SizedBox(
-                                                height: 10,
-                                              ),
-                                              Text(
-                                                "${address.locality}, ${address.city}, ${address.state} - ${address.pincode}\n${address.landmark}",
-                                              ),
-                                              const SizedBox(
-                                                height: 10,
-                                              ),
-                                              Row(
-                                                children: [
-                                                  const Text("Phone:  "),
-                                                  Flexible(
-                                                      child: Text(
-                                                    address.phone,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: const TextStyle(
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w600),
-                                                  ))
-                                                ],
-                                              ),
-                                              const SizedBox(
-                                                height: 15,
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 5.0),
-                                                child: Row(
+                        : Expanded(
+                            child: SingleChildScrollView(
+                              physics: const BouncingScrollPhysics(),
+                              child: Column(
+                                children: _controller.addresses.map((address) {
+                                  return Column(
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          if (!address.isDefault) {
+                                            _controller
+                                                .makeAddressDefault(address);
+                                          }
+                                        },
+                                        highlightColor: Colors.transparent,
+                                        splashColor: Colors.transparent,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              color: BG_COLOR,
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                    color: SHADOW_COLOR,
+                                                    offset: Offset(0, 1),
+                                                    blurRadius: 6),
+                                              ]),
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 20.0,
+                                                left: 20,
+                                                bottom: 20,
+                                                top: 25),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    InkWell(
-                                                        onTap: () =>
-                                                            Get.toNamed(
-                                                                ADD_EDIT_ROUTE),
-                                                        child: const Text(
-                                                          "Edit",
-                                                          style: TextStyle(
+                                                    Flexible(
+                                                        child: Text(
+                                                      address.name,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style: const TextStyle(
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.w800),
+                                                    )),
+                                                    address.isDefault
+                                                        ? const Icon(
+                                                            Icons
+                                                                .download_done_outlined,
                                                             color:
-                                                                PRIMARY_COLOR,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                        )),
-                                                    InkWell(
-                                                        onTap: () {},
-                                                        child: const Text(
-                                                          "Delete",
-                                                          style: TextStyle(
-                                                            color: ERROR_COLOR,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                        )),
+                                                                SUCCESS_COLOR,
+                                                          )
+                                                        : const SizedBox()
                                                   ],
                                                 ),
-                                              )
-                                            ],
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  "${address.locality}, ${address.city}, ${address.state} - ${address.pincode}\n${address.landmark}",
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    const Text("Phone:  "),
+                                                    Flexible(
+                                                        child: Text(
+                                                      address.phone,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style: const TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.w600),
+                                                    ))
+                                                  ],
+                                                ),
+                                                const SizedBox(
+                                                  height: 15,
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 5.0),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      InkWell(
+                                                          onTap: () =>
+                                                              Get.toNamed(
+                                                                  ADD_EDIT_ROUTE),
+                                                          child: const Text(
+                                                            "Edit",
+                                                            style: TextStyle(
+                                                              color:
+                                                                  PRIMARY_COLOR,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                            ),
+                                                          )),
+                                                      InkWell(
+                                                          onTap: () {},
+                                                          child: const Text(
+                                                            "Delete",
+                                                            style: TextStyle(
+                                                              color:
+                                                                  ERROR_COLOR,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                            ),
+                                                          )),
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 30,
-                                    )
-                                  ],
-                                );
-                              }).toList(),
+                                      const SizedBox(
+                                        height: 30,
+                                      )
+                                    ],
+                                  );
+                                }).toList(),
+                              ),
                             ),
                           );
               })
