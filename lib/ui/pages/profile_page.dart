@@ -8,6 +8,8 @@ import 'package:cycle_store/ui/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../config/routes.dart';
+
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
@@ -300,7 +302,9 @@ class ProfilePage extends StatelessWidget {
                                 Icons.edit,
                                 color: PRIMARY_COLOR,
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.toNamed(RESET_PASSWORD_ROUTE);
+                              },
                             )
                           ],
                         ),
