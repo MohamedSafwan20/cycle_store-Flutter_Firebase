@@ -292,4 +292,36 @@ class UserService {
       return {"status": false, "data": []};
     }
   }
+
+  static Future<Map> getDefaultAddress() async {
+    try {
+      final user = AuthService.getCurrentUser();
+
+      final res = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(user.uid)
+          .get();
+      final data = res.data() as Map;
+
+      if (data["addresses"] == null || data["addresses"].isEmpty) {
+        return {"status": true, "data": null};
+      }
+
+      Address? defaultAddress;
+      for (Map address in data["addresses"]) {
+        if (address["isDefault"]) {
+          defaultAddress = Address.toAddress(address["address"]);
+          break;
+        }
+      }
+
+      if (defaultAddress == null) {
+        return {"status": true, "data": null};
+      }
+
+      return {"status": true, "data": defaultAddress};
+    } catch (e) {
+      return {"status": false};
+    }
+  }
 }

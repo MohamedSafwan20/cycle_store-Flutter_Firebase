@@ -261,7 +261,8 @@ class ProductDetailsPage extends StatelessWidget {
                           ),
                           PrimaryButton(
                             text: "Buy now",
-                            onPressed: () => Get.toNamed(CHECKOUT_ROUTE),
+                            onPressed: () => Get.toNamed(CHECKOUT_ROUTE,
+                                arguments: {"product": _controller.product}),
                             height: 42,
                             width: 120,
                             borderRadius: 8,

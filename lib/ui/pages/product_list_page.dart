@@ -35,14 +35,6 @@ class ProductListPage extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.notifications_outlined,
-              size: 28,
-              color: Colors.black,
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.only(right: 10.0),
             child: IconButton(

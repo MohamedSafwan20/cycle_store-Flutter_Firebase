@@ -17,33 +17,34 @@ class ImageViewerPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 25.0),
-          child: Obx(() {
-            return Column(
-              children: [
-                Expanded(
-                  child: PhotoViewGallery.builder(
-                    scrollPhysics: const BouncingScrollPhysics(),
-                    builder: (BuildContext context, int index) {
-                      return PhotoViewGalleryPageOptions(
-                        imageProvider: NetworkImage(_controller.images[index]),
-                        initialScale: PhotoViewComputedScale.contained * 0.8,
-                      );
-                    },
-                    itemCount: _controller.images.length,
-                    loadingBuilder: (context, event) =>
-                        const Loading(loader: LoadingAnimationWidget.beat),
-                    backgroundDecoration:
-                        const BoxDecoration(color: Colors.white),
-                    pageController: _controller.carouselController,
-                    onPageChanged: _controller.onCarouselChange,
-                  ),
+        child: Obx(() {
+          return Stack(
+            children: [
+              Expanded(
+                child: PhotoViewGallery.builder(
+                  scrollPhysics: const BouncingScrollPhysics(),
+                  builder: (BuildContext context, int index) {
+                    return PhotoViewGalleryPageOptions(
+                      imageProvider: NetworkImage(_controller.images[index]),
+                      initialScale: PhotoViewComputedScale.contained * 0.8,
+                    );
+                  },
+                  itemCount: _controller.images.length,
+                  loadingBuilder: (context, event) =>
+                      const Loading(loader: LoadingAnimationWidget.beat),
+                  backgroundDecoration:
+                      const BoxDecoration(color: Colors.white),
+                  pageController: _controller.carouselController,
+                  onPageChanged: _controller.onCarouselChange,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 25),
+                alignment: Alignment.bottomCenter,
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: _controller.images
                       .asMap()
@@ -67,10 +68,10 @@ class ImageViewerPage extends StatelessWidget {
                           ))
                       .toList(),
                 ),
-              ],
-            );
-          }),
-        ),
+              ),
+            ],
+          );
+        }),
       ),
     );
   }

@@ -26,19 +26,6 @@ class HomePage extends StatelessWidget {
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 13.0),
-            child: IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.notifications_outlined,
-                size: 30,
-                color: Colors.black,
-              ),
-            ),
-          )
-        ],
       ),
       body: Obx(() {
         return IndexedStack(
