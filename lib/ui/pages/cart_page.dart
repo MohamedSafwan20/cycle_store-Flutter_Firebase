@@ -52,12 +52,39 @@ class CartPage extends StatelessWidget {
                           itemCount: _controller.products.length,
                           itemBuilder: (_, index) {
                             return InkWell(
-                                onTap: () => Get.toNamed(PRODUCT_DETAILS_ROUTE),
-                                child: CartItem(
-                                    index: index,
-                                    product: _controller.products[index]
-                                        ["product"],
-                                    size: _controller.products[index]["size"]));
+                                onTap: () => Get.toNamed(PRODUCT_DETAILS_ROUTE,
+                                        arguments: {
+                                          "product": _controller.products[index]
+                                              ["product"]
+                                        }),
+                                child: Dismissible(
+                                  onDismissed: (dismissDirection) {
+                                    _controller.deleteCartItem(
+                                        productId: _controller
+                                            .products[index]["product"].id,
+                                        size: _controller.products[index]
+                                            ["size"]);
+                                  },
+                                  direction: DismissDirection.endToStart,
+                                  background: const SizedBox(),
+                                  key: Key(index.toString()),
+                                  secondaryBackground: Container(
+                                    padding: const EdgeInsets.only(right: 20),
+                                    alignment: Alignment.centerRight,
+                                    child: const Icon(
+                                      Icons.delete,
+                                      color: Colors.white,
+                                      size: 28,
+                                    ),
+                                    color: ERROR_COLOR,
+                                  ),
+                                  child: CartItem(
+                                      index: index,
+                                      product: _controller.products[index]
+                                          ["product"],
+                                      size: _controller.products[index]
+                                          ["size"]),
+                                ));
                           }));
             }),
             Obx(() {

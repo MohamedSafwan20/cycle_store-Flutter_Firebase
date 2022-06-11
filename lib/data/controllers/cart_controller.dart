@@ -1,4 +1,5 @@
-import 'package:cycle_store/data/services/product_service.dart';
+import 'package:cycle_store/data/services/user_service.dart';
+import 'package:cycle_store/utils/utils.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
@@ -17,7 +18,7 @@ class CartController extends GetxController {
   void getAllCartProducts() {
     isLoading.value = true;
 
-    ProductService.getAllCartProducts().then((res) {
+    UserService.getAllCartProducts().then((res) {
       if (!res["status"]) {
         throw Exception("Failed to fetch Cart products");
       }
@@ -58,5 +59,16 @@ class CartController extends GetxController {
       quantities[index]--;
       update(["quantity - $productId"]);
     }
+  }
+
+  void deleteCartItem({required String productId, required String size}) {
+    UserService.deleteCartItem(productId: productId, size: size).then((res) {
+      if (!res["status"]) {
+        throw Exception("Failed to delete Cart Item");
+      }
+    }).catchError((e) {
+      getAllCartProducts();
+      Utils.showErrorSnackbar(text: e.message);
+    });
   }
 }

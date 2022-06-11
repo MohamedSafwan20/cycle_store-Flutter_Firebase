@@ -164,31 +164,6 @@ class ProductService {
     }
   }
 
-  static Future<Map> getAllCartProducts() async {
-    try {
-      User user = AuthService.getCurrentUser();
-
-      final productsRef = await FirebaseFirestore.instance
-          .collection("users")
-          .doc(user.uid)
-          .get();
-
-      final cartData = productsRef.data() as Map;
-      List cartList = cartData["cart"];
-
-      List<Map> productData = await Future.wait(cartList.map((item) async {
-        DocumentSnapshot snapshot = await item["item"].get();
-        Map data = {"id": snapshot.id, ...snapshot.data() as Map};
-
-        return {"product": Product.toProduct(data), "size": item["size"]};
-      }), eagerError: true);
-
-      return {"status": true, "data": productData};
-    } catch (e) {
-      return {"status": false, "data": []};
-    }
-  }
-
   static Future<Map> isProductInCart(String productId) async {
     try {
       User user = AuthService.getCurrentUser();
