@@ -1,4 +1,5 @@
 import 'package:cycle_store/config/colors.dart';
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/data/controllers/checkout_controller.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
@@ -25,21 +26,25 @@ class CheckoutPage extends StatelessWidget {
           const SizedBox(
             height: 15,
           ),
-              Expanded(
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
+          Expanded(
+              child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
                     Text(
                       "Delivery Address",
                       style: HEADING_1,
                     ),
-                    TextButton(onPressed: () {}, child: const Text("Change"))
+                    TextButton(
+                        onPressed: () {
+                          Get.offNamed(ADDRESS_ROUTE);
+                        },
+                        child: const Text("Change"))
                   ],
                 ),
                 const SizedBox(
@@ -62,7 +67,9 @@ class CheckoutPage extends StatelessWidget {
                                   Icons.add_outlined,
                                   color: PRIMARY_COLOR,
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Get.offNamed(ADDRESS_ROUTE);
+                                },
                               ))
                           : Container(
                               decoration: BoxDecoration(
@@ -126,37 +133,37 @@ class CheckoutPage extends StatelessWidget {
                   height: 10,
                 ),
                 Row(
-                          children: [
-                            Checkbox(
-                              value: true,
-                              onChanged: (value) {},
-                            ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: const Text(
-                                "Cash on delivery (COD)",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600, fontSize: 17),
-                              ),
-                            )
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        const Text(
-                          "Order Info",
-                          style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 13.0),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Checkbox(
+                      value: true,
+                      onChanged: (value) {},
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: const Text(
+                        "Cash on delivery (COD)",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 17),
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                const Text(
+                  "Order Info",
+                  style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 13.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
                             "Total",
@@ -170,45 +177,45 @@ class CheckoutPage extends StatelessWidget {
                           )
                         ],
                       ),
-                              const SizedBox(
-                                height: 14,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: const [
-                                  Text(
-                                    "Shipping Cost",
-                                    style: TextStyle(
-                                        color: SECONDARY_TEXT_COLOR, fontSize: 15),
-                                  ),
-                                  Text(
-                                    "₹0",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700, fontSize: 20),
-                                  )
-                                ],
-                              ),
-                            ],
+                      const SizedBox(
+                        height: 14,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            "Shipping Cost",
+                            style: TextStyle(
+                                color: SECONDARY_TEXT_COLOR, fontSize: 15),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 40,
-                        ),
-                      ],
-                    ),
-                  )),
-              PrimaryButton(
-                text: "Place Order",
+                          Text(
+                            "₹0",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 20),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+              ],
+            ),
+          )),
+          PrimaryButton(
+            text: "Place Order",
             onPressed: () {},
             width: double.infinity,
             height: 47,
             textStyle: const TextStyle(fontSize: 18),
           ),
-              const SizedBox(
-                height: 10,
-              )
-            ]),
-          )),
+          const SizedBox(
+            height: 10,
+          )
+        ]),
+      )),
     );
   }
 }
