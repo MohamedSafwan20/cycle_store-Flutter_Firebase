@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cycle_store/data/models/address_model.dart';
 import 'package:cycle_store/data/services/auth_service.dart';
+import 'package:cycle_store/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
@@ -244,6 +245,24 @@ class UserService {
 
       return {"status": true};
     } catch (e) {
+      return {"status": false};
+    }
+  }
+
+  static updateEmail(String email) async {
+    try {
+      User user = AuthService.getCurrentUser();
+
+      await user.updateEmail(email);
+
+      return {"status": true};
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "email-already-in-use") {
+        Utils.showErrorSnackbar(text: "Email already exists");
+        return {"status": false};
+      }
+    } catch (e) {
+      Utils.showErrorSnackbar(text: "Failed to update email");
       return {"status": false};
     }
   }

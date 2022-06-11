@@ -234,7 +234,9 @@ class ProfilePage extends StatelessWidget {
                                 Icons.edit,
                                 color: PRIMARY_COLOR,
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                _controller.showPasswordBottomSheet();
+                              },
                             )
                           ],
                         ),
