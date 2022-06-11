@@ -1,8 +1,12 @@
+import 'package:cycle_store/data/controllers/home_controller.dart';
+import 'package:cycle_store/data/services/product_service.dart';
 import 'package:cycle_store/data/services/user_service.dart';
 import 'package:cycle_store/utils/utils.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
+  final _homeController = Get.find<HomeController>();
+
   RxList products = [].obs;
   RxBool isLoading = false.obs;
   RxList quantities = [].obs;
@@ -61,16 +65,16 @@ class CartController extends GetxController {
     }
   }
 
-  void deleteCartItem(
-      {required String productId,
-      required String size,
-      required double productPrice}) {
-    UserService.deleteCartItem(productId: productId, size: size).then((res) {
+  void deleteCartItem({required String productId,
+    required String size,
+    required double productPrice}) {
+    ProductService.removeFromCart(productId).then((res) {
       if (!res["status"]) {
         throw Exception("Failed to delete Cart Item");
       }
 
       price.value -= productPrice;
+      _homeController.removeFromCart(productId);
     }).catchError((e) {
       getAllCartProducts();
       Utils.showErrorSnackbar(text: e.message);

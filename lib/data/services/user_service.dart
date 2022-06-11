@@ -292,26 +292,4 @@ class UserService {
       return {"status": false, "data": []};
     }
   }
-
-  static Future<Map> deleteCartItem(
-      {required String productId, required String size}) async {
-    try {
-      final user = AuthService.getCurrentUser();
-      DocumentReference productRef =
-          FirebaseFirestore.instance.collection("products").doc(productId);
-
-      Map cartMap = {"item": productRef, "size": size};
-
-      await FirebaseFirestore.instance
-          .collection("users")
-          .doc(user.uid)
-          .update({
-        "cart": FieldValue.arrayRemove([cartMap])
-      });
-
-      return {"status": true};
-    } catch (e) {
-      return {"status": false};
-    }
-  }
 }

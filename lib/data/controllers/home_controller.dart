@@ -14,6 +14,14 @@ class HomeController extends GetxController {
   RxBool isTopSellingLoading = false.obs;
   RxList<String> isCartBtnLoadingList = <String>[].obs;
 
+  @override
+  void onInit() {
+    getNewArrivedProducts();
+    getTopSellingProducts();
+
+    super.onInit();
+  }
+
   void getNewArrivedProducts() {
     isNewArrivalsLoading.value = true;
 
