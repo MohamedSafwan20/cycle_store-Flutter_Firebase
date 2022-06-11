@@ -63,7 +63,9 @@ class CartPage extends StatelessWidget {
                                         productId: _controller
                                             .products[index]["product"].id,
                                         size: _controller.products[index]
-                                            ["size"]);
+                                            ["size"],
+                                        productPrice: _controller
+                                            .products[index]["product"].price);
                                   },
                                   direction: DismissDirection.endToStart,
                                   background: const SizedBox(),

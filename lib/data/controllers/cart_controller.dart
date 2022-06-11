@@ -61,11 +61,16 @@ class CartController extends GetxController {
     }
   }
 
-  void deleteCartItem({required String productId, required String size}) {
+  void deleteCartItem(
+      {required String productId,
+      required String size,
+      required double productPrice}) {
     UserService.deleteCartItem(productId: productId, size: size).then((res) {
       if (!res["status"]) {
         throw Exception("Failed to delete Cart Item");
       }
+
+      price.value -= productPrice;
     }).catchError((e) {
       getAllCartProducts();
       Utils.showErrorSnackbar(text: e.message);
