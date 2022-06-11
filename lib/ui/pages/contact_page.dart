@@ -1,5 +1,6 @@
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
+import 'package:cycle_store/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class ContactPage extends StatelessWidget {
@@ -7,6 +8,9 @@ class ContactPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const phone = "0123456789";
+    const email = "example@gmail.com";
+
     return Scaffold(
       backgroundColor: PRIMARY_COLOR,
       body: SafeArea(
@@ -49,7 +53,9 @@ class ContactPage extends StatelessWidget {
                       height: 60,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Utils.openPhoneApp(phone: phone);
+                      },
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                             vertical: 35.0, horizontal: 10),
@@ -68,7 +74,7 @@ class ContactPage extends StatelessWidget {
                               height: 10,
                             ),
                             Text(
-                              "+91 0123456780",
+                              "+91 $phone",
                               style: TextStyle(
                                   color: PRIMARY_TEXT_COLOR,
                                   fontWeight: FontWeight.w700,
@@ -83,7 +89,9 @@ class ContactPage extends StatelessWidget {
                       height: 60,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Utils.openMailApp(email: email);
+                      },
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                             vertical: 35.0, horizontal: 10),
@@ -102,7 +110,7 @@ class ContactPage extends StatelessWidget {
                               height: 10,
                             ),
                             Text(
-                              "example@gmail.com",
+                              email,
                               style: TextStyle(
                                   color: PRIMARY_TEXT_COLOR,
                                   fontWeight: FontWeight.w700,

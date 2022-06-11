@@ -29,9 +29,17 @@ class Utils {
     );
   }
 
-  static void openMailApp() async {
+  static void openMailApp({String email = ""}) async {
     try {
-      await launchUrl(Uri.parse("mailto: "));
+      await launchUrl(Uri.parse("mailto: $email"));
+    } catch (_) {
+      Utils.showErrorSnackbar(text: "Couldn't open mail app");
+    }
+  }
+
+  static void openPhoneApp({String phone = ""}) async {
+    try {
+      await launchUrl(Uri.parse("tel://$phone"));
     } catch (_) {
       Utils.showErrorSnackbar(text: "Couldn't open mail app");
     }
