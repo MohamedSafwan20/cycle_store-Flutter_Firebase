@@ -1,3 +1,4 @@
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/models/address_model.dart';
 import 'package:cycle_store/data/models/product_model.dart';
 import 'package:cycle_store/data/services/user_service.dart';
@@ -66,13 +67,15 @@ class CheckoutController extends GetxController {
 
     if (products != null) {
       UserService.placeOrder(
-              products: products!,
-              address: defaultAddress[0],
-              quantities: quantities!)
+          products: products!,
+          address: defaultAddress[0],
+          quantities: quantities!)
           .then((res) {
         if (!res["status"]) {
           throw Exception();
         }
+
+        Get.offNamed(ORDER_PLACED_ROUTE);
       }).catchError((e) {
         Utils.showErrorSnackbar(text: "Order Failed. Please try again");
         Get.back();
@@ -87,6 +90,8 @@ class CheckoutController extends GetxController {
         if (!res["status"]) {
           throw Exception();
         }
+
+        Get.offNamed(ORDER_PLACED_ROUTE);
       }).catchError((e) {
         Utils.showErrorSnackbar(text: "Order Failed. Please try again");
         Get.back();

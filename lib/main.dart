@@ -13,6 +13,7 @@ import 'package:cycle_store/ui/pages/image_viewer_page.dart';
 import 'package:cycle_store/ui/pages/initial_page.dart';
 import 'package:cycle_store/ui/pages/login_page.dart';
 import 'package:cycle_store/ui/pages/my_orders_page.dart';
+import 'package:cycle_store/ui/pages/order_placed_page.dart';
 import 'package:cycle_store/ui/pages/order_summary_page.dart';
 import 'package:cycle_store/ui/pages/product_details_page.dart';
 import 'package:cycle_store/ui/pages/product_list_page.dart';
@@ -83,6 +84,7 @@ class MyApp extends StatelessWidget {
             name: RESET_PASSWORD_ROUTE, page: () => const ResetPasswordPage()),
         GetPage(name: EMAIL_SENT_ROUTE, page: () => const EmailSentPage()),
         GetPage(name: IMAGE_VIEWER_ROUTE, page: () => const ImageViewerPage()),
+        GetPage(name: ORDER_PLACED_ROUTE, page: () => const OrderPlacedPage()),
       ],
     );
   }
