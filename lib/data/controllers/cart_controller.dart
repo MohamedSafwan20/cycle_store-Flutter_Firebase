@@ -8,6 +8,7 @@ class CartController extends GetxController {
   final _homeController = Get.find<HomeController>();
 
   RxList products = [].obs;
+  RxList checkoutProducts = [].obs;
   RxBool isLoading = false.obs;
   RxList quantities = [].obs;
   RxDouble price = 0.0.obs;
@@ -28,6 +29,7 @@ class CartController extends GetxController {
       }
 
       products.value = res["data"];
+      checkoutProducts.value = res["data"];
 
       quantities.value = res["data"].map((item) {
         price.value += item["product"].price;
@@ -65,19 +67,25 @@ class CartController extends GetxController {
     }
   }
 
-  void deleteCartItem({required String productId,
-    required String size,
-    required double productPrice}) {
+  void deleteCartItem(
+      {required String productId,
+      required String size,
+      required double productPrice}) {
     ProductService.removeFromCart(productId).then((res) {
       if (!res["status"]) {
-        throw Exception("Failed to delete Cart Item");
+        throw Exception();
       }
 
+      checkoutProducts.value = products.where((product) {
+        return product["product"].id != productId;
+      }).toList();
+
       price.value -= productPrice;
+      // Updating product card cart button
       _homeController.removeFromCart(productId);
     }).catchError((e) {
       getAllCartProducts();
-      Utils.showErrorSnackbar(text: e.message);
+      Utils.showErrorSnackbar(text: "Failed to delete Cart Item");
     });
   }
 }

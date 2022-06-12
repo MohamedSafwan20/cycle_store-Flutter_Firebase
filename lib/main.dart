@@ -1,4 +1,5 @@
 import 'package:cycle_store/config/routes.dart';
+import 'package:cycle_store/data/controllers/cart_controller.dart';
 import 'package:cycle_store/firebase_options.dart';
 import 'package:cycle_store/ui/pages/add_edit_address.dart';
 import 'package:cycle_store/ui/pages/address_page.dart';
@@ -35,6 +36,13 @@ void main() async {
   runApp(const MyApp());
 }
 
+class InitialBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => CartController(), fenix: true);
+  }
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -47,6 +55,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialRoute: INITIAL_ROUTE,
+      initialBinding: InitialBinding(),
       getPages: [
         GetPage(name: INITIAL_ROUTE, page: () => const InitialPage()),
         GetPage(name: HOME_ROUTE, page: () => const HomePage()),

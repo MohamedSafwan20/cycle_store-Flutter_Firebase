@@ -171,7 +171,7 @@ class CheckoutPage extends StatelessWidget {
                                 color: SECONDARY_TEXT_COLOR, fontSize: 15),
                           ),
                           Text(
-                            "₹" + _controller.product.price.toString(),
+                            "₹" + _controller.price.toString(),
                             style: const TextStyle(
                                 fontWeight: FontWeight.w700, fontSize: 20),
                           )

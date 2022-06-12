@@ -69,7 +69,8 @@ class CartPage extends StatelessWidget {
                                   },
                                   direction: DismissDirection.endToStart,
                                   background: const SizedBox(),
-                                  key: Key(index.toString()),
+                                  key: Key(_controller
+                                      .products[index]["product"].id),
                                   secondaryBackground: Container(
                                     padding: const EdgeInsets.only(right: 20),
                                     alignment: Alignment.centerRight,
@@ -127,7 +128,11 @@ class CartPage extends StatelessWidget {
                       width: 260,
                       height: 50,
                       child: TextButton(
-                        onPressed: () => Get.toNamed(CHECKOUT_ROUTE),
+                        onPressed: () => Get.toNamed(CHECKOUT_ROUTE,
+                            arguments: {
+                              "products": _controller.checkoutProducts,
+                              "quantities": _controller.quantities
+                            }),
                         child: const Text(
                           "Proceed to Payment",
                           style: TextStyle(color: Colors.black, fontSize: 17),

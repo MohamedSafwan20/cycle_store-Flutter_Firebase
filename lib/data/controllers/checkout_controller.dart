@@ -1,19 +1,25 @@
 import 'package:cycle_store/data/models/address_model.dart';
-import 'package:cycle_store/data/models/product_model.dart';
 import 'package:cycle_store/data/services/user_service.dart';
 import 'package:cycle_store/utils/utils.dart';
 import 'package:get/get.dart';
 
 class CheckoutController extends GetxController {
-  Product product = Get.arguments["product"];
+  List products = Get.arguments["products"];
+  List quantities = Get.arguments["quantities"];
 
   RxList<Address> defaultAddress = <Address>[].obs;
+  RxDouble price = 0.0.obs;
 
   RxBool hasNoDefaultAddress = false.obs;
   RxBool isAddressLoading = false.obs;
 
   @override
   void onInit() {
+    for (int i = 0; i < products.length; i++) {
+      price.value =
+          price.value + (products[i]["product"].price * quantities[i]);
+    }
+
     getDefaultAddress();
 
     super.onInit();
