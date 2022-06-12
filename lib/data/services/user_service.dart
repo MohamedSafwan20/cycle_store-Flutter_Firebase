@@ -324,4 +324,43 @@ class UserService {
       return {"status": false};
     }
   }
+
+  static Future<Map> placeOrder(
+      {required List products,
+      required Address address,
+      required List quantities}) async {
+    try {
+      final user = AuthService.getCurrentUser();
+
+      List<Map> orders = products.asMap().entries.map((entry) {
+        DocumentReference productRef = FirebaseFirestore.instance
+            .collection("products")
+            .doc(entry.value["product"].id);
+
+        return {
+          "product": productRef,
+          "customerAddress":
+              "${address.locality}, ${address.city}, ${address.state} - ${address.pincode}\n${address.landmark}",
+          "customerName": address.name,
+          "customerPhone": address.phone,
+          "price": entry.value["product"].price,
+          "quantity": quantities[entry.key],
+          "status": "NEW"
+        };
+      }).toList();
+
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(user.uid)
+          .update({"orders": FieldValue.arrayUnion(orders)});
+
+      return {
+        "status": true,
+      };
+    } catch (e) {
+      return {
+        "status": false,
+      };
+    }
+  }
 }

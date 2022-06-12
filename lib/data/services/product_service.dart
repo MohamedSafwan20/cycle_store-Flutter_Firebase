@@ -156,7 +156,7 @@ class ProductService {
       await FirebaseFirestore.instance
           .collection("users")
           .doc(user.uid)
-          .set({"cart": cartData});
+          .update({"cart": cartData});
 
       return {"status": true};
     } catch (e) {

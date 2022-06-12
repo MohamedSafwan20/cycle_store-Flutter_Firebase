@@ -57,4 +57,40 @@ class CheckoutController extends GetxController {
           text: "Failed to checkout. Please try again later.");
     });
   }
+
+  void placeOrder() {
+    if (hasNoDefaultAddress.value) {
+      Utils.showErrorSnackbar(text: "Please select an address");
+      return;
+    }
+
+    if (products != null) {
+      UserService.placeOrder(
+              products: products!,
+              address: defaultAddress[0],
+              quantities: quantities!)
+          .then((res) {
+        if (!res["status"]) {
+          throw Exception();
+        }
+      }).catchError((e) {
+        Utils.showErrorSnackbar(text: "Order Failed. Please try again");
+        Get.back();
+      });
+    } else {
+      UserService.placeOrder(
+          products: [
+            {"product": product!}
+          ],
+          address: defaultAddress[0],
+          quantities: [1]).then((res) {
+        if (!res["status"]) {
+          throw Exception();
+        }
+      }).catchError((e) {
+        Utils.showErrorSnackbar(text: "Order Failed. Please try again");
+        Get.back();
+      });
+    }
+  }
 }

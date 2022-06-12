@@ -206,7 +206,9 @@ class CheckoutPage extends StatelessWidget {
           )),
           PrimaryButton(
             text: "Place Order",
-            onPressed: () {},
+            onPressed: () {
+              _controller.placeOrder();
+            },
             width: double.infinity,
             height: 47,
             textStyle: const TextStyle(fontSize: 18),
