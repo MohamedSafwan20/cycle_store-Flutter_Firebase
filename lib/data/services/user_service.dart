@@ -404,6 +404,7 @@ class UserService {
           "product": {
             "thumbnail": product["thumbnail"],
             "name": product["name"],
+            "id": snapshot.id
           }
         };
 
@@ -468,6 +469,77 @@ class UserService {
       }).toList();
 
       return {"status": true, "data": cancelledOrders};
+    } catch (e) {
+      return {"status": false};
+    }
+  }
+
+  static Future<Map> cancelOrder(Map order) async {
+    try {
+      User user = AuthService.getCurrentUser();
+
+      Map allOrdersRes = await getAllOrders();
+      if (!allOrdersRes["status"]) {
+        throw Exception();
+      }
+
+      List allOrders = allOrdersRes["data"];
+
+      List orders = allOrders.map((currentOrder) {
+        DocumentReference productRef = FirebaseFirestore.instance
+            .collection("products")
+            .doc(currentOrder["product"]["id"]);
+
+        Map currentOrderData = {
+          "product": currentOrder["product"]["name"],
+          "customerAddress": currentOrder["customerAddress"],
+          "customerName": currentOrder["customerName"],
+          "customerPhone": currentOrder["customerPhone"],
+          "price": currentOrder["price"],
+          "quantity": currentOrder["quantity"],
+          "status": currentOrder["status"],
+          "size": currentOrder["size"],
+          "created_at": currentOrder["created_at"]
+        };
+        Map orderData = {
+          "product": order["product"]["name"],
+          "customerAddress": order["customerAddress"],
+          "customerName": order["customerName"],
+          "customerPhone": order["customerPhone"],
+          "price": order["price"],
+          "quantity": order["quantity"],
+          "status": order["status"],
+          "size": order["size"],
+          "created_at": order["created_at"]
+        };
+
+        if (mapEquals(currentOrderData, orderData)) {
+          return {
+            ...currentOrderData,
+            "product": productRef,
+            "status": "CANCELLED"
+          };
+        }
+
+        return {
+          "product": productRef,
+          "customerAddress": currentOrder["customerAddress"],
+          "customerName": currentOrder["customerName"],
+          "customerPhone": currentOrder["customerPhone"],
+          "price": currentOrder["price"],
+          "quantity": currentOrder["quantity"],
+          "status": currentOrder["status"],
+          "size": currentOrder["size"],
+          "created_at": currentOrder["created_at"]
+        };
+      }).toList();
+
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(user.uid)
+          .update({"orders": orders});
+
+      return {"status": true};
     } catch (e) {
       return {"status": false};
     }
