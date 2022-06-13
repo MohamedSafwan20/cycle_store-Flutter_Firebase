@@ -204,15 +204,21 @@ class CheckoutPage extends StatelessWidget {
               ],
             ),
           )),
-          PrimaryButton(
-            text: "Place Order",
-            onPressed: () {
-              _controller.placeOrder();
-            },
-            width: double.infinity,
-            height: 47,
-            textStyle: const TextStyle(fontSize: 18),
-          ),
+          Obx(() {
+            return SizedBox(
+              child: _controller.isLoading.value
+                  ? const Loading()
+                  : PrimaryButton(
+                      text: "Place Order",
+                      onPressed: () {
+                        _controller.placeOrder();
+                      },
+                      width: double.infinity,
+                      height: 47,
+                      textStyle: const TextStyle(fontSize: 18),
+                    ),
+            );
+          }),
           const SizedBox(
             height: 10,
           )

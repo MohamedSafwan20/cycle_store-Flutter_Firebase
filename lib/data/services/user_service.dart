@@ -332,6 +332,23 @@ class UserService {
     try {
       final user = AuthService.getCurrentUser();
 
+      // Updating products details in products collection
+      for (int i = 0; i < products.length; i++) {
+        DocumentSnapshot snapshot = await FirebaseFirestore.instance
+            .collection("products")
+            .doc(products[i]["product"].id)
+            .get();
+        Map data = snapshot.data() as Map;
+
+        await FirebaseFirestore.instance
+            .collection("products")
+            .doc(products[i]["product"].id)
+            .update({
+          "buy_count": data["buy_count"] + quantities[i],
+          "stock": data["stock"] - quantities[i],
+        });
+      }
+
       List<Map> orders = products.asMap().entries.map((entry) {
         DocumentReference productRef = FirebaseFirestore.instance
             .collection("products")

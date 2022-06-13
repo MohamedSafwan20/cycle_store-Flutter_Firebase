@@ -15,6 +15,7 @@ class CheckoutController extends GetxController {
 
   RxBool hasNoDefaultAddress = false.obs;
   RxBool isAddressLoading = false.obs;
+  RxBool isLoading = false.obs;
 
   @override
   void onInit() {
@@ -65,18 +66,24 @@ class CheckoutController extends GetxController {
       return;
     }
 
+    isLoading.value = true;
+
     if (products != null) {
       UserService.placeOrder(
-          products: products!,
-          address: defaultAddress[0],
-          quantities: quantities!)
+              products: products!,
+              address: defaultAddress[0],
+              quantities: quantities!)
           .then((res) {
+        isLoading.value = false;
+
         if (!res["status"]) {
           throw Exception();
         }
 
         Get.offNamed(ORDER_PLACED_ROUTE);
       }).catchError((e) {
+        isLoading.value = false;
+
         Utils.showErrorSnackbar(text: "Order Failed. Please try again");
         Get.back();
       });
@@ -87,12 +94,16 @@ class CheckoutController extends GetxController {
           ],
           address: defaultAddress[0],
           quantities: [1]).then((res) {
+        isLoading.value = false;
+
         if (!res["status"]) {
           throw Exception();
         }
 
         Get.offNamed(ORDER_PLACED_ROUTE);
       }).catchError((e) {
+        isLoading.value = false;
+
         Utils.showErrorSnackbar(text: "Order Failed. Please try again");
         Get.back();
       });

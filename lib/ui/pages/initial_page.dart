@@ -17,9 +17,9 @@ class InitialPage extends StatelessWidget {
           throw Exception("Email not verified");
         }
 
-        Get.toNamed(HOME_ROUTE);
+        Get.offAllNamed(HOME_ROUTE);
       } catch (e) {
-        Get.toNamed(LOGIN_ROUTE);
+        Get.offAllNamed(LOGIN_ROUTE);
       }
     });
 

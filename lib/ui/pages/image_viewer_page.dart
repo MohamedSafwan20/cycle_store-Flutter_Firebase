@@ -18,7 +18,7 @@ class ImageViewerPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Obx(() {
-          return Stack(
+          return Column(
             children: [
               Expanded(
                 child: PhotoViewGallery.builder(
