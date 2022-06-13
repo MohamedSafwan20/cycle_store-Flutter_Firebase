@@ -142,8 +142,9 @@ class MyOrdersPage extends StatelessWidget {
                                       return Material(
                                         color: BG_COLOR,
                                         child: InkWell(
-                                          onTap: () =>
-                                              Get.toNamed(ORDER_SUMMARY_ROUTE),
+                                          onTap: () => Get.toNamed(
+                                              ORDER_SUMMARY_ROUTE,
+                                              arguments: {"order": order}),
                                           child: Container(
                                             width: double.infinity,
                                             padding: const EdgeInsets.symmetric(
