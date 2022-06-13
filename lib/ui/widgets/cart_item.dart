@@ -140,7 +140,7 @@ class CartItem extends StatelessWidget {
                                   color: PRIMARY_COLOR,
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
-                                      width: 1, color: SECONDARY_TEXT_COLOR)),
+                                      width: 1, color: PRIMARY_COLOR)),
                               child: IconButton(
                                 onPressed: () {
                                   _controller.increaseQuantity(

@@ -9,6 +9,7 @@ class CheckoutController extends GetxController {
   List? products = Get.arguments["products"];
   List? quantities = Get.arguments["quantities"];
   Product? product = Get.arguments["product"];
+  List sizes = Get.arguments["sizes"];
 
   RxList<Address> defaultAddress = <Address>[].obs;
   RxDouble price = 0.0.obs;
@@ -69,10 +70,11 @@ class CheckoutController extends GetxController {
     isLoading.value = true;
 
     if (products != null) {
-      UserService.placeOrder(
+      UserService.addOrder(
               products: products!,
               address: defaultAddress[0],
-              quantities: quantities!)
+              quantities: quantities!,
+              sizes: sizes)
           .then((res) {
         isLoading.value = false;
 
@@ -88,12 +90,14 @@ class CheckoutController extends GetxController {
         Get.back();
       });
     } else {
-      UserService.placeOrder(
-          products: [
-            {"product": product!}
-          ],
-          address: defaultAddress[0],
-          quantities: [1]).then((res) {
+      UserService.addOrder(
+              products: [
+                {"product": product!}
+              ],
+              address: defaultAddress[0],
+              quantities: [1],
+              sizes: sizes)
+          .then((res) {
         isLoading.value = false;
 
         if (!res["status"]) {

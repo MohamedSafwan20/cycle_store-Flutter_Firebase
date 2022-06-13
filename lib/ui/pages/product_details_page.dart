@@ -173,7 +173,7 @@ class ProductDetailsPage extends StatelessWidget {
                                                   color: _controller
                                                               .selectedSizeIndex
                                                               .value ==
-                                                      size.value
+                                                          size.value
                                                       ? PRIMARY_COLOR
                                                       : SHADOW_COLOR,
                                                   offset: const Offset(1, 1),
@@ -261,8 +261,9 @@ class ProductDetailsPage extends StatelessWidget {
                           ),
                           PrimaryButton(
                             text: "Buy now",
-                            onPressed: () => Get.toNamed(CHECKOUT_ROUTE,
-                                arguments: {"product": _controller.product}),
+                            onPressed: () {
+                              _controller.handleBuyNowBtn();
+                            },
                             height: 42,
                             width: 120,
                             borderRadius: 8,

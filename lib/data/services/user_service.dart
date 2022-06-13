@@ -325,10 +325,12 @@ class UserService {
     }
   }
 
-  static Future<Map> placeOrder(
-      {required List products,
-      required Address address,
-      required List quantities}) async {
+  static Future<Map> addOrder({
+    required List products,
+    required Address address,
+    required List quantities,
+    required List sizes,
+  }) async {
     try {
       final user = AuthService.getCurrentUser();
 
@@ -362,7 +364,8 @@ class UserService {
           "customerPhone": address.phone,
           "price": entry.value["product"].price,
           "quantity": quantities[entry.key],
-          "status": "NEW"
+          "status": "NEW",
+          "size": sizes[entry.key]
         };
       }).toList();
 
@@ -378,6 +381,38 @@ class UserService {
       return {
         "status": false,
       };
+    }
+  }
+
+  static Future<Map> getAllOrders() async {
+    try {
+      User user = AuthService.getCurrentUser();
+
+      DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(user.uid)
+          .get();
+
+      final userData = userSnapshot.data() as Map;
+      List orders = userData["orders"];
+
+      List<Map> orderData = await Future.wait(orders.map((order) async {
+        DocumentSnapshot snapshot = await order["product"].get();
+        Map product = snapshot.data() as Map;
+        Map data = {
+          ...order,
+          "product": {
+            "thumbnail": product["thumbnail"],
+            "name": product["name"],
+          }
+        };
+
+        return data;
+      }), eagerError: true);
+
+      return {"status": true, "data": orderData};
+    } catch (e) {
+      return {"status": false};
     }
   }
 }

@@ -128,11 +128,9 @@ class CartPage extends StatelessWidget {
                       width: 260,
                       height: 50,
                       child: TextButton(
-                        onPressed: () => Get.toNamed(CHECKOUT_ROUTE,
-                            arguments: {
-                              "products": _controller.checkoutProducts,
-                              "quantities": _controller.quantities
-                            }),
+                        onPressed: () {
+                          _controller.handleProceedBtn();
+                        },
                         child: const Text(
                           "Proceed to Payment",
                           style: TextStyle(color: Colors.black, fontSize: 17),

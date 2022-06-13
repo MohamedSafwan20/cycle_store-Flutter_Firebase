@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_controller.dart';
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/controllers/home_controller.dart';
 import 'package:cycle_store/data/models/product_model.dart';
 import 'package:cycle_store/data/services/product_service.dart';
@@ -54,5 +55,12 @@ class ProductDetailsController extends GetxController {
     _homeController.removeFromCart(product.id);
 
     productsInCart.remove(product.id);
+  }
+
+  void handleBuyNowBtn() {
+    Get.toNamed(CHECKOUT_ROUTE, arguments: {
+      "product": product,
+      "sizes": [selectedSizeIndex.value]
+    });
   }
 }

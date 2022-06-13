@@ -26,11 +26,8 @@ class OrderPlacedPage extends StatelessWidget {
                   children: [
                     Image.asset(
                       "assets/images/order_placed.jpg",
-                      width: 220,
-                      height: 220,
-                    ),
-                    const SizedBox(
-                      height: 20,
+                      width: 210,
+                      height: 210,
                     ),
                     Column(
                       children: [

@@ -1,3 +1,4 @@
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/controllers/home_controller.dart';
 import 'package:cycle_store/data/services/product_service.dart';
 import 'package:cycle_store/data/services/user_service.dart';
@@ -67,10 +68,9 @@ class CartController extends GetxController {
     }
   }
 
-  void deleteCartItem(
-      {required String productId,
-      required String size,
-      required double productPrice}) {
+  void deleteCartItem({required String productId,
+    required String size,
+    required double productPrice}) {
     ProductService.removeFromCart(productId).then((res) {
       if (!res["status"]) {
         throw Exception();
@@ -86,6 +86,18 @@ class CartController extends GetxController {
     }).catchError((e) {
       getAllCartProducts();
       Utils.showErrorSnackbar(text: "Failed to delete Cart Item");
+    });
+  }
+
+  void handleProceedBtn() {
+    List sizes = checkoutProducts.map((product) {
+      return product["size"];
+    }).toList();
+
+    Get.toNamed(CHECKOUT_ROUTE, arguments: {
+      "products": checkoutProducts,
+      "quantities": quantities,
+      "sizes": sizes
     });
   }
 }
