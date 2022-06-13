@@ -4,34 +4,80 @@ import 'package:get/get.dart';
 
 class MyOrdersController extends GetxController {
   RxInt selectedTab = 0.obs;
-  RxList orders = [].obs;
+  RxList shippingOrders = [].obs;
+  RxList deliveredOrders = [].obs;
+  RxList cancelledOrders = [].obs;
 
-  RxBool isLoading = false.obs;
+  RxBool isShippingOrdersLoading = false.obs;
+  RxBool isDeliveredOrdersLoading = false.obs;
+  RxBool isCancelledOrdersLoading = false.obs;
 
   @override
   void onInit() {
-    getAllOrders();
+    getAllShippingOrders();
+    getAllDeliveredOrders();
+    getAllCancelledOrders();
 
     super.onInit();
   }
 
   void onTabChange({required int currentTab}) => selectedTab.value = currentTab;
 
-  void getAllOrders() {
-    isLoading.value = true;
+  void getAllShippingOrders() {
+    isShippingOrdersLoading.value = true;
 
-    UserService.getAllOrders().then((res) {
-      isLoading.value = false;
+    UserService.getAllShippingOrders().then((res) {
+      isShippingOrdersLoading.value = false;
 
       if (!res["status"]) {
         throw Exception();
       }
 
-      orders.value = res["data"];
+      shippingOrders.value = res["data"];
     }).catchError((e) {
-      isLoading.value = false;
+      isShippingOrdersLoading.value = false;
 
-      orders.value = [];
+      shippingOrders.value = [];
+      Utils.showErrorSnackbar(
+          text: "Failed to get orders. Please try again later.");
+    });
+  }
+
+  void getAllDeliveredOrders() {
+    isDeliveredOrdersLoading.value = true;
+
+    UserService.getAllDeliveredOrders().then((res) {
+      isDeliveredOrdersLoading.value = false;
+
+      if (!res["status"]) {
+        throw Exception();
+      }
+
+      deliveredOrders.value = res["data"];
+    }).catchError((e) {
+      isDeliveredOrdersLoading.value = false;
+
+      deliveredOrders.value = [];
+      Utils.showErrorSnackbar(
+          text: "Failed to get orders. Please try again later.");
+    });
+  }
+
+  void getAllCancelledOrders() {
+    isCancelledOrdersLoading.value = true;
+
+    UserService.getAllCancelledOrders().then((res) {
+      isCancelledOrdersLoading.value = false;
+
+      if (!res["status"]) {
+        throw Exception();
+      }
+
+      cancelledOrders.value = res["data"];
+    }).catchError((e) {
+      isCancelledOrdersLoading.value = false;
+
+      cancelledOrders.value = [];
       Utils.showErrorSnackbar(
           text: "Failed to get orders. Please try again later.");
     });

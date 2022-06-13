@@ -415,4 +415,61 @@ class UserService {
       return {"status": false};
     }
   }
+
+  static Future<Map> getAllShippingOrders() async {
+    try {
+      Map allOrdersRes = await getAllOrders();
+      if (!allOrdersRes["status"]) {
+        throw Exception();
+      }
+
+      List allOrders = allOrdersRes["data"];
+
+      List shippingOrders = allOrders.where((order) {
+        return order["status"] != "DELIVERED" && order["status"] != "CANCELLED";
+      }).toList();
+
+      return {"status": true, "data": shippingOrders};
+    } catch (e) {
+      return {"status": false};
+    }
+  }
+
+  static Future<Map> getAllDeliveredOrders() async {
+    try {
+      Map allOrdersRes = await getAllOrders();
+      if (!allOrdersRes["status"]) {
+        throw Exception();
+      }
+
+      List allOrders = allOrdersRes["data"];
+
+      List deliveredOrders = allOrders.where((order) {
+        return order["status"] == "DELIVERED";
+      }).toList();
+
+      return {"status": true, "data": deliveredOrders};
+    } catch (e) {
+      return {"status": false};
+    }
+  }
+
+  static Future<Map> getAllCancelledOrders() async {
+    try {
+      Map allOrdersRes = await getAllOrders();
+      if (!allOrdersRes["status"]) {
+        throw Exception();
+      }
+
+      List allOrders = allOrdersRes["data"];
+
+      List cancelledOrders = allOrders.where((order) {
+        return order["status"] == "CANCELLED";
+      }).toList();
+
+      return {"status": true, "data": cancelledOrders};
+    } catch (e) {
+      return {"status": false};
+    }
+  }
 }
