@@ -1,6 +1,5 @@
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/routes.dart';
-import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/data/controllers/checkout_controller.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
 import 'package:cycle_store/ui/widgets/loading.dart';
@@ -36,15 +35,19 @@ class CheckoutPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       "Delivery Address",
-                      style: HEADING_1,
+                      style:
+                          TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
                     ),
                     TextButton(
                         onPressed: () {
                           Get.offNamed(ADDRESS_ROUTE);
                         },
-                        child: const Text("Change"))
+                        child: const Text(
+                          "Change",
+                          style: TextStyle(fontSize: 12),
+                        ))
                   ],
                 ),
                 const SizedBox(
@@ -143,7 +146,7 @@ class CheckoutPage extends StatelessWidget {
                       child: const Text(
                         "Cash on delivery (COD)",
                         style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 17),
+                            fontWeight: FontWeight.w600, fontSize: 15),
                       ),
                     )
                   ],
@@ -164,16 +167,16 @@ class CheckoutPage extends StatelessWidget {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            "Total",
+                        children: const [
+                          Text(
+                            "Shipping Cost",
                             style: TextStyle(
-                                color: SECONDARY_TEXT_COLOR, fontSize: 15),
+                                color: SECONDARY_TEXT_COLOR, fontSize: 13),
                           ),
                           Text(
-                            "₹" + _controller.price.toString(),
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 20),
+                            "₹0",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 14),
                           )
                         ],
                       ),
@@ -182,16 +185,16 @@ class CheckoutPage extends StatelessWidget {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
-                            "Shipping Cost",
+                        children: [
+                          const Text(
+                            "Total",
                             style: TextStyle(
-                                color: SECONDARY_TEXT_COLOR, fontSize: 15),
+                                color: SECONDARY_TEXT_COLOR, fontSize: 13),
                           ),
                           Text(
-                            "₹0",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 20),
+                            "₹" + _controller.price.toString(),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 14),
                           )
                         ],
                       ),

@@ -88,7 +88,7 @@ class CartItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: 80,
+                    width: MediaQuery.of(context).size.width - 250,
                     child: Text(
                       "₹" + product.price.toString(),
                       overflow: TextOverflow.ellipsis,
@@ -106,8 +106,8 @@ class CartItem extends StatelessWidget {
                       return Row(
                         children: [
                           Container(
-                              width: 25,
-                              height: 25,
+                              width: 20,
+                              height: 20,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
@@ -123,7 +123,7 @@ class CartItem extends StatelessWidget {
                                     size: 17, color: SECONDARY_TEXT_COLOR),
                               )),
                           const SizedBox(
-                            width: 20,
+                            width: 10,
                           ),
                           Text(
                             _controller.quantities[index].toString(),
@@ -131,11 +131,11 @@ class CartItem extends StatelessWidget {
                                 fontWeight: FontWeight.w800, fontSize: 16),
                           ),
                           const SizedBox(
-                            width: 20,
+                            width: 10,
                           ),
                           Container(
-                              width: 25,
-                              height: 25,
+                              width: 20,
+                              height: 20,
                               decoration: BoxDecoration(
                                   color: PRIMARY_COLOR,
                                   borderRadius: BorderRadius.circular(5),

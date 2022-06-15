@@ -31,7 +31,7 @@ class ProductCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.only(bottom: 10),
                 width: double.infinity,
-                height: 150,
+                height: 130,
                 child: ClipRRect(
                     borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(8),
@@ -55,7 +55,7 @@ class ProductCard extends StatelessWidget {
                 child: Text(product.name,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                      fontSize: 18,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
                     )),
               ),
@@ -100,7 +100,7 @@ class ProductCard extends StatelessWidget {
                             style: const TextStyle(
                                 color: PRIMARY_COLOR,
                                 fontWeight: FontWeight.w700,
-                                fontSize: 18),
+                                fontSize: 15),
                           ),
                         ],
                       ),
@@ -115,7 +115,7 @@ class ProductCard extends StatelessWidget {
                               if (snapshot.connectionState ==
                                   ConnectionState.done) {
                                 return Container(
-                                    width: 55,
+                                    width: 48,
                                     padding: const EdgeInsets.only(right: 5),
                                     child: Obx(() {
                                       final isProductInCart = _controller
@@ -169,7 +169,7 @@ class ProductCard extends StatelessWidget {
                               }
 
                               return Container(
-                                width: 55,
+                                width: 48,
                                 padding: const EdgeInsets.only(right: 5),
                                 child: TextButton(
                                   onPressed: null,

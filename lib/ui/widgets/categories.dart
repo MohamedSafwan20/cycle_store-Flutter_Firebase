@@ -71,7 +71,7 @@ class Categories extends StatelessWidget {
                                   Text(
                                     categories[index],
                                     style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 13,
                                       fontWeight: isSelected
                                           ? FontWeight.bold
                                           : FontWeight.w400,
@@ -112,7 +112,7 @@ class Categories extends StatelessWidget {
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2,
-                                        childAspectRatio: (size.width / 510),
+                                        childAspectRatio: (size.width / 448),
                                         mainAxisSpacing: 8,
                                         crossAxisSpacing: 1),
                                 itemBuilder: (_, index) {

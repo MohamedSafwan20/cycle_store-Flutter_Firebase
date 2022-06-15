@@ -59,7 +59,7 @@ class Account extends StatelessWidget {
                       const Text(
                         "Welcome",
                         style: TextStyle(
-                            color: SECONDARY_TEXT_COLOR, fontSize: 16),
+                            color: SECONDARY_TEXT_COLOR, fontSize: 14),
                       ),
                       const SizedBox(
                         height: 5,
@@ -67,7 +67,7 @@ class Account extends StatelessWidget {
                       Text(
                         userName.capitalize!,
                         style: const TextStyle(
-                            fontSize: 19, fontWeight: FontWeight.w800),
+                            fontSize: 16, fontWeight: FontWeight.w800),
                       ),
                     ],
                   )

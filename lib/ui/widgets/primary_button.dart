@@ -32,7 +32,7 @@ class PrimaryButton extends StatelessWidget {
         child: Text(
           text,
           style: textStyle.copyWith(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
         ),
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(PRIMARY_COLOR),

@@ -111,29 +111,29 @@ class CartPage extends StatelessWidget {
                             "Total",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 17,
+                                fontSize: 15,
                                 fontWeight: FontWeight.w600),
                           ),
                           Text(
                             "₹" + _controller.price.value.toString(),
                             style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 17,
+                                fontSize: 15,
                                 fontWeight: FontWeight.w600),
                           ),
                         ],
                       ),
                     ),
                     SizedBox(
-                      width: 260,
-                      height: 50,
+                      width: 240,
+                      height: 45,
                       child: TextButton(
                         onPressed: () {
                           _controller.handleProceedBtn();
                         },
                         child: const Text(
                           "Proceed to Payment",
-                          style: TextStyle(color: Colors.black, fontSize: 17),
+                          style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
                         style: ButtonStyle(
                           backgroundColor:

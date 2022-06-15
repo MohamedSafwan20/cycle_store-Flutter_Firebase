@@ -23,7 +23,7 @@ class NewArrivals extends StatelessWidget {
           children: [
             const Text(
               "New Arrivals",
-              style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900),
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900),
             ),
             TextButton(
                 onPressed: () {
@@ -32,12 +32,12 @@ class NewArrivals extends StatelessWidget {
                 },
                 child: const Text(
                   "See all",
-                  style: TextStyle(fontWeight: FontWeight.w700),
+                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12),
                 ))
           ],
         ),
         SizedBox(
-          height: 240,
+          height: 210,
           child: isLoading
               ? const Loading()
               : ListView.builder(

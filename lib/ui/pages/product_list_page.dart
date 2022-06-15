@@ -63,11 +63,11 @@ class ProductListPage extends StatelessWidget {
                     const Text(
                       "Results for  ",
                       style:
-                          TextStyle(color: SECONDARY_TEXT_COLOR, fontSize: 15),
+                          TextStyle(color: SECONDARY_TEXT_COLOR, fontSize: 13),
                     ),
                     Flexible(
                         child: Text(
-                      _controller.searchText.toUpperCase() == "NEW_ARRIVALS"
+                          _controller.searchText.toUpperCase() == "NEW_ARRIVALS"
                           ? "New Arrivals"
                           : _controller.searchText.toUpperCase() ==
                                   "TOP_SELLING"
@@ -75,7 +75,7 @@ class ProductListPage extends StatelessWidget {
                               : _controller.searchText.capitalize!,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.w500),
+                          fontSize: 17, fontWeight: FontWeight.w500),
                     )),
                   ],
                 ),
@@ -94,7 +94,7 @@ class ProductListPage extends StatelessWidget {
                                         crossAxisCount: 2,
                                         childAspectRatio:
                                             (MediaQuery.of(context).size.width /
-                                                510),
+                                                448),
                                         mainAxisSpacing: 8,
                                         crossAxisSpacing: 1),
                                 itemBuilder: (_, index) {

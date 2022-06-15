@@ -18,25 +18,22 @@ class ImageViewerPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Obx(() {
-          return Column(
+          return Stack(
             children: [
-              Expanded(
-                child: PhotoViewGallery.builder(
-                  scrollPhysics: const BouncingScrollPhysics(),
-                  builder: (BuildContext context, int index) {
-                    return PhotoViewGalleryPageOptions(
-                      imageProvider: NetworkImage(_controller.images[index]),
-                      initialScale: PhotoViewComputedScale.contained * 0.8,
-                    );
-                  },
-                  itemCount: _controller.images.length,
-                  loadingBuilder: (context, event) =>
-                      const Loading(loader: LoadingAnimationWidget.beat),
-                  backgroundDecoration:
-                      const BoxDecoration(color: Colors.white),
-                  pageController: _controller.carouselController,
-                  onPageChanged: _controller.onCarouselChange,
-                ),
+              PhotoViewGallery.builder(
+                scrollPhysics: const BouncingScrollPhysics(),
+                builder: (BuildContext context, int index) {
+                  return PhotoViewGalleryPageOptions(
+                    imageProvider: NetworkImage(_controller.images[index]),
+                    initialScale: PhotoViewComputedScale.contained * 0.8,
+                  );
+                },
+                itemCount: _controller.images.length,
+                loadingBuilder: (context, event) =>
+                    const Loading(loader: LoadingAnimationWidget.beat),
+                backgroundDecoration: const BoxDecoration(color: Colors.white),
+                pageController: _controller.carouselController,
+                onPageChanged: _controller.onCarouselChange,
               ),
               const SizedBox(
                 height: 10,

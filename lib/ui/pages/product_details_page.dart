@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/routes.dart';
-import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/data/controllers/product_details_controller.dart';
 import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
 import 'package:cycle_store/ui/widgets/loading.dart';
@@ -58,8 +57,8 @@ class ProductDetailsPage extends StatelessWidget {
                           decoration: const BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
-                                  bottomRight: Radius.circular(100),
-                                  bottomLeft: Radius.circular(100))),
+                                  bottomRight: Radius.circular(70),
+                                  bottomLeft: Radius.circular(70))),
                           child: Column(
                             children: [
                               CarouselSlider.builder(
@@ -142,14 +141,15 @@ class ProductDetailsPage extends StatelessWidget {
                           children: [
                             Text(
                               _controller.product.name,
-                              style: HEADING_1,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w800, fontSize: 19),
                             ),
                             const SizedBox(
                               height: 15,
                             ),
                             Text(
                               _controller.product.description,
-                              style: const TextStyle(fontSize: 16),
+                              style: const TextStyle(fontSize: 13),
                             ),
                             const SizedBox(
                               height: 40,
@@ -231,10 +231,10 @@ class ProductDetailsPage extends StatelessWidget {
                     children: [
                       Flexible(
                           child: Text(
-                        "₹" + _controller.product.price.toString(),
+                            "₹" + _controller.product.price.toString(),
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
-                            fontWeight: FontWeight.w800, fontSize: 20),
+                            fontWeight: FontWeight.w800, fontSize: 17),
                       )),
                       const SizedBox(
                         width: 20,

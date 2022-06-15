@@ -95,7 +95,7 @@ class SearchPage extends StatelessWidget {
                                     }),
                                 child: Container(
                                   width: double.infinity,
-                                  height: 75,
+                                  height: 65,
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10),
                                   child: Row(
@@ -109,8 +109,8 @@ class SearchPage extends StatelessWidget {
                                           Container(
                                             padding: const EdgeInsets.only(
                                                 bottom: 10),
-                                            width: 60,
-                                            height: 60,
+                                            width: 50,
+                                            height: 50,
                                             child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(10),
@@ -147,7 +147,7 @@ class SearchPage extends StatelessWidget {
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   style: const TextStyle(
-                                                      fontSize: 16),
+                                                      fontSize: 14),
                                                 ),
                                               ),
                                               const SizedBox(
@@ -160,7 +160,7 @@ class SearchPage extends StatelessWidget {
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   style: const TextStyle(
-                                                      fontSize: 12,
+                                                      fontSize: 11,
                                                       color:
                                                           SECONDARY_TEXT_COLOR),
                                                 ),

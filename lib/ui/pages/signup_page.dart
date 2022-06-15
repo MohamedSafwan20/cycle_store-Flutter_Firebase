@@ -22,16 +22,19 @@ class SignupPage extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Align(
-                    alignment: Alignment.topCenter,
-                    child: Image.asset(
-                      "assets/images/logo.jpg",
-                      width: 180,
-                      height: 180,
-                    )),
+                Padding(
+                  padding: const EdgeInsets.only(top: 40.0),
+                  child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Image.asset(
+                        "assets/images/logo.jpg",
+                        width: 130,
+                        height: 130,
+                      )),
+                ),
                 const Text(
                   "Hello!",
-                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
                   height: 5,
@@ -40,7 +43,7 @@ class SignupPage extends StatelessWidget {
                   "Sign up to get started",
                   style: TextStyle(
                       color: SECONDARY_TEXT_COLOR,
-                      fontSize: 17,
+                      fontSize: 13,
                       fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(
@@ -255,14 +258,16 @@ class SignupPage extends StatelessWidget {
                     children: [
                       const Text(
                         "Already Have An Account?",
-                        style: TextStyle(fontWeight: FontWeight.w700),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700, fontSize: 12),
                       ),
                       TextButton(
                           onPressed: () => Get.toNamed(LOGIN_ROUTE),
                           child: const Text(
                             "Sign in",
-                            style:
-                                TextStyle(decoration: TextDecoration.underline),
+                            style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                fontSize: 12),
                           ))
                     ],
                   ),

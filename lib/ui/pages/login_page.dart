@@ -22,16 +22,19 @@ class LoginPage extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Align(
-                    alignment: Alignment.topCenter,
-                    child: Image.asset(
-                      "assets/images/logo.jpg",
-                      width: 180,
-                      height: 180,
-                    )),
+                Padding(
+                  padding: const EdgeInsets.only(top: 40.0),
+                  child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Image.asset(
+                        "assets/images/logo.jpg",
+                        width: 120,
+                        height: 120,
+                      )),
+                ),
                 const Text(
                   "Welcome back!",
-                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
                   height: 35,
@@ -53,6 +56,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   child: TextField(
                     controller: _controller.emailController,
+                    keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       isDense: true,
                       hintText: "Email Address",
@@ -136,7 +140,7 @@ class LoginPage extends StatelessWidget {
                         child: const Text(
                           "Forgot Password?",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 15),
+                              fontWeight: FontWeight.bold, fontSize: 13),
                         ))),
                 const SizedBox(
                   height: 30,
@@ -162,14 +166,16 @@ class LoginPage extends StatelessWidget {
                     children: [
                       const Text(
                         "Don’t Have An Account?",
-                        style: TextStyle(fontWeight: FontWeight.w700),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700, fontSize: 12),
                       ),
                       TextButton(
                           onPressed: () => Get.toNamed(SIGNUP_ROUTE),
                           child: const Text(
                             "Sign up",
-                            style:
-                                TextStyle(decoration: TextDecoration.underline),
+                            style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                fontSize: 12),
                           ))
                     ],
                   ),
