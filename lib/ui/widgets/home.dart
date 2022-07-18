@@ -1,5 +1,5 @@
 import 'package:cycle_store/data/controllers/home_controller.dart';
-import 'package:cycle_store/ui/widgets/carousel.dart';
+import 'package:cycle_store/ui/widgets/custom_carousel.dart';
 import 'package:cycle_store/ui/widgets/new_arrivals.dart';
 import 'package:cycle_store/ui/widgets/search.dart';
 import 'package:cycle_store/ui/widgets/top_selling.dart';

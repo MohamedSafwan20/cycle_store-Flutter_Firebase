@@ -42,7 +42,8 @@ class CustomCarousel extends StatelessWidget {
                     );
                   },
                   placeholder: (context, value) {
-                    return const Loading(loader: LoadingAnimationWidget.beat);
+                    return const Loading(
+                        loader: LoadingAnimationWidget.prograssiveDots);
                   },
                 );
               }),

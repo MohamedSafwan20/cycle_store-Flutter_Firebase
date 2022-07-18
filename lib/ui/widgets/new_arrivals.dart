@@ -22,7 +22,7 @@ class NewArrivals extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Text(
-              "New Arrivals",
+              "Popular",
               style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900),
             ),
             TextButton(
@@ -37,21 +37,20 @@ class NewArrivals extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: 210,
+          height: 230,
           child: isLoading
               ? const Loading()
-              : ListView.builder(
-                  shrinkWrap: true,
+              : GridView.builder(
                   physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
                   itemCount: products.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: index == 0
-                          ? const EdgeInsets.only(right: 3)
-                          : const EdgeInsets.symmetric(horizontal: 3),
-                      child: ProductCard(product: products[index]),
-                    );
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio:
+                          (MediaQuery.of(context).size.width / 498),
+                      mainAxisSpacing: 8,
+                      crossAxisSpacing: 1),
+                  itemBuilder: (_, index) {
+                    return ProductCard(product: products[index]);
                   }),
         )
       ],
