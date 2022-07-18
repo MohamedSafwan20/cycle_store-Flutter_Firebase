@@ -1,4 +1,5 @@
 import 'package:cycle_store/config/colors.dart';
+import 'package:cycle_store/config/constants.dart';
 import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/controllers/home_page_controller.dart';
 import 'package:cycle_store/ui/widgets/account.dart';
@@ -18,11 +19,26 @@ class HomePage extends StatelessWidget {
       backgroundColor: SECONDARY_COLOR,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Image.asset(
-          "assets/images/logo.jpg",
-          fit: BoxFit.cover,
-          width: 50,
-          height: 50,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Image.asset(
+              "assets/images/logo.jpg",
+              fit: BoxFit.cover,
+              width: 50,
+              height: 50,
+            ),
+            const Text(
+              APP_NAME,
+              style: TextStyle(
+                  color: PRIMARY_COLOR,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 17),
+            ),
+            const SizedBox(
+              width: 50,
+            )
+          ],
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,

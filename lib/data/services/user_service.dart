@@ -289,6 +289,7 @@ class UserService {
 
       return {"status": true, "data": productData};
     } catch (e) {
+      print(e);
       return {"status": false, "data": []};
     }
   }

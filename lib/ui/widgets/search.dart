@@ -12,7 +12,7 @@ class Search extends StatelessWidget {
       onTap: () => Get.toNamed(SEARCH_ROUTE),
       child: Container(
         height: 50,
-        margin: const EdgeInsets.symmetric(vertical: 20),
+        margin: const EdgeInsets.only(top: 5, bottom: 15),
         child: TextField(
           enabled: false,
           decoration: InputDecoration(

@@ -82,6 +82,17 @@ class EmailVerificationPage extends StatelessWidget {
                           onPressed: () => Utils.openMailApp(),
                         ),
                         const SizedBox(
+                          height: 8,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 5.0),
+                          child: Text(
+                            "Didn't receive mail? make sure to check in the spam folder.",
+                            style: TextStyle(color: SECONDARY_TEXT_COLOR),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        const SizedBox(
                           height: 10,
                         ),
                         TextButton(

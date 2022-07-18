@@ -15,7 +15,7 @@ class ProductListPage extends StatelessWidget {
     final _controller = Get.put(ProductListController());
 
     return Scaffold(
-      backgroundColor: SECONDARY_COLOR,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Image.asset(

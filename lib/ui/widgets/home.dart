@@ -1,4 +1,5 @@
 import 'package:cycle_store/data/controllers/home_controller.dart';
+import 'package:cycle_store/ui/widgets/carousel.dart';
 import 'package:cycle_store/ui/widgets/new_arrivals.dart';
 import 'package:cycle_store/ui/widgets/search.dart';
 import 'package:cycle_store/ui/widgets/top_selling.dart';
@@ -21,11 +22,19 @@ class Home extends StatelessWidget {
             child: Obx(() {
               return Column(
                 children: [
+                  const CustomCarousel(),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   NewArrivals(
                       products: _controller.newArrivals,
                       isLoading: _controller.isNewArrivalsLoading.value),
                   const SizedBox(
-                    height: 20,
+                    height: 30,
+                  ),
+                  const CustomCarousel(),
+                  const SizedBox(
+                    height: 10,
                   ),
                   TopSelling(
                       products: _controller.topSelling,
