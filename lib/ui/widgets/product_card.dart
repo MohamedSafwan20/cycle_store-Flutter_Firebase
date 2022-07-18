@@ -66,7 +66,7 @@ class ProductCard extends StatelessWidget {
                               product.name,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w700,
                                 color: PRIMARY_TEXT_COLOR,
                                 overflow: TextOverflow.ellipsis,
@@ -81,7 +81,7 @@ class ProductCard extends StatelessWidget {
                               style: const TextStyle(
                                   color: PRIMARY_COLOR,
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 18),
+                                  fontSize: 15),
                             ),
                           ],
                         ),

@@ -1,8 +1,8 @@
 import 'package:cycle_store/data/controllers/home_controller.dart';
 import 'package:cycle_store/ui/widgets/custom_carousel.dart';
-import 'package:cycle_store/ui/widgets/new_arrivals.dart';
+import 'package:cycle_store/ui/widgets/popular_products.dart';
 import 'package:cycle_store/ui/widgets/search.dart';
-import 'package:cycle_store/ui/widgets/top_selling.dart';
+import 'package:cycle_store/ui/widgets/trending_products.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,7 +26,7 @@ class Home extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  NewArrivals(
+                  PopularProducts(
                       products: _controller.newArrivals,
                       isLoading: _controller.isNewArrivalsLoading.value),
                   const SizedBox(
@@ -36,7 +36,7 @@ class Home extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  TopSelling(
+                  TrendingProducts(
                       products: _controller.topSelling,
                       isLoading: _controller.isTopSellingLoading.value),
                   const SizedBox(
