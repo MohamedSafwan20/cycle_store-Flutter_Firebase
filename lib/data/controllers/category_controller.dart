@@ -1,25 +1,28 @@
 import 'package:cycle_store/data/models/product_model.dart';
 import 'package:cycle_store/data/services/product_service.dart';
+import 'package:cycle_store/ui/widgets/select_category_modal.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CategoryController extends GetxController {
-  RxInt currentCategory = 0.obs;
+  RxList categories = ["All", "Mountain", "Sports", "Kids", "Urban"].obs;
+  RxInt currentCategoryIndex = 0.obs;
 
   RxList<Product> products = <Product>[].obs;
   RxBool isLoading = false.obs;
 
   void onCategoryChange({required int index}) {
-    currentCategory.value = index;
+    currentCategoryIndex.value = index;
 
     switch (index) {
       case 0:
         getAllProducts();
         break;
       case 1:
-        getProductsByCategory("ROADBIKE");
+        getProductsByCategory("MOUNTAIN");
         break;
       case 2:
-        getProductsByCategory("MOUNTAIN");
+        getProductsByCategory("SPORTS");
         break;
       case 3:
         getProductsByCategory("KIDS");
@@ -56,5 +59,15 @@ class CategoryController extends GetxController {
     }).catchError((e) {
       isLoading.value = false;
     });
+  }
+
+  void showDialog() {
+    Get.defaultDialog(
+        title: "Select Category",
+        titleStyle: const TextStyle(fontWeight: FontWeight.w600, fontSize: 17),
+        titlePadding: const EdgeInsets.only(top: 15, bottom: 10),
+        contentPadding: EdgeInsets.zero,
+        radius: 5,
+        content: const SelectCategoryModal());
   }
 }
