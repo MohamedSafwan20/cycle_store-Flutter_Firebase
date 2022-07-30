@@ -1,7 +1,9 @@
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/data/controllers/category_controller.dart';
+import 'package:cycle_store/ui/widgets/custom_carousel.dart';
 import 'package:cycle_store/ui/widgets/loading.dart';
+import 'package:cycle_store/ui/widgets/primary_ghost_button.dart';
 import 'package:cycle_store/ui/widgets/product_card.dart';
 import 'package:cycle_store/ui/widgets/secondary_button.dart';
 import 'package:flutter/material.dart';
@@ -61,19 +63,114 @@ class Categories extends StatelessWidget {
                         child: const Loading())
                     : _controller.products.isNotEmpty
                         ? Expanded(
-                            child: GridView.builder(
-                                physics: const BouncingScrollPhysics(),
-                                itemCount: _controller.products.length,
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        childAspectRatio: (size.width / 448),
-                                        mainAxisSpacing: 8,
-                                        crossAxisSpacing: 1),
-                                itemBuilder: (_, index) {
-                                  return ProductCard(
-                                      product: _controller.products[index]);
-                                }),
+                            child: SingleChildScrollView(
+                                child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const CustomCarousel(),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 14.0, vertical: 15),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            "Popular",
+                                            style: TextStyle(
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.w900),
+                                          ),
+                                          SizedBox(
+                                              height: 30,
+                                              child: TextButton(
+                                                  onPressed: () {},
+                                                  child: const Text(
+                                                    "See all",
+                                                    style:
+                                                        TextStyle(fontSize: 12),
+                                                  )))
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 235,
+                                        child: ListView.builder(
+                                            physics:
+                                                const BouncingScrollPhysics(),
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount:
+                                                _controller.products.length,
+                                            itemBuilder: (context, index) {
+                                              return SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  child: ProductCard(
+                                                      product: _controller
+                                                          .products[index]));
+                                            }),
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            "Trending",
+                                            style: TextStyle(
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.w900),
+                                          ),
+                                          SizedBox(
+                                              height: 30,
+                                              child: TextButton(
+                                                  onPressed: () {},
+                                                  child: const Text(
+                                                    "See all",
+                                                    style:
+                                                        TextStyle(fontSize: 12),
+                                                  )))
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 235,
+                                        child: ListView.builder(
+                                            physics:
+                                                const BouncingScrollPhysics(),
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount:
+                                                _controller.products.length,
+                                            itemBuilder: (context, index) {
+                                              return SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      2,
+                                                  child: ProductCard(
+                                                      product: _controller
+                                                          .products[index]));
+                                            }),
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      PrimaryGhostButton(
+                                          text: "See all Bikes",
+                                          onPressed: () {})
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            )),
                           )
                         : Container(
                             height: size.height - 300,
