@@ -7,8 +7,10 @@ import 'package:get/get.dart';
 class CategoryController extends GetxController {
   RxList categories = ["All", "Mountain", "Sports", "Kids", "Urban"].obs;
   RxInt currentCategoryIndex = 0.obs;
-
   RxList<Product> products = <Product>[].obs;
+  RxList<Product> popularProducts = <Product>[].obs;
+  RxList<Product> trendingProducts = <Product>[].obs;
+
   RxBool isLoading = false.obs;
 
   void onCategoryChange({required int index}) {
@@ -40,6 +42,13 @@ class CategoryController extends GetxController {
       if (!value["status"]) throw Exception("Couldn't get products");
 
       products.value = value["data"];
+
+      popularProducts.value = value["data"];
+      popularProducts
+          .sort((first, second) => second.buyCount.compareTo(first.buyCount));
+
+      trendingProducts.value = products.where((e) => e.isTrending).toList();
+
       isLoading.value = false;
     }).catchError((e) {
       isLoading.value = false;
@@ -55,6 +64,13 @@ class CategoryController extends GetxController {
       }
 
       products.value = value["data"];
+
+      popularProducts.value = value["data"];
+      popularProducts
+          .sort((first, second) => second.buyCount.compareTo(first.buyCount));
+
+      trendingProducts.value = products.where((e) => e.isTrending).toList();
+
       isLoading.value = false;
     }).catchError((e) {
       isLoading.value = false;

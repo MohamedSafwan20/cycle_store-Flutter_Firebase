@@ -17,6 +17,21 @@ class ProductListController extends GetxController {
       case "TRENDING":
         products.value = Get.arguments["products"];
         break;
+      case "ALL":
+        products.value = Get.arguments["products"];
+        break;
+      case "MOUNTAIN":
+        products.value = Get.arguments["products"];
+        break;
+      case "SPORTS":
+        products.value = Get.arguments["products"];
+        break;
+      case "KIDS":
+        products.value = Get.arguments["products"];
+        break;
+      case "URBAN":
+        products.value = Get.arguments["products"];
+        break;
       default:
         getProducts();
     }

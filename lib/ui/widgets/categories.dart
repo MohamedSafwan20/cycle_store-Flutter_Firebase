@@ -1,4 +1,5 @@
 import 'package:cycle_store/config/colors.dart';
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/data/controllers/category_controller.dart';
 import 'package:cycle_store/ui/widgets/custom_carousel.dart';
@@ -64,113 +65,285 @@ class Categories extends StatelessWidget {
                     : _controller.products.isNotEmpty
                         ? Expanded(
                             child: SingleChildScrollView(
+                                physics: const BouncingScrollPhysics(),
                                 child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const CustomCarousel(),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 14.0, vertical: 15),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    GestureDetector(
+                                        child: const CustomCarousel(),
+                                        onTap: () {
+                                          Get.toNamed(PRODUCT_LIST_ROUTE,
+                                              arguments: {
+                                                "searchText": _controller
+                                                            .currentCategoryIndex
+                                                            .value ==
+                                                        0
+                                                    ? "All"
+                                                    : _controller
+                                                                .currentCategoryIndex
+                                                                .value ==
+                                                            1
+                                                        ? "Mountain"
+                                                        : _controller
+                                                                    .currentCategoryIndex
+                                                                    .value ==
+                                                                2
+                                                            ? "Sports"
+                                                            : _controller
+                                                                        .currentCategoryIndex
+                                                                        .value ==
+                                                                    3
+                                                                ? "Kids"
+                                                                : _controller
+                                                                            .currentCategoryIndex
+                                                                            .value ==
+                                                                        4
+                                                                    ? "Urban"
+                                                                    : "Trending",
+                                                "products":
+                                                    _controller.popularProducts,
+                                              });
+                                        }),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 14.0, vertical: 15),
+                                      child: Column(
                                         children: [
-                                          const Text(
-                                            "Popular",
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.w900),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                _controller.currentCategoryIndex
+                                                            .value ==
+                                                        0
+                                                    ? "Popular in all bikes"
+                                                    : _controller
+                                                                .currentCategoryIndex
+                                                                .value ==
+                                                            1
+                                                        ? "Popular in mountain bikes"
+                                                        : _controller
+                                                                    .currentCategoryIndex
+                                                                    .value ==
+                                                                2
+                                                            ? "Popular in sports bikes"
+                                                            : _controller
+                                                                        .currentCategoryIndex
+                                                                        .value ==
+                                                                    3
+                                                                ? "Popular in kids bikes"
+                                                                : _controller
+                                                                            .currentCategoryIndex
+                                                                            .value ==
+                                                                        4
+                                                                    ? "Popular in urban bikes"
+                                                                    : "Popular",
+                                                style: const TextStyle(
+                                                    fontSize: 17,
+                                                    fontWeight:
+                                                        FontWeight.w900),
+                                              ),
+                                              SizedBox(
+                                                  height: 30,
+                                                  child: TextButton(
+                                                      onPressed: () {
+                                                        Get.toNamed(
+                                                            PRODUCT_LIST_ROUTE,
+                                                            arguments: {
+                                                              "searchText":
+                                                                  "Popular",
+                                                              "products":
+                                                                  _controller
+                                                                      .popularProducts,
+                                                            });
+                                                      },
+                                                      child: const Text(
+                                                        "See all",
+                                                        style: TextStyle(
+                                                            fontSize: 12),
+                                                      )))
+                                            ],
                                           ),
                                           SizedBox(
-                                              height: 30,
-                                              child: TextButton(
-                                                  onPressed: () {},
-                                                  child: const Text(
-                                                    "See all",
-                                                    style:
-                                                        TextStyle(fontSize: 12),
-                                                  )))
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 235,
-                                        child: ListView.builder(
-                                            physics:
+                                            height: 235,
+                                            child: ListView.builder(
+                                                physics:
                                                 const BouncingScrollPhysics(),
-                                            scrollDirection: Axis.horizontal,
-                                            itemCount:
+                                                scrollDirection: Axis.horizontal,
+                                                itemCount:
                                                 _controller.products.length,
-                                            itemBuilder: (context, index) {
-                                              return SizedBox(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width /
-                                                      2,
-                                                  child: ProductCard(
-                                                      product: _controller
-                                                          .products[index]));
-                                            }),
-                                      ),
-                                      const SizedBox(
-                                        height: 15,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text(
-                                            "Trending",
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.w900),
+                                                itemBuilder: (context, index) {
+                                                  return SizedBox(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width /
+                                                              2,
+                                                      child: ProductCard(
+                                                          product: _controller
+                                                                  .popularProducts[
+                                                              index]));
+                                                }),
                                           ),
-                                          SizedBox(
-                                              height: 30,
-                                              child: TextButton(
-                                                  onPressed: () {},
-                                                  child: const Text(
-                                                    "See all",
-                                                    style:
-                                                        TextStyle(fontSize: 12),
-                                                  )))
+                                          const SizedBox(
+                                            height: 15,
+                                          ),
+                                          _controller
+                                                  .trendingProducts.isNotEmpty
+                                              ? Column(
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          _controller.currentCategoryIndex
+                                                                      .value ==
+                                                                  0
+                                                              ? "Trending in all bikes"
+                                                              : _controller
+                                                                          .currentCategoryIndex
+                                                                          .value ==
+                                                                      1
+                                                                  ? "Trending in mountain bikes"
+                                                                  : _controller
+                                                                              .currentCategoryIndex
+                                                                              .value ==
+                                                                          2
+                                                                      ? "Trending in sports bikes"
+                                                                      : _controller.currentCategoryIndex.value ==
+                                                                              3
+                                                                          ? "Trending in kids bikes"
+                                                                          : _controller.currentCategoryIndex.value == 4
+                                                                              ? "Trending in urban bikes"
+                                                                              : "Trending",
+                                                          style: const TextStyle(
+                                                              fontSize: 17,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w900),
+                                                        ),
+                                                        SizedBox(
+                                                            height: 30,
+                                                            child: TextButton(
+                                                                onPressed: () {
+                                                                  Get.toNamed(
+                                                                      PRODUCT_LIST_ROUTE,
+                                                                      arguments: {
+                                                                        "searchText":
+                                                                            "Trending",
+                                                                        "products":
+                                                                            _controller.trendingProducts,
+                                                                      });
+                                                                },
+                                                                child:
+                                                                    const Text(
+                                                                  "See all",
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          12),
+                                                                )))
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 235,
+                                                      child: ListView.builder(
+                                                          physics:
+                                                              const BouncingScrollPhysics(),
+                                                          scrollDirection:
+                                                              Axis.horizontal,
+                                                          itemCount: _controller
+                                                              .products.length,
+                                                          itemBuilder:
+                                                              (context, index) {
+                                                            return SizedBox(
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width /
+                                                                    2,
+                                                                child: ProductCard(
+                                                                    product: _controller
+                                                                            .trendingProducts[
+                                                                        index]));
+                                                          }),
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 15,
+                                                    ),
+                                                  ],
+                                                )
+                                              : const SizedBox(),
+                                          PrimaryGhostButton(
+                                              text: _controller
+                                                          .currentCategoryIndex
+                                                          .value ==
+                                                      0
+                                                  ? "See all bikes"
+                                                  : _controller
+                                                              .currentCategoryIndex
+                                                              .value ==
+                                                          1
+                                                      ? "See all mountain bikes"
+                                                      : _controller
+                                                                  .currentCategoryIndex
+                                                                  .value ==
+                                                              2
+                                                          ? "See all sports bikes"
+                                                          : _controller
+                                                                      .currentCategoryIndex
+                                                                      .value ==
+                                                                  3
+                                                              ? "See all kids bikes"
+                                                              : _controller
+                                                                          .currentCategoryIndex
+                                                                          .value ==
+                                                                      4
+                                                                  ? "See all urban bikes"
+                                                                  : "See all",
+                                              onPressed: () {
+                                                Get.toNamed(PRODUCT_LIST_ROUTE,
+                                                    arguments: {
+                                                      "searchText": _controller
+                                                                  .currentCategoryIndex
+                                                                  .value ==
+                                                              0
+                                                          ? "All"
+                                                          : _controller
+                                                                      .currentCategoryIndex
+                                                                      .value ==
+                                                                  1
+                                                              ? "Mountain"
+                                                              : _controller
+                                                                          .currentCategoryIndex
+                                                                          .value ==
+                                                                      2
+                                                                  ? "Sports"
+                                                                  : _controller
+                                                                              .currentCategoryIndex
+                                                                              .value ==
+                                                                          3
+                                                                      ? "Kids"
+                                                                      : _controller.currentCategoryIndex.value ==
+                                                                              4
+                                                                          ? "Urban"
+                                                                          : "Trending",
+                                                      "products": _controller
+                                                          .popularProducts,
+                                                    });
+                                              })
                                         ],
                                       ),
-                                      SizedBox(
-                                        height: 235,
-                                        child: ListView.builder(
-                                            physics:
-                                                const BouncingScrollPhysics(),
-                                            scrollDirection: Axis.horizontal,
-                                            itemCount:
-                                                _controller.products.length,
-                                            itemBuilder: (context, index) {
-                                              return SizedBox(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width /
-                                                      2,
-                                                  child: ProductCard(
-                                                      product: _controller
-                                                          .products[index]));
-                                            }),
-                                      ),
-                                      const SizedBox(
-                                        height: 15,
-                                      ),
-                                      PrimaryGhostButton(
-                                          text: "See all Bikes",
-                                          onPressed: () {})
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            )),
+                                    ),
+                                  ],
+                                )),
                           )
                         : Container(
                             height: size.height - 300,
