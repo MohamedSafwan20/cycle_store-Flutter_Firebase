@@ -26,6 +26,7 @@ class CustomCarousel extends StatelessWidget {
                 initialPage: 0,
                 enlargeCenterPage: true,
                 scrollDirection: Axis.horizontal,
+                autoPlay: true,
               ),
               itemCount: _controller.images.length,
               itemBuilder:

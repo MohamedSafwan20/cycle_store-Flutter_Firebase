@@ -1,3 +1,4 @@
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/controllers/home_controller.dart';
 import 'package:cycle_store/ui/widgets/custom_carousel.dart';
 import 'package:cycle_store/ui/widgets/popular_products.dart';
@@ -22,23 +23,37 @@ class Home extends StatelessWidget {
             child: Obx(() {
               return Column(
                 children: [
-                  const CustomCarousel(),
+                  GestureDetector(
+                      child: const CustomCarousel(),
+                      onTap: () {
+                        Get.toNamed(PRODUCT_LIST_ROUTE, arguments: {
+                          "searchText": "Popular",
+                          "products": _controller.popularProducts,
+                        });
+                      }),
                   const SizedBox(
                     height: 10,
                   ),
                   PopularProducts(
-                      products: _controller.newArrivals,
-                      isLoading: _controller.isNewArrivalsLoading.value),
+                      products: _controller.popularProducts,
+                      isLoading: _controller.isPopularProductsLoading.value),
                   const SizedBox(
                     height: 30,
                   ),
-                  const CustomCarousel(),
+                  GestureDetector(
+                      child: const CustomCarousel(),
+                      onTap: () {
+                        Get.toNamed(PRODUCT_LIST_ROUTE, arguments: {
+                          "searchText": "Trending",
+                          "products": _controller.trendingProducts,
+                        });
+                      }),
                   const SizedBox(
                     height: 10,
                   ),
                   TrendingProducts(
-                      products: _controller.topSelling,
-                      isLoading: _controller.isTopSellingLoading.value),
+                      products: _controller.trendingProducts,
+                      isLoading: _controller.isTrendingProductsLoading.value),
                   const SizedBox(
                     height: 40,
                   ),

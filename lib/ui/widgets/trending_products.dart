@@ -1,13 +1,14 @@
+import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/models/product_model.dart';
 import 'package:cycle_store/ui/widgets/primary_ghost_button.dart';
 import 'package:cycle_store/ui/widgets/product_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'loading.dart';
 
 class TrendingProducts extends StatelessWidget {
-  const TrendingProducts(
-      {Key? key, required this.products, required this.isLoading})
+  const TrendingProducts({Key? key, required this.products, required this.isLoading})
       : super(key: key);
 
   final List<Product> products;
@@ -30,8 +31,8 @@ class TrendingProducts extends StatelessWidget {
           child: isLoading
               ? const Loading()
               : GridView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: products.length,
+              physics: const BouncingScrollPhysics(),
+              itemCount: products.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio:
@@ -42,7 +43,14 @@ class TrendingProducts extends StatelessWidget {
                     return ProductCard(product: products[index]);
                   }),
         ),
-        PrimaryGhostButton(text: "See all", onPressed: () {})
+        PrimaryGhostButton(
+            text: "See all",
+            onPressed: () {
+              Get.toNamed(PRODUCT_LIST_ROUTE, arguments: {
+                "searchText": "Trending",
+                "products": products,
+              });
+            })
       ],
     );
   }

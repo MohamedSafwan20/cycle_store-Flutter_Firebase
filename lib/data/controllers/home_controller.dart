@@ -6,47 +6,47 @@ import 'package:get/get.dart';
 import '../../config/colors.dart';
 
 class HomeController extends GetxController {
-  RxList<Product> newArrivals = <Product>[].obs;
-  RxList<Product> topSelling = <Product>[].obs;
+  RxList<Product> popularProducts = <Product>[].obs;
+  RxList<Product> trendingProducts = <Product>[].obs;
   RxList<String> productsInCart = <String>[].obs;
 
-  RxBool isNewArrivalsLoading = false.obs;
-  RxBool isTopSellingLoading = false.obs;
+  RxBool isPopularProductsLoading = false.obs;
+  RxBool isTrendingProductsLoading = false.obs;
   RxList<String> isCartBtnLoadingList = <String>[].obs;
 
   @override
   void onInit() {
-    getNewArrivedProducts();
-    getTopSellingProducts();
+    getPopularProducts();
+    getTrendingProducts();
 
     super.onInit();
   }
 
-  void getNewArrivedProducts() {
-    isNewArrivalsLoading.value = true;
+  void getPopularProducts() {
+    isPopularProductsLoading.value = true;
 
-    ProductService.getNewArrivedProducts().then((res) {
-      if (!res["status"]) throw Exception("Failed to get new arrived products");
+    ProductService.getPopularProducts().then((res) {
+      if (!res["status"]) throw Exception("Failed to get popular products");
 
-      newArrivals.value = res["data"];
+      popularProducts.value = res["data"];
 
-      isNewArrivalsLoading.value = false;
+      isPopularProductsLoading.value = false;
     }).catchError((e) {
-      isNewArrivalsLoading.value = false;
+      isPopularProductsLoading.value = false;
     });
   }
 
-  void getTopSellingProducts() {
-    isTopSellingLoading.value = true;
+  void getTrendingProducts() {
+    isTrendingProductsLoading.value = true;
 
-    ProductService.getTopSellingProducts().then((res) {
-      if (!res["status"]) throw Exception("Failed to get top selling products");
+    ProductService.getTrendingProducts().then((res) {
+      if (!res["status"]) throw Exception("Failed to get trending products");
 
-      topSelling.value = res["data"];
+      trendingProducts.value = res["data"];
 
-      isTopSellingLoading.value = false;
+      isTrendingProductsLoading.value = false;
     }).catchError((e) {
-      isTopSellingLoading.value = false;
+      isTrendingProductsLoading.value = false;
     });
   }
 

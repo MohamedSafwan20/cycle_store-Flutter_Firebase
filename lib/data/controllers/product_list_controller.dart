@@ -10,7 +10,16 @@ class ProductListController extends GetxController {
 
   @override
   void onInit() {
-    getProducts();
+    switch (searchText.toUpperCase()) {
+      case "POPULAR":
+        products.value = Get.arguments["products"];
+        break;
+      case "TRENDING":
+        products.value = Get.arguments["products"];
+        break;
+      default:
+        getProducts();
+    }
 
     super.onInit();
   }

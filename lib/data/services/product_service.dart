@@ -4,11 +4,11 @@ import 'package:cycle_store/data/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ProductService {
-  static Future<Map> getNewArrivedProducts() async {
+  static Future<Map> getPopularProducts() async {
     try {
       QuerySnapshot res = await FirebaseFirestore.instance
           .collection("products")
-          .orderBy("created_at", descending: true)
+          .orderBy("buy_count", descending: true)
           .limit(15)
           .get();
 
@@ -23,11 +23,11 @@ class ProductService {
     }
   }
 
-  static Future<Map> getTopSellingProducts() async {
+  static Future<Map> getTrendingProducts() async {
     try {
       QuerySnapshot res = await FirebaseFirestore.instance
           .collection("products")
-          .orderBy("buy_count", descending: true)
+          .orderBy("is_trending", descending: true)
           .limit(15)
           .get();
 
@@ -82,7 +82,7 @@ class ProductService {
   static Future<Map> getProductsByName(String searchText) async {
     try {
       if (searchText == "NEW_ARRIVALS") {
-        Map res = await getNewArrivedProducts();
+        Map res = await getPopularProducts();
         if (!res["status"]) {
           throw Exception("Failed to fetch newly arrived products");
         }
@@ -91,7 +91,7 @@ class ProductService {
       }
 
       if (searchText == "TOP_SELLING") {
-        Map res = await getTopSellingProducts();
+        Map res = await getTrendingProducts();
         if (!res["status"]) {
           throw Exception("Failed to fetch top selling products");
         }
