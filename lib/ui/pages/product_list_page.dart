@@ -4,6 +4,7 @@ import 'package:cycle_store/config/typography.dart';
 import 'package:cycle_store/data/controllers/product_list_controller.dart';
 import 'package:cycle_store/ui/widgets/loading.dart';
 import 'package:cycle_store/ui/widgets/product_card.dart';
+import 'package:cycle_store/ui/widgets/secondary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -53,6 +54,7 @@ class ProductListPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: Obx(() {
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
                   height: 10,
@@ -80,6 +82,19 @@ class ProductListPage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
+                  height: 14,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: SecondaryButton(
+                    text: "Sort",
+                    onPressed: _controller.showDialog,
+                    width: 100,
+                    height: 35,
+                    icon: Icons.import_export_outlined,
+                  ),
+                ),
+                const SizedBox(
                   height: 20,
                 ),
                 Expanded(
@@ -90,23 +105,23 @@ class ProductListPage extends StatelessWidget {
                                 physics: const BouncingScrollPhysics(),
                                 itemCount: _controller.products.length,
                                 gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        childAspectRatio:
-                                            (MediaQuery.of(context).size.width /
-                                                448),
-                                        mainAxisSpacing: 8,
-                                        crossAxisSpacing: 1),
-                                itemBuilder: (_, index) {
-                                  return ProductCard(
-                                      product: _controller.products[index]);
-                                })
-                            : Center(
-                                child: Text(
-                                "Nothing to show",
-                                style: HEADING_1.copyWith(
-                                    color: SECONDARY_TEXT_COLOR),
-                              ))),
+                        SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio:
+                            (MediaQuery.of(context).size.width /
+                                448),
+                            mainAxisSpacing: 8,
+                            crossAxisSpacing: 1),
+                        itemBuilder: (_, index) {
+                          return ProductCard(
+                              product: _controller.products[index]);
+                        })
+                        : Center(
+                        child: Text(
+                          "Nothing to show",
+                          style: HEADING_1.copyWith(
+                              color: SECONDARY_TEXT_COLOR),
+                        ))),
               ],
             );
           }),

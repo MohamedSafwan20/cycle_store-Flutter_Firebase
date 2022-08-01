@@ -16,6 +16,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut<HomeController>(() => HomeController());
     final _controller = Get.find<HomeController>();
 
     return InkWell(
@@ -92,7 +93,7 @@ class ProductCard extends StatelessWidget {
                           builder: (logic) {
                             return FutureBuilder(
                               future:
-                                  ProductService.isProductInCart(product.id),
+                              ProductService.isProductInCart(product.id),
                               builder: (context, AsyncSnapshot<Map> snapshot) {
                                 if (snapshot.connectionState ==
                                     ConnectionState.done) {
@@ -120,33 +121,33 @@ class ProductCard extends StatelessWidget {
                                             }
                                           },
                                           child: _controller
-                                                  .isCartBtnLoadingList
-                                                  .contains(product.id)
+                                              .isCartBtnLoadingList
+                                              .contains(product.id)
                                               ? const Loading(
-                                                  width: 20,
-                                                  height: 20,
-                                                  color: Colors.white,
-                                                  loader: LoadingAnimationWidget
-                                                      .fallingDot,
-                                                )
+                                            width: 20,
+                                            height: 20,
+                                            color: Colors.white,
+                                            loader: LoadingAnimationWidget
+                                                .fallingDot,
+                                          )
                                               : isProductInCart
-                                                  ? const Icon(Icons.done)
-                                                  : snapshot.data?["status"]
-                                                      ? const Icon(Icons.done)
-                                                      : const Icon(Icons
-                                                          .shopping_bag_outlined),
+                                              ? const Icon(Icons.done)
+                                              : snapshot.data?["status"]
+                                              ? const Icon(Icons.done)
+                                              : const Icon(Icons
+                                              .shopping_bag_outlined),
                                           style: ButtonStyle(
                                               backgroundColor:
-                                                  MaterialStateProperty.all(
-                                                      PRIMARY_COLOR),
+                                              MaterialStateProperty.all(
+                                                  PRIMARY_COLOR),
                                               shape: MaterialStateProperty.all(
                                                   RoundedRectangleBorder(
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              5))),
+                                                      BorderRadius.circular(
+                                                          5))),
                                               foregroundColor:
-                                                  MaterialStateProperty.all(
-                                                      Colors.white)),
+                                              MaterialStateProperty.all(
+                                                  Colors.white)),
                                         );
                                       }));
                                 }
@@ -163,15 +164,15 @@ class ProductCard extends StatelessWidget {
                                     ),
                                     style: ButtonStyle(
                                         backgroundColor:
-                                            MaterialStateProperty.all(
-                                                PRIMARY_COLOR),
+                                        MaterialStateProperty.all(
+                                            PRIMARY_COLOR),
                                         shape: MaterialStateProperty.all(
                                             RoundedRectangleBorder(
                                                 borderRadius:
-                                                    BorderRadius.circular(5))),
+                                                BorderRadius.circular(5))),
                                         foregroundColor:
-                                            MaterialStateProperty.all(
-                                                Colors.white)),
+                                        MaterialStateProperty.all(
+                                            Colors.white)),
                                   ),
                                 );
                               },
