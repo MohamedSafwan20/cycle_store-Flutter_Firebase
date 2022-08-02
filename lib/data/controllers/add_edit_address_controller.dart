@@ -1,3 +1,4 @@
+import 'package:cycle_store/config/constants.dart';
 import 'package:cycle_store/data/controllers/address_controller.dart';
 import 'package:cycle_store/data/models/address_model.dart';
 import 'package:cycle_store/data/services/api_service.dart';
@@ -24,7 +25,7 @@ class AddEditAddressController extends GetxController {
   RxBool isInvalidCity = false.obs;
   RxBool isInvalidState = false.obs;
   RxBool isInvalidLocality = false.obs;
-
+  RxBool isDeliveryAvailable = true.obs;
   RxBool isDefaultAddress = false.obs;
   RxBool isLoading = false.obs;
 
@@ -56,12 +57,20 @@ class AddEditAddressController extends GetxController {
 
   void onPincodeChange(String pincode) {
     isInvalidPincode.value = false;
+    isDeliveryAvailable.value = true;
 
     if (pincode.length == 6) {
       ApiService.getLocationFromPincode(pincode).then((res) {
         if (res["status"]) {
-          cityController.text = res["city"];
-          stateController.text = res["state"];
+          if (DELIVERY_AVAILABLE_AREAS
+              .contains(res["district"].toUpperCase())) {
+            cityController.text = res["city"];
+            stateController.text = res["state"];
+          } else {
+            isDeliveryAvailable.value = false;
+            cityController.clear();
+            stateController.clear();
+          }
         } else {
           isInvalidPincode.value = true;
           cityController.clear();
@@ -102,7 +111,8 @@ class AddEditAddressController extends GetxController {
         isInvalidPincode.value ||
         isInvalidCity.value ||
         isInvalidState.value ||
-        isInvalidLocality.value) {
+        isInvalidLocality.value ||
+        !isDeliveryAvailable.value) {
       return;
     }
 
@@ -147,16 +157,16 @@ class AddEditAddressController extends GetxController {
     }
 
     UserService.addAddress(
-            Address.toAddress({
-              "name": nameController.text,
-              "phone": phoneController.text,
-              "pincode": pincodeController.text,
-              "city": cityController.text,
-              "state": stateController.text,
-              "locality": localityController.text,
-              "landmark": landmarkController.text,
-            }),
-            isDefault: isDefaultAddress.value)
+        Address.toAddress({
+          "name": nameController.text,
+          "phone": phoneController.text,
+          "pincode": pincodeController.text,
+          "city": cityController.text,
+          "state": stateController.text,
+          "locality": localityController.text,
+          "landmark": landmarkController.text,
+        }),
+        isDefault: isDefaultAddress.value)
         .then((res) {
       isLoading.value = false;
 

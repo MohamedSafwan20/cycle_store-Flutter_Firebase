@@ -289,7 +289,6 @@ class UserService {
 
       return {"status": true, "data": productData};
     } catch (e) {
-      print(e);
       return {"status": false, "data": []};
     }
   }
@@ -366,7 +365,8 @@ class UserService {
           "price": entry.value["product"].price,
           "quantity": quantities[entry.key],
           "status": "NEW",
-          "size": sizes[entry.key]
+          "size": sizes[entry.key],
+          "created_at": Timestamp.now()
         };
       }).toList();
 

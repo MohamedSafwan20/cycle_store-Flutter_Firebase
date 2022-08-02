@@ -182,6 +182,17 @@ class AddEditAddress extends StatelessWidget {
                                       ),
                                     ),
                                   ),
+                                  _controller.isDeliveryAvailable.value
+                                      ? const SizedBox()
+                                      : const Padding(
+                                          padding:
+                                              EdgeInsets.only(top: 5, left: 5),
+                                          child: Text(
+                                            "Not Deliverable.",
+                                            style:
+                                                TextStyle(color: ERROR_COLOR),
+                                          ),
+                                        ),
                                   _controller.isInvalidPincode.value
                                       ? const Padding(
                                           padding:
@@ -253,6 +264,15 @@ class AddEditAddress extends StatelessWidget {
                                           ),
                                         )
                                       : const SizedBox(),
+                                  _controller.isDeliveryAvailable.value
+                                      ? const SizedBox()
+                                      : const Padding(
+                                          padding:
+                                              EdgeInsets.only(top: 5, left: 5),
+                                          child: Text(
+                                            "",
+                                          ),
+                                        ),
                                   _controller.isInvalidPincode.value
                                       ? const Padding(
                                           padding:
