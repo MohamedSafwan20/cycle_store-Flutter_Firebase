@@ -219,7 +219,7 @@ class ProductDetailsPage extends StatelessWidget {
                             SizedBox(
                               width: 150,
                               child: TextButton(
-                                onPressed: () {},
+                                onPressed: _controller.showDialog,
                                 child: Row(
                                   children: const [
                                     Text("VIEW SIZE CHART"),
@@ -349,6 +349,7 @@ class ProductDetailsPage extends StatelessWidget {
                                   width: 170,
                                   height: 45,
                                   child: TextField(
+                                    controller: _controller.pincode,
                                     maxLength: 6,
                                     keyboardType: TextInputType.phone,
                                     inputFormatters: [
@@ -371,7 +372,7 @@ class ProductDetailsPage extends StatelessWidget {
                                                 topRight: Radius.circular(0),
                                                 bottomRight: Radius.circular(0),
                                                 bottomLeft:
-                                                    Radius.circular(5))),
+                                                Radius.circular(5))),
                                         enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                                 color: SECONDARY_TEXT_COLOR),
@@ -380,17 +381,19 @@ class ProductDetailsPage extends StatelessWidget {
                                                 topRight: Radius.circular(0),
                                                 bottomRight: Radius.circular(0),
                                                 bottomLeft:
-                                                    Radius.circular(5))),
+                                                Radius.circular(5))),
                                         disabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                                 color: SECONDARY_TEXT_COLOR),
                                             borderRadius:
-                                                BorderRadius.only(topLeft: Radius.circular(5), topRight: Radius.circular(0), bottomRight: Radius.circular(0), bottomLeft: Radius.circular(5)))),
+                                            BorderRadius.only(topLeft: Radius.circular(5), topRight: Radius.circular(0), bottomRight: Radius.circular(0), bottomLeft: Radius.circular(5)))),
                                   ),
                                 ),
                                 PrimaryButton(
-                                  text: "Check",
-                                  onPressed: () {},
+                                  text: _controller.isCheckDeliveryLoading.value
+                                      ? "Loading.."
+                                      : "Check",
+                                  onPressed: _controller.checkDelivery,
                                   width: 100,
                                   height: 45,
                                   borderRadiusOnly: const [0, 5, 5, 0],
@@ -400,11 +403,18 @@ class ProductDetailsPage extends StatelessWidget {
                             const SizedBox(
                               height: 6,
                             ),
-                            const Text(
-                              "Delivery Available to this Pincode.",
+                            Text(
+                              _controller.deliveryAvailableStatus.value,
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
-                                  color: SUCCESS_COLOR),
+                                  color: _controller
+                                              .deliveryAvailableStatus.value
+                                              .contains("Not") ||
+                                          _controller
+                                              .deliveryAvailableStatus.value
+                                              .contains("Invalid")
+                                      ? ERROR_COLOR
+                                      : SUCCESS_COLOR),
                             )
                           ],
                         ),

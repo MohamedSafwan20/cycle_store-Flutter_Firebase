@@ -16,6 +16,7 @@ class ApiService {
       return {
         "status": true,
         "city": jsonData[0]["PostOffice"][0]["Name"],
+        "district": jsonData[0]["PostOffice"][0]["District"],
         "state": jsonData[0]["PostOffice"][0]["State"]
       };
     } catch (e) {

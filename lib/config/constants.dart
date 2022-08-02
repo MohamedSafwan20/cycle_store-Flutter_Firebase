@@ -1,1 +1,2 @@
 const APP_NAME = "Cycle Store";
+const DELIVERY_AVAILABLE_AREAS = ["MALAPPURAM"];
