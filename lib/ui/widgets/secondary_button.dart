@@ -2,14 +2,15 @@ import 'package:cycle_store/config/colors.dart';
 import 'package:flutter/material.dart';
 
 class SecondaryButton extends StatelessWidget {
-  const SecondaryButton({Key? key,
-    required this.text,
-    this.height = 50,
-    this.width = double.infinity,
-    this.borderRadius = 8,
-    required this.onPressed,
-    this.icon,
-    this.textStyle = const TextStyle()})
+  const SecondaryButton(
+      {Key? key,
+      required this.text,
+      this.height = 50,
+      this.width = double.infinity,
+      this.borderRadius = 8,
+      required this.onPressed,
+      this.icon,
+      this.textStyle = const TextStyle()})
       : super(key: key);
 
   final String text;
@@ -24,7 +25,7 @@ class SecondaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration:
-      BoxDecoration(borderRadius: BorderRadius.circular(borderRadius)),
+          BoxDecoration(borderRadius: BorderRadius.circular(borderRadius)),
       height: height,
       width: width,
       child: TextButton(
@@ -41,10 +42,10 @@ class SecondaryButton extends StatelessWidget {
               ),
               icon != null
                   ? Icon(
-                icon,
-                size: 18,
-                color: Colors.black,
-              )
+                      icon,
+                      size: 18,
+                      color: Colors.black,
+                    )
                   : const SizedBox(),
             ],
           ),

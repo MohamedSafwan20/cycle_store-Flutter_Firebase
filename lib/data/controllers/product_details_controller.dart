@@ -9,6 +9,13 @@ class ProductDetailsController extends GetxController {
   final carouselController = CarouselController();
   final product = Get.arguments["product"] as Product;
   final HomeController _homeController = Get.find();
+  final Map productSpecs = {
+    "General": {"gfirst": "Test"},
+    "Frame": {"ffirst": "fTest"},
+    "Brake": {"bfirst": "bTest"},
+    "Dimensions": {"dfirst": "dTest"},
+    "Warranty": {"wfirst": "wTest"},
+  };
 
   RxList images = [].obs;
   RxInt currentCarouselImage = 0.obs;

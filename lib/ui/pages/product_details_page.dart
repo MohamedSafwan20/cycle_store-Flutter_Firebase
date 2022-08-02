@@ -8,6 +8,7 @@ import 'package:cycle_store/ui/widgets/loading.dart';
 import 'package:cycle_store/ui/widgets/primary_button.dart';
 import 'package:cycle_store/ui/widgets/secondary_icon_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
@@ -147,66 +148,339 @@ class ProductDetailsPage extends StatelessWidget {
                             const SizedBox(
                               height: 15,
                             ),
-                            Text(
-                              _controller.product.description,
-                              style: const TextStyle(fontSize: 13),
+                            const Text(
+                              "WHEEL SIZE",
+                              style: TextStyle(color: SECONDARY_TEXT_COLOR),
                             ),
                             const SizedBox(
-                              height: 40,
+                              height: 15,
                             ),
-                            Row(
-                              children: _controller.product.sizes
-                                  .asMap()
-                                  .entries
-                                  .map((size) {
-                                return Row(
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        _controller.onSizeChange(
-                                            selectedSize: size.value);
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            boxShadow: [
-                                              BoxShadow(
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 6.0),
+                              child: Row(
+                                children: _controller.product.sizes
+                                    .asMap()
+                                    .entries
+                                    .map((size) {
+                                  return Row(
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          _controller.onSizeChange(
+                                              selectedSize: size.value);
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    color: _controller
+                                                                .selectedSizeIndex
+                                                                .value ==
+                                                            size.value
+                                                        ? PRIMARY_COLOR
+                                                        : SHADOW_COLOR,
+                                                    offset: const Offset(1, 1),
+                                                    blurRadius: 6),
+                                              ],
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: _controller
+                                                          .selectedSizeIndex
+                                                          .value ==
+                                                      size.value
+                                                  ? PRIMARY_COLOR
+                                                  : Colors.white),
+                                          height: 36,
+                                          width: 36,
+                                          alignment: Alignment.center,
+                                          child: Text(size.value,
+                                              style: TextStyle(
                                                   color: _controller
                                                               .selectedSizeIndex
                                                               .value ==
                                                           size.value
-                                                      ? PRIMARY_COLOR
-                                                      : SHADOW_COLOR,
-                                                  offset: const Offset(1, 1),
-                                                  blurRadius: 6),
-                                            ],
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: _controller.selectedSizeIndex
-                                                        .value ==
-                                                size.value
-                                                ? PRIMARY_COLOR
-                                                : Colors.white),
-                                        height: 36,
-                                        width: 36,
-                                        alignment: Alignment.center,
-                                        child: Text(size.value,
-                                            style: TextStyle(
-                                                color: _controller
-                                                            .selectedSizeIndex
-                                                            .value ==
-                                                    size.value
-                                                    ? Colors.white
-                                                    : Colors.black,
-                                                fontWeight: FontWeight.bold)),
+                                                      ? Colors.white
+                                                      : Colors.black,
+                                                  fontWeight: FontWeight.bold)),
+                                        ),
                                       ),
+                                      const SizedBox(
+                                        width: 20,
+                                      )
+                                    ],
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 3,
+                            ),
+                            SizedBox(
+                              width: 150,
+                              child: TextButton(
+                                onPressed: () {},
+                                child: Row(
+                                  children: const [
+                                    Text("VIEW SIZE CHART"),
+                                    SizedBox(
+                                      width: 4,
                                     ),
-                                    const SizedBox(
-                                      width: 20,
+                                    Icon(
+                                      Icons.arrow_forward_ios_rounded,
+                                      size: 15,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 7,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        color: Colors.white,
+                        padding: const EdgeInsets.all(20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.payments_outlined,
+                                    size: 32,
+                                    color: SECONDARY_TEXT_COLOR,
+                                  ),
+                                  Text(
+                                    "CASH ON DELIVERY",
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w500),
+                                    textAlign: TextAlign.center,
+                                  )
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.local_shipping_outlined,
+                                    size: 32,
+                                    color: SECONDARY_TEXT_COLOR,
+                                  ),
+                                  Text(
+                                    "FREE SHIPPING",
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w500),
+                                    textAlign: TextAlign.center,
+                                  )
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.credit_card_outlined,
+                                    size: 32,
+                                    color: SECONDARY_TEXT_COLOR,
+                                  ),
+                                  Text(
+                                    "EMI AVAILABLE",
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w500),
+                                    textAlign: TextAlign.center,
+                                  )
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.inventory_outlined,
+                                    size: 32,
+                                    color: SECONDARY_TEXT_COLOR,
+                                  ),
+                                  Text(
+                                    "FULLY ASSEMBLED",
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w500),
+                                    textAlign: TextAlign.center,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        color: Colors.white,
+                        padding: const EdgeInsets.all(20),
+                        width: double.infinity,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Check Delivery",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700, fontSize: 17),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 170,
+                                  height: 45,
+                                  child: TextField(
+                                    maxLength: 6,
+                                    keyboardType: TextInputType.phone,
+                                    inputFormatters: [
+                                      FilteringTextInputFormatter.allow(
+                                          RegExp(r'[0-9]'))
+                                    ],
+                                    decoration: const InputDecoration(
+                                        counterText: "",
+                                        contentPadding: EdgeInsets.symmetric(
+                                            vertical: 20, horizontal: 12),
+                                        hintText: "Enter pincode",
+                                        fillColor: Colors.white,
+                                        filled: true,
+                                        hintStyle: TextStyle(fontSize: 13),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: SECONDARY_TEXT_COLOR),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(5),
+                                                topRight: Radius.circular(0),
+                                                bottomRight: Radius.circular(0),
+                                                bottomLeft:
+                                                    Radius.circular(5))),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: SECONDARY_TEXT_COLOR),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(5),
+                                                topRight: Radius.circular(0),
+                                                bottomRight: Radius.circular(0),
+                                                bottomLeft:
+                                                    Radius.circular(5))),
+                                        disabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: SECONDARY_TEXT_COLOR),
+                                            borderRadius:
+                                                BorderRadius.only(topLeft: Radius.circular(5), topRight: Radius.circular(0), bottomRight: Radius.circular(0), bottomLeft: Radius.circular(5)))),
+                                  ),
+                                ),
+                                PrimaryButton(
+                                  text: "Check",
+                                  onPressed: () {},
+                                  width: 100,
+                                  height: 45,
+                                  borderRadiusOnly: const [0, 5, 5, 0],
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 6,
+                            ),
+                            const Text(
+                              "Delivery Available to this Pincode.",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  color: SUCCESS_COLOR),
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        color: Colors.white,
+                        padding: const EdgeInsets.all(20),
+                        width: double.infinity,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Specifications",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700, fontSize: 17),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Column(
+                              children:
+                                  _controller.productSpecs.entries.map((e) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      e.key,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 16),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                              children: e.value.entries.map<
+                                                      Widget>(
+                                                  (MapEntry<String, String> e) {
+                                            return Row(
+                                              children: [
+                                                SizedBox(
+                                                    width: 150,
+                                                    child: Text(
+                                                      e.key.capitalize!,
+                                                      style: const TextStyle(
+                                                          color:
+                                                              SECONDARY_TEXT_COLOR,
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                    )),
+                                                Text(
+                                                  e.value.capitalize!,
+                                                  style: const TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                              ],
+                                            );
+                                          }).toList()),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                        ],
+                                      ),
                                     )
                                   ],
                                 );
                               }).toList(),
-                            ),
+                            )
                           ],
                         ),
                       ),

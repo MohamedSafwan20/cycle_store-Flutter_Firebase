@@ -69,7 +69,7 @@ class ProductListPage extends StatelessWidget {
                     ),
                     Flexible(
                         child: Text(
-                          _controller.searchText.toUpperCase() == "NEW_ARRIVALS"
+                      _controller.searchText.toUpperCase() == "NEW_ARRIVALS"
                           ? "New Arrivals"
                           : _controller.searchText.toUpperCase() ==
                                   "TOP_SELLING"
@@ -105,23 +105,23 @@ class ProductListPage extends StatelessWidget {
                                 physics: const BouncingScrollPhysics(),
                                 itemCount: _controller.products.length,
                                 gridDelegate:
-                        SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio:
-                            (MediaQuery.of(context).size.width /
-                                448),
-                            mainAxisSpacing: 8,
-                            crossAxisSpacing: 1),
-                        itemBuilder: (_, index) {
-                          return ProductCard(
-                              product: _controller.products[index]);
-                        })
-                        : Center(
-                        child: Text(
-                          "Nothing to show",
-                          style: HEADING_1.copyWith(
-                              color: SECONDARY_TEXT_COLOR),
-                        ))),
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        childAspectRatio:
+                                            (MediaQuery.of(context).size.width /
+                                                448),
+                                        mainAxisSpacing: 8,
+                                        crossAxisSpacing: 1),
+                                itemBuilder: (_, index) {
+                                  return ProductCard(
+                                      product: _controller.products[index]);
+                                })
+                            : Center(
+                                child: Text(
+                                "Nothing to show",
+                                style: HEADING_1.copyWith(
+                                    color: SECONDARY_TEXT_COLOR),
+                              ))),
               ],
             );
           }),

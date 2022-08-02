@@ -8,6 +8,7 @@ class PrimaryButton extends StatelessWidget {
       this.height = 50,
       this.width = double.infinity,
       this.borderRadius = 8,
+      this.borderRadiusOnly = const [8, 8, 8, 8],
       required this.onPressed,
       this.textStyle = const TextStyle()})
       : super(key: key);
@@ -16,6 +17,7 @@ class PrimaryButton extends StatelessWidget {
   final double height;
   final double width;
   final double borderRadius;
+  final List<double> borderRadiusOnly;
   final Function() onPressed;
   final TextStyle textStyle;
 
@@ -38,7 +40,14 @@ class PrimaryButton extends StatelessWidget {
           backgroundColor: MaterialStateProperty.all(PRIMARY_COLOR),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
+            borderRadius: borderRadiusOnly != [8, 8, 8, 8]
+                ? BorderRadius.only(
+                    topLeft: Radius.circular(borderRadiusOnly[0]),
+                    topRight: Radius.circular(borderRadiusOnly[1]),
+                    bottomRight: Radius.circular(borderRadiusOnly[2]),
+                    bottomLeft: Radius.circular(borderRadiusOnly[3]),
+                  )
+                : BorderRadius.circular(borderRadius),
           )),
           shadowColor: MaterialStateProperty.all(PRIMARY_COLOR),
         ),
