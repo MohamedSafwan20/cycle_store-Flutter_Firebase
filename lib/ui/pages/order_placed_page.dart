@@ -1,5 +1,7 @@
 import 'package:confetti/confetti.dart';
+import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/routes.dart';
+import 'package:cycle_store/ui/widgets/primary_ghost_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -51,15 +53,26 @@ class OrderPlacedPage extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
-                    TextButton(
-                        onPressed: () => Get.offNamed(MY_ORDERS_ROUTE),
-                        child: const Text(
-                          "Go to orders",
-                          style:
-                              TextStyle(decoration: TextDecoration.underline),
-                        ))
+                    const SizedBox(
+                        width: 300,
+                        child: Text(
+                          "Your order is placed. We will call you soon to confirm the order and address.",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: SECONDARY_TEXT_COLOR),
+                          textAlign: TextAlign.center,
+                        )),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    PrimaryGhostButton(
+                      text: "Go to My Orders",
+                      onPressed: () => Get.offNamed(MY_ORDERS_ROUTE),
+                      width: 130,
+                      height: 40,
+                    )
                   ],
                 ),
               ),
