@@ -372,7 +372,7 @@ class ProductDetailsPage extends StatelessWidget {
                                                 topRight: Radius.circular(0),
                                                 bottomRight: Radius.circular(0),
                                                 bottomLeft:
-                                                Radius.circular(5))),
+                                                    Radius.circular(5))),
                                         enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                                 color: SECONDARY_TEXT_COLOR),
@@ -381,12 +381,12 @@ class ProductDetailsPage extends StatelessWidget {
                                                 topRight: Radius.circular(0),
                                                 bottomRight: Radius.circular(0),
                                                 bottomLeft:
-                                                Radius.circular(5))),
+                                                    Radius.circular(5))),
                                         disabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                                 color: SECONDARY_TEXT_COLOR),
                                             borderRadius:
-                                            BorderRadius.only(topLeft: Radius.circular(5), topRight: Radius.circular(0), bottomRight: Radius.circular(0), bottomLeft: Radius.circular(5)))),
+                                                BorderRadius.only(topLeft: Radius.circular(5), topRight: Radius.circular(0), bottomRight: Radius.circular(0), bottomLeft: Radius.circular(5)))),
                                   ),
                                 ),
                                 PrimaryButton(
@@ -439,7 +439,7 @@ class ProductDetailsPage extends StatelessWidget {
                             ),
                             Column(
                               children:
-                                  _controller.productSpecs.entries.map((e) {
+                              _controller.sortedSpecs.entries.map((e) {
                                 return Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -452,17 +452,16 @@ class ProductDetailsPage extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.all(10),
                                       child: Column(
-                                        children: [
-                                          Row(
-                                              children: e.value.entries.map<
-                                                      Widget>(
-                                                  (MapEntry<String, String> e) {
-                                            return Row(
+                                          children:
+                                              e.value.entries.map<Widget>((e) {
+                                        return Column(
+                                          children: [
+                                            Row(
                                               children: [
                                                 SizedBox(
                                                     width: 150,
                                                     child: Text(
-                                                      e.key.capitalize!,
+                                                      e.key,
                                                       style: const TextStyle(
                                                           color:
                                                               SECONDARY_TEXT_COLOR,
@@ -470,23 +469,20 @@ class ProductDetailsPage extends StatelessWidget {
                                                               FontWeight.w500),
                                                     )),
                                                 Text(
-                                                  e.value.capitalize!,
+                                                  e.value,
                                                   style: const TextStyle(
                                                       fontWeight:
                                                           FontWeight.w500),
                                                 ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
                                               ],
-                                            );
-                                          }).toList()),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                        ],
-                                      ),
-                                    )
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                          ],
+                                        );
+                                      }).toList()),
+                                    ),
                                   ],
                                 );
                               }).toList(),
@@ -495,7 +491,7 @@ class ProductDetailsPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(
-                        height: 40,
+                        height: 20,
                       ),
                     ],
                   ),

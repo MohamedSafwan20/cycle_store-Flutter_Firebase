@@ -13,13 +13,6 @@ class ProductDetailsController extends GetxController {
   final carouselController = CarouselController();
   final product = Get.arguments["product"] as Product;
   final HomeController _homeController = Get.find();
-  final Map productSpecs = {
-    "General": {"gfirst": "Test"},
-    "Frame": {"ffirst": "fTest"},
-    "Brake": {"bfirst": "bTest"},
-    "Dimensions": {"dfirst": "dTest"},
-    "Warranty": {"wfirst": "wTest"},
-  };
   TextEditingController pincode = TextEditingController();
 
   RxList images = [].obs;
@@ -28,6 +21,7 @@ class ProductDetailsController extends GetxController {
   RxList<String> productsInCart = <String>[].obs;
   RxString deliveryAvailableStatus = "".obs;
   RxBool isCheckDeliveryLoading = false.obs;
+  RxMap sortedSpecs = {}.obs;
 
   ProductDetailsController() {
     images.value = product.images.map((e) => e["url"]).toList();
@@ -36,6 +30,8 @@ class ProductDetailsController extends GetxController {
 
   @override
   void onInit() {
+    sortSpecs();
+
     ProductService.isProductInCart(product.id).then((res) {
       if (res["status"]) {
         productsInCart.add(product.id);
@@ -102,6 +98,24 @@ class ProductDetailsController extends GetxController {
 
       isCheckDeliveryLoading.value = false;
     });
+  }
+
+  void sortSpecs() {
+    if (product.specs.containsKey("General")) {
+      sortedSpecs.addAll({"General": product.specs["General"]});
+    }
+    if (product.specs.containsKey("Frame")) {
+      sortedSpecs.addAll({"Frame": product.specs["Frame"]});
+    }
+    if (product.specs.containsKey("Brake")) {
+      sortedSpecs.addAll({"Brake": product.specs["Brake"]});
+    }
+    if (product.specs.containsKey("Dimensions")) {
+      sortedSpecs.addAll({"Dimensions": product.specs["Dimensions"]});
+    }
+    if (product.specs.containsKey("Warranty")) {
+      sortedSpecs.addAll({"Warranty": product.specs["Warranty"]});
+    }
   }
 
   void showDialog() {

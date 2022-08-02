@@ -13,6 +13,7 @@ class Product {
   String category;
   bool isTrending;
   Timestamp createdAt;
+  Map specs;
 
   Product({
     required this.id,
@@ -27,6 +28,7 @@ class Product {
     required this.storageId,
     required this.category,
     required this.isTrending,
+    required this.specs,
   });
 
   Product.fromJson(Map<String, dynamic> json)
@@ -41,6 +43,7 @@ class Product {
         category = json['category'],
         storageId = json['storage_id'],
         isTrending = json['is_trending'],
+        specs = json['specs'],
         createdAt = json["created_at"];
 
   Product.toProduct(Map data)
@@ -55,6 +58,7 @@ class Product {
         category = data['category'],
         storageId = data['storage_id'],
         isTrending = data['is_trending'],
+        specs = data['specs'],
         createdAt = data["created_at"];
 
   @override
