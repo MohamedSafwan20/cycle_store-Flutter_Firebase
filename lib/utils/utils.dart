@@ -1,4 +1,5 @@
 import 'package:cycle_store/config/colors.dart';
+import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,17 +32,26 @@ class Utils {
 
   static void openMailApp({String email = ""}) async {
     try {
-      await launchUrl(Uri.parse("mailto: $email"));
-    } catch (_) {
+      await LaunchApp.openApp(
+          androidPackageName: 'com.google.android.gm', openStore: true);
+    } catch (e) {
       Utils.showErrorSnackbar(text: "Couldn't open mail app");
     }
   }
 
-  static void openPhoneApp({String phone = ""}) async {
+  static void sentMailTo({String email = ""}) async {
+    try {
+      await launchUrl(Uri.parse("mailto: $email"));
+    } catch (e) {
+      Utils.showErrorSnackbar(text: "Couldn't open mail app");
+    }
+  }
+
+  static void callNumber({String phone = ""}) async {
     try {
       await launchUrl(Uri.parse("tel://$phone"));
     } catch (_) {
-      Utils.showErrorSnackbar(text: "Couldn't open mail app");
+      Utils.showErrorSnackbar(text: "Couldn't open phone app");
     }
   }
 

@@ -47,14 +47,8 @@ class HomePage extends StatelessWidget {
         return IndexedStack(
           index: _controller.currentPageIndex.value,
           children: const [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 18.0),
-              child: Home(),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10.0),
-              child: Categories(),
-            ),
+            Home(),
+            Categories(),
             SizedBox(),
             Account(),
           ],

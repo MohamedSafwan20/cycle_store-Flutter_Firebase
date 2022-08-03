@@ -54,7 +54,7 @@ class ContactPage extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        Utils.openPhoneApp(phone: phone);
+                        Utils.callNumber(phone: phone);
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(
@@ -90,7 +90,7 @@ class ContactPage extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        Utils.openMailApp(email: email);
+                        Utils.sentMailTo(email: email);
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(

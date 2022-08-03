@@ -113,7 +113,7 @@ class Categories extends StatelessWidget {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                CrossAxisAlignment.center,
                                             children: [
                                               Text(
                                                 _controller.currentCategoryIndex
@@ -146,26 +146,29 @@ class Categories extends StatelessWidget {
                                                     fontWeight:
                                                         FontWeight.w900),
                                               ),
-                                              SizedBox(
-                                                  height: 30,
-                                                  child: TextButton(
-                                                      onPressed: () {
-                                                        Get.toNamed(
-                                                            PRODUCT_LIST_ROUTE,
-                                                            arguments: {
-                                                              "searchText":
-                                                                  "Popular",
-                                                              "products":
-                                                                  _controller
-                                                                      .popularProducts,
-                                                            });
-                                                      },
-                                                      child: const Text(
-                                                        "See all",
-                                                        style: TextStyle(
-                                                            fontSize: 12),
-                                                      )))
+                                              InkWell(
+                                                  onTap: () {
+                                                    Get.toNamed(
+                                                        PRODUCT_LIST_ROUTE,
+                                                        arguments: {
+                                                          "searchText":
+                                                              "Popular",
+                                                          "products": _controller
+                                                              .popularProducts,
+                                                        });
+                                                  },
+                                                  child: const Text(
+                                                    "See all",
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: PRIMARY_COLOR,
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ))
                                             ],
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
                                           ),
                                           SizedBox(
                                             height: 235,
@@ -175,18 +178,19 @@ class Categories extends StatelessWidget {
                                                 scrollDirection:
                                                     Axis.horizontal,
                                                 itemCount: _controller
-                                                            .products.length >
+                                                            .popularProducts
+                                                            .length >
                                                         6
                                                     ? 6
                                                     : _controller
-                                                        .products.length,
+                                                        .popularProducts.length,
                                                 itemBuilder: (context, index) {
                                                   return SizedBox(
                                                       width:
                                                           MediaQuery.of(context)
                                                                   .size
                                                                   .width /
-                                                              2,
+                                                              2.19,
                                                       child: ProductCard(
                                                           product: _controller
                                                                   .popularProducts[
@@ -206,7 +210,7 @@ class Categories extends StatelessWidget {
                                                               .spaceBetween,
                                                       crossAxisAlignment:
                                                           CrossAxisAlignment
-                                                              .start,
+                                                              .center,
                                                       children: [
                                                         Text(
                                                           _controller.currentCategoryIndex
@@ -235,27 +239,32 @@ class Categories extends StatelessWidget {
                                                                   FontWeight
                                                                       .w900),
                                                         ),
-                                                        SizedBox(
-                                                            height: 30,
-                                                            child: TextButton(
-                                                                onPressed: () {
-                                                                  Get.toNamed(
-                                                                      PRODUCT_LIST_ROUTE,
-                                                                      arguments: {
-                                                                        "searchText":
-                                                                            "Trending",
-                                                                        "products":
-                                                                            _controller.trendingProducts,
-                                                                      });
-                                                                },
-                                                                child:
-                                                                    const Text(
-                                                                  "See all",
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          12),
-                                                                )))
+                                                        InkWell(
+                                                            onTap: () {
+                                                              Get.toNamed(
+                                                                  PRODUCT_LIST_ROUTE,
+                                                                  arguments: {
+                                                                    "searchText":
+                                                                        "Trending",
+                                                                    "products":
+                                                                        _controller
+                                                                            .trendingProducts,
+                                                                  });
+                                                            },
+                                                            child: const Text(
+                                                              "See all",
+                                                              style: TextStyle(
+                                                                  fontSize: 12,
+                                                                  color:
+                                                                      PRIMARY_COLOR,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500),
+                                                            ))
                                                       ],
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 10,
                                                     ),
                                                     SizedBox(
                                                       height: 235,
@@ -265,12 +274,12 @@ class Categories extends StatelessWidget {
                                                           scrollDirection:
                                                               Axis.horizontal,
                                                           itemCount: _controller
-                                                                      .products
+                                                                      .trendingProducts
                                                                       .length >
                                                                   6
                                                               ? 6
                                                               : _controller
-                                                                  .products
+                                                                  .trendingProducts
                                                                   .length,
                                                           itemBuilder:
                                                               (context, index) {
@@ -279,7 +288,7 @@ class Categories extends StatelessWidget {
                                                                             context)
                                                                         .size
                                                                         .width /
-                                                                    2,
+                                                                    2.19,
                                                                 child: ProductCard(
                                                                     product: _controller
                                                                             .trendingProducts[

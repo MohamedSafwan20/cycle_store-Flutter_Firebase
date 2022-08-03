@@ -59,7 +59,7 @@ class ProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: (MediaQuery.of(context).size.width / 3.8),
+                        width: (MediaQuery.of(context).size.width / 4),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

@@ -31,8 +31,8 @@ class TrendingProducts extends StatelessWidget {
           child: isLoading
               ? const Loading()
               : GridView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: products.length,
+              physics: const NeverScrollableScrollPhysics(),
+                  itemCount: products.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio:
@@ -42,6 +42,9 @@ class TrendingProducts extends StatelessWidget {
                   itemBuilder: (_, index) {
                     return ProductCard(product: products[index]);
                   }),
+        ),
+        const SizedBox(
+          height: 15,
         ),
         PrimaryGhostButton(
             text: "See all",

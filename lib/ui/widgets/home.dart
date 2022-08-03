@@ -16,7 +16,10 @@ class Home extends StatelessWidget {
 
     return Column(
       children: [
-        const Search(),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.0),
+          child: Search(),
+        ),
         Expanded(
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
@@ -34,9 +37,12 @@ class Home extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  PopularProducts(
-                      products: _controller.popularProducts,
-                      isLoading: _controller.isPopularProductsLoading.value),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: PopularProducts(
+                        products: _controller.popularProducts,
+                        isLoading: _controller.isPopularProductsLoading.value),
+                  ),
                   const SizedBox(
                     height: 30,
                   ),
@@ -51,9 +57,12 @@ class Home extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  TrendingProducts(
-                      products: _controller.trendingProducts,
-                      isLoading: _controller.isTrendingProductsLoading.value),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: TrendingProducts(
+                        products: _controller.trendingProducts,
+                        isLoading: _controller.isTrendingProductsLoading.value),
+                  ),
                   const SizedBox(
                     height: 40,
                   ),
