@@ -395,8 +395,11 @@ class UserService {
           .get();
 
       final userData = userSnapshot.data() as Map;
-      List orders = userData["orders"];
+      if (userData["orders"] == null) {
+        return {"status": true, "data": []};
+      }
 
+      List orders = userData["orders"];
       List<Map> orderData = await Future.wait(orders.map((order) async {
         DocumentSnapshot snapshot = await order["product"].get();
         Map product = snapshot.data() as Map;
