@@ -6,6 +6,7 @@ import 'package:cycle_store/ui/widgets/custom_app_bar.dart';
 import 'package:cycle_store/ui/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
 class OrderSummaryPage extends StatelessWidget {
@@ -94,7 +95,7 @@ class OrderSummaryPage extends StatelessWidget {
                                                         children: [
                                                           Text(
                                                             index == 0
-                                                                ? "Order Placed on 25 july"
+                                                                ? "Order Placed on ${DateFormat.MMMd().format(_controller.order["created_at"].toDate())}"
                                                                 : "Order Cancelled",
                                                             style: const TextStyle(
                                                                 fontSize: 12,
@@ -185,7 +186,7 @@ class OrderSummaryPage extends StatelessWidget {
                                                         children: [
                                                           Text(
                                                             index == 0
-                                                                ? "Order Placed on 25 july"
+                                                                ? "Order Placed on ${DateFormat.MMMd().format(_controller.order["created_at"].toDate())}"
                                                                 : index == 1 &&
                                                                         (_controller.order["status"] ==
                                                                                 "CONTACTED" ||
@@ -293,36 +294,37 @@ class OrderSummaryPage extends StatelessWidget {
                         ),
                       ),
                       Obx(() {
+                        bool isLoading = _controller.isLoading.value;
                         return _controller.order["status"].toUpperCase() ==
-                                "CANCELLED"
+                            "CANCELLED"
                             ? const SizedBox()
-                            : _controller.isLoading.value
-                                ? const Loading(
-                                    color: ERROR_COLOR,
-                                  )
-                                : SizedBox(
-                                    width: double.infinity,
-                                    height: 46,
-                                    child: TextButton(
-                                      onPressed: _controller.showDialog,
-                                      child: const Text(
-                                        "Cancel order",
-                                        style: TextStyle(fontSize: 16),
-                                      ),
-                                      style: ButtonStyle(
-                                        foregroundColor:
-                                            MaterialStateProperty.all(
-                                                ERROR_COLOR),
-                                        shape: MaterialStateProperty.all(
-                                            RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          side: const BorderSide(
-                                              color: ERROR_COLOR),
-                                        )),
-                                      ),
-                                    ),
-                                  );
+                            : isLoading
+                            ? const Loading(
+                          color: ERROR_COLOR,
+                        )
+                            : SizedBox(
+                          width: double.infinity,
+                          height: 46,
+                          child: TextButton(
+                            onPressed: _controller.showDialog,
+                            child: const Text(
+                              "Cancel order",
+                              style: TextStyle(fontSize: 16),
+                            ),
+                            style: ButtonStyle(
+                              foregroundColor:
+                              MaterialStateProperty.all(
+                                  ERROR_COLOR),
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                    borderRadius:
+                                    BorderRadius.circular(6),
+                                    side: const BorderSide(
+                                        color: ERROR_COLOR),
+                                  )),
+                            ),
+                          ),
+                        );
                       }),
                       const SizedBox(
                         height: 8,

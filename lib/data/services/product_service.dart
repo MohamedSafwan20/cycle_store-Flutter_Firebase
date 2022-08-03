@@ -81,30 +81,13 @@ class ProductService {
 
   static Future<Map> getProductsByName(String searchText) async {
     try {
-      if (searchText == "NEW_ARRIVALS") {
-        Map res = await getPopularProducts();
-        if (!res["status"]) {
-          throw Exception("Failed to fetch newly arrived products");
-        }
-
-        return {"status": true, "data": res["data"] as List<Product>};
-      }
-
-      if (searchText == "TOP_SELLING") {
-        Map res = await getTrendingProducts();
-        if (!res["status"]) {
-          throw Exception("Failed to fetch top selling products");
-        }
-
-        return {"status": true, "data": res["data"] as List<Product>};
-      }
-
       Map res = await getAllProducts();
       if (!res["status"]) throw Exception("Failed to fetch all products");
       List<Product> allProducts = res["data"];
 
       List<Product> data = allProducts.where((product) {
-        return product.name.toUpperCase().contains(searchText.toUpperCase());
+        return product.name.toUpperCase().contains(searchText.toUpperCase()) ||
+            product.category.toUpperCase().contains(searchText.toUpperCase());
       }).toList();
 
       return {"status": true, "data": data};

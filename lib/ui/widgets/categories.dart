@@ -171,10 +171,15 @@ class Categories extends StatelessWidget {
                                             height: 235,
                                             child: ListView.builder(
                                                 physics:
-                                                const BouncingScrollPhysics(),
-                                                scrollDirection: Axis.horizontal,
-                                                itemCount:
-                                                _controller.products.length,
+                                                    const BouncingScrollPhysics(),
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                itemCount: _controller
+                                                            .products.length >
+                                                        6
+                                                    ? 6
+                                                    : _controller
+                                                        .products.length,
                                                 itemBuilder: (context, index) {
                                                   return SizedBox(
                                                       width:
@@ -260,7 +265,13 @@ class Categories extends StatelessWidget {
                                                           scrollDirection:
                                                               Axis.horizontal,
                                                           itemCount: _controller
-                                                              .products.length,
+                                                                      .products
+                                                                      .length >
+                                                                  6
+                                                              ? 6
+                                                              : _controller
+                                                                  .products
+                                                                  .length,
                                                           itemBuilder:
                                                               (context, index) {
                                                             return SizedBox(
