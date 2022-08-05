@@ -1,11 +1,13 @@
 import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/controllers/home_controller.dart';
 import 'package:cycle_store/ui/widgets/custom_carousel.dart';
+import 'package:cycle_store/ui/widgets/loading.dart';
 import 'package:cycle_store/ui/widgets/popular_products.dart';
 import 'package:cycle_store/ui/widgets/search.dart';
 import 'package:cycle_store/ui/widgets/trending_products.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -27,7 +29,17 @@ class Home extends StatelessWidget {
               return Column(
                 children: [
                   GestureDetector(
-                      child: const CustomCarousel(),
+                      child: _controller.popularCarouselImages.isEmpty
+                          ? const SizedBox()
+                          : _controller.isPopularCarouselLoading.value
+                              ? SizedBox(
+                                  height: 200,
+                                  child: Loading(
+                                      loader: LoadingAnimationWidget
+                                          .prograssiveDots))
+                              : CustomCarousel(
+                                  images: _controller.popularCarouselImages,
+                                ),
                       onTap: () {
                         Get.toNamed(PRODUCT_LIST_ROUTE, arguments: {
                           "searchText": "Popular",
@@ -47,7 +59,17 @@ class Home extends StatelessWidget {
                     height: 30,
                   ),
                   GestureDetector(
-                      child: const CustomCarousel(),
+                      child: _controller.trendingCarouselImages.isEmpty
+                          ? const SizedBox()
+                          : _controller.isTrendingCarouselLoading.value
+                              ? SizedBox(
+                                  height: 200,
+                                  child: Loading(
+                                      loader: LoadingAnimationWidget
+                                          .prograssiveDots))
+                              : CustomCarousel(
+                                  images: _controller.trendingCarouselImages,
+                                ),
                       onTap: () {
                         Get.toNamed(PRODUCT_LIST_ROUTE, arguments: {
                           "searchText": "Trending",

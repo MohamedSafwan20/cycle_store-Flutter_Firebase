@@ -252,7 +252,7 @@ class ProductDetailsPage extends StatelessWidget {
                                 children: const [
                                   Icon(
                                     Icons.payments_outlined,
-                                    size: 32,
+                                    size: 27,
                                     color: SECONDARY_TEXT_COLOR,
                                   ),
                                   Text(
@@ -271,7 +271,7 @@ class ProductDetailsPage extends StatelessWidget {
                                 children: const [
                                   Icon(
                                     Icons.local_shipping_outlined,
-                                    size: 32,
+                                    size: 27,
                                     color: SECONDARY_TEXT_COLOR,
                                   ),
                                   Text(
@@ -290,7 +290,7 @@ class ProductDetailsPage extends StatelessWidget {
                                 children: const [
                                   Icon(
                                     Icons.credit_card_outlined,
-                                    size: 32,
+                                    size: 27,
                                     color: SECONDARY_TEXT_COLOR,
                                   ),
                                   Text(
@@ -309,7 +309,7 @@ class ProductDetailsPage extends StatelessWidget {
                                 children: const [
                                   Icon(
                                     Icons.inventory_outlined,
-                                    size: 32,
+                                    size: 27,
                                     color: SECONDARY_TEXT_COLOR,
                                   ),
                                   Text(

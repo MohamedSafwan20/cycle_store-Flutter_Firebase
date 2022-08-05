@@ -20,7 +20,7 @@ class ProductListPage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Image.asset(
-          "assets/images/logo.jpg",
+          "assets/images/logo.png",
           fit: BoxFit.cover,
           width: 50,
           height: 50,

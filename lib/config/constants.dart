@@ -1,2 +1,2 @@
-const APP_NAME = "Cycle Store";
+const APP_NAME = "Fast Bikes";
 const DELIVERY_AVAILABLE_AREAS = ["MALAPPURAM"];

@@ -8,7 +8,8 @@ class ContactPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const phone = "0123456789";
+    const cycleQueryNo = "+919645071880";
+    const appQueryNo = "+919961624194";
     const email = "example@gmail.com";
 
     return Scaffold(
@@ -52,41 +53,89 @@ class ContactPage extends StatelessWidget {
                     const SizedBox(
                       height: 60,
                     ),
-                    InkWell(
-                      onTap: () {
-                        Utils.callNumber(phone: phone);
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 35.0, horizontal: 10),
-                        width: MediaQuery.of(context).size.width - 60,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: PRIMARY_TEXT_COLOR)),
-                        child: Column(
-                          children: const [
-                            Icon(
-                              Icons.call_outlined,
-                              color: PRIMARY_TEXT_COLOR,
-                              size: 36,
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 35.0, horizontal: 10),
+                      width: MediaQuery.of(context).size.width - 60,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: PRIMARY_TEXT_COLOR)),
+                      child: Column(
+                        children: [
+                          Icon(
+                            Icons.call_outlined,
+                            color: PRIMARY_TEXT_COLOR,
+                            size: 36,
+                          ),
+                          SizedBox(
+                            height: 25,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Utils.callNumber(phone: cycleQueryNo);
+                            },
+                            child: Column(
+                              children: [
+                                Text(
+                                  "For Cycle Queries:",
+                                  style: TextStyle(
+                                      color: SECONDARY_COLOR,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 14),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  cycleQueryNo,
+                                  style: TextStyle(
+                                      color: PRIMARY_TEXT_COLOR,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 17,
+                                      decoration: TextDecoration.underline),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
                             ),
-                            SizedBox(
-                              height: 10,
+                          ),
+                          const SizedBox(
+                            height: 13,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Utils.callNumber(phone: appQueryNo);
+                            },
+                            child: Column(
+                              children: [
+                                Text(
+                                  "For App Queries:",
+                                  style: TextStyle(
+                                      color: SECONDARY_COLOR,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 14),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  appQueryNo,
+                                  style: TextStyle(
+                                      color: PRIMARY_TEXT_COLOR,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 17,
+                                      decoration: TextDecoration.underline),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
                             ),
-                            Text(
-                              "+91 $phone",
-                              style: TextStyle(
-                                  color: PRIMARY_TEXT_COLOR,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 19),
-                              textAlign: TextAlign.center,
-                            )
-                          ],
-                        ),
+                          )
+                        ],
                       ),
                     ),
                     const SizedBox(
-                      height: 60,
+                      height: 40,
                     ),
                     InkWell(
                       onTap: () {
@@ -94,7 +143,7 @@ class ContactPage extends StatelessWidget {
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 35.0, horizontal: 10),
+                            vertical: 55.0, horizontal: 10),
                         width: MediaQuery.of(context).size.width - 60,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -107,14 +156,26 @@ class ContactPage extends StatelessWidget {
                               size: 36,
                             ),
                             SizedBox(
-                              height: 10,
+                              height: 25,
+                            ),
+                            Text(
+                              "For Any Queries:",
+                              style: TextStyle(
+                                  color: SECONDARY_COLOR,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 14),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(
+                              height: 5,
                             ),
                             Text(
                               email,
                               style: TextStyle(
                                   color: PRIMARY_TEXT_COLOR,
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 19),
+                                  fontSize: 17,
+                                  decoration: TextDecoration.underline),
                               textAlign: TextAlign.center,
                             )
                           ],

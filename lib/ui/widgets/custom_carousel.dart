@@ -8,7 +8,9 @@ import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class CustomCarousel extends StatelessWidget {
-  const CustomCarousel({Key? key}) : super(key: key);
+  const CustomCarousel({Key? key, required this.images}) : super(key: key);
+
+  final List images;
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +26,14 @@ class CustomCarousel extends StatelessWidget {
                 height: 200,
                 viewportFraction: 1,
                 initialPage: 0,
-                enlargeCenterPage: true,
                 scrollDirection: Axis.horizontal,
                 autoPlay: true,
               ),
-              itemCount: _controller.images.length,
+              itemCount: images.length,
               itemBuilder:
                   (BuildContext context, int itemIndex, int pageViewIndex) {
                 return CachedNetworkImage(
-                  imageUrl: _controller.images[itemIndex],
+                  imageUrl: images[itemIndex],
                   imageBuilder: (_, imageProvider) {
                     return SizedBox(
                       width: double.infinity,
@@ -54,7 +55,7 @@ class CustomCarousel extends StatelessWidget {
             right: 50,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: _controller.images
+              children: images
                   .asMap()
                   .entries
                   .map((entry) => GestureDetector(

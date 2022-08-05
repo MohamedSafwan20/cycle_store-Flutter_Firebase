@@ -6,8 +6,6 @@ import 'package:cycle_store/utils/utils.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
-  final _homeController = Get.find<HomeController>();
-
   RxList products = [].obs;
   RxList checkoutProducts = [].obs;
   RxBool isLoading = false.obs;
@@ -16,6 +14,8 @@ class CartController extends GetxController {
 
   @override
   void onInit() {
+    Get.lazyPut<HomeController>(() => HomeController());
+
     getAllCartProducts();
 
     super.onInit();
@@ -82,7 +82,7 @@ class CartController extends GetxController {
 
       price.value -= productPrice;
       // Updating product card cart button
-      _homeController.removeFromCart(productId);
+      Get.find<HomeController>().removeFromCart(productId);
     }).catchError((e) {
       getAllCartProducts();
       Utils.showErrorSnackbar(text: "Failed to delete Cart Item");

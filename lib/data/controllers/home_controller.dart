@@ -7,19 +7,55 @@ import '../../config/colors.dart';
 
 class HomeController extends GetxController {
   RxList<Product> popularProducts = <Product>[].obs;
+  RxList popularCarouselImages = [].obs;
   RxList<Product> trendingProducts = <Product>[].obs;
+  RxList trendingCarouselImages = [].obs;
   RxList<String> productsInCart = <String>[].obs;
 
   RxBool isPopularProductsLoading = false.obs;
+  RxBool isPopularCarouselLoading = false.obs;
   RxBool isTrendingProductsLoading = false.obs;
+  RxBool isTrendingCarouselLoading = false.obs;
   RxList<String> isCartBtnLoadingList = <String>[].obs;
 
   @override
   void onInit() {
+    getPopularCarouselImages();
+    getTrendingCarouselImages();
     getPopularProducts();
     getTrendingProducts();
 
     super.onInit();
+  }
+
+  void getPopularCarouselImages() {
+    isPopularCarouselLoading.value = true;
+
+    ProductService.getCarouselImages(folder: "POPULAR").then((res) {
+      if (!res["status"])
+        throw Exception("Failed to get popular carousel images");
+
+      popularCarouselImages.value = res["data"];
+
+      isPopularCarouselLoading.value = false;
+    }).catchError((e) {
+      isPopularCarouselLoading.value = false;
+    });
+  }
+
+  void getTrendingCarouselImages() {
+    isTrendingCarouselLoading.value = true;
+
+    ProductService.getCarouselImages(folder: "TRENDING").then((res) {
+      if (!res["status"])
+        throw Exception("Failed to get trending carousel images");
+
+      trendingCarouselImages.value = res["data"];
+
+      isTrendingCarouselLoading.value = false;
+    }).catchError((e) {
+      isTrendingCarouselLoading.value = false;
+    });
   }
 
   void getPopularProducts() {

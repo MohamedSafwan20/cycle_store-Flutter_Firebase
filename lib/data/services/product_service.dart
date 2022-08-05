@@ -2,8 +2,24 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cycle_store/data/models/product_model.dart';
 import 'package:cycle_store/data/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class ProductService {
+  static Future<Map> getCarouselImages({required String folder}) async {
+    try {
+      ListResult images =
+          await FirebaseStorage.instance.ref("carousel_images/$folder/").list();
+
+      List data = await Future.wait(images.items.map((ref) async {
+        return await ref.getDownloadURL();
+      }));
+
+      return {"status": true, "data": data};
+    } catch (e) {
+      return {"status": false, "data": []};
+    }
+  }
+
   static Future<Map> getPopularProducts() async {
     try {
       QuerySnapshot res = await FirebaseFirestore.instance
@@ -46,7 +62,7 @@ class ProductService {
   static Future<Map> getAllProducts() async {
     try {
       QuerySnapshot res =
-          await FirebaseFirestore.instance.collection("products").get();
+      await FirebaseFirestore.instance.collection("products").get();
 
       List<Product> data = res.docs.map((e) {
         Map data = {"id": e.id, ...e.data() as Map};
@@ -96,13 +112,12 @@ class ProductService {
     }
   }
 
-  static Future<Map> addToCart(
-      {required String productId, required String size}) async {
+  static Future<Map> addToCart({required String productId, required String size}) async {
     try {
       User user = AuthService.getCurrentUser();
 
       final productRef =
-          FirebaseFirestore.instance.collection("products").doc(productId);
+      FirebaseFirestore.instance.collection("products").doc(productId);
 
       await FirebaseFirestore.instance
           .collection("users")
@@ -124,7 +139,7 @@ class ProductService {
       User user = AuthService.getCurrentUser();
 
       final productRef =
-          FirebaseFirestore.instance.collection("products").doc(productId);
+      FirebaseFirestore.instance.collection("products").doc(productId);
 
       final res = await FirebaseFirestore.instance
           .collection("users")

@@ -27,7 +27,7 @@ class InitialPage extends StatelessWidget {
       backgroundColor: PRIMARY_COLOR,
       body: Center(
           child: Image.asset(
-        "assets/images/logo.jpg",
+        "assets/images/splash.png",
         width: 150,
         height: 150,
       )),

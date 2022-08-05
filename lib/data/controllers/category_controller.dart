@@ -7,11 +7,20 @@ import 'package:get/get.dart';
 class CategoryController extends GetxController {
   RxList categories = ["All", "Mountain", "Sports", "Kids", "Urban"].obs;
   RxInt currentCategoryIndex = 0.obs;
-  RxList<Product> products = <Product>[].obs;
   RxList<Product> popularProducts = <Product>[].obs;
   RxList<Product> trendingProducts = <Product>[].obs;
+  RxList carouselImages = [].obs;
 
   RxBool isLoading = false.obs;
+  RxBool isCarouselLoading = false.obs;
+
+  @override
+  void onInit() {
+    getAllProducts();
+    getCarouselImages(category: "ALL");
+
+    super.onInit();
+  }
 
   void onCategoryChange({required int index}) {
     currentCategoryIndex.value = index;
@@ -19,20 +28,51 @@ class CategoryController extends GetxController {
     switch (index) {
       case 0:
         getAllProducts();
+        getCarouselImages(category: "ALL");
         break;
       case 1:
         getProductsByCategory("MOUNTAIN");
+        getCarouselImages(category: "MOUNTAIN");
         break;
       case 2:
         getProductsByCategory("SPORTS");
+        getCarouselImages(category: "SPORTS");
         break;
       case 3:
         getProductsByCategory("KIDS");
+        getCarouselImages(category: "KIDS");
         break;
       case 4:
         getProductsByCategory("URBAN");
+        getCarouselImages(category: "URBAN");
         break;
     }
+  }
+
+  void getCarouselImages({required String category}) async {
+    isCarouselLoading.value = true;
+
+    if (category == "ALL") {
+      List res = await Future.wait([
+        ProductService.getCarouselImages(folder: "POPULAR"),
+        ProductService.getCarouselImages(folder: "TRENDING"),
+      ]);
+      isCarouselLoading.value = false;
+      res.forEach((element) {
+        carouselImages.addAll(element["data"]);
+      });
+      return;
+    }
+
+    ProductService.getCarouselImages(folder: category).then((res) {
+      if (!res["status"]) throw Exception("Failed to get carousel images");
+
+      carouselImages.value = res["data"];
+
+      isCarouselLoading.value = false;
+    }).catchError((e) {
+      isCarouselLoading.value = false;
+    });
   }
 
   void getAllProducts() {
@@ -41,13 +81,12 @@ class CategoryController extends GetxController {
     ProductService.getAllProducts().then((value) {
       if (!value["status"]) throw Exception("Couldn't get products");
 
-      products.value = value["data"];
-
       popularProducts.value = value["data"];
       popularProducts
           .sort((first, second) => second.buyCount.compareTo(first.buyCount));
 
-      trendingProducts.value = products.where((e) => e.isTrending).toList();
+      trendingProducts.value =
+          value["data"].where((Product e) => e.isTrending).toList();
 
       isLoading.value = false;
     }).catchError((e) {
@@ -63,13 +102,12 @@ class CategoryController extends GetxController {
         throw Exception("Couldn't get products by category");
       }
 
-      products.value = value["data"];
-
       popularProducts.value = value["data"];
       popularProducts
           .sort((first, second) => second.buyCount.compareTo(first.buyCount));
 
-      trendingProducts.value = products.where((e) => e.isTrending).toList();
+      trendingProducts.value =
+          value["data"].where((e) => e.isTrending).toList();
 
       isLoading.value = false;
     }).catchError((e) {

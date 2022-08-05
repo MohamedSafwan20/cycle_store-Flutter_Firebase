@@ -12,7 +12,6 @@ import 'package:get/get.dart';
 class ProductDetailsController extends GetxController {
   final carouselController = CarouselController();
   final product = Get.arguments["product"] as Product;
-  final HomeController _homeController = Get.find();
   TextEditingController pincode = TextEditingController();
 
   RxList images = [].obs;
@@ -30,6 +29,8 @@ class ProductDetailsController extends GetxController {
 
   @override
   void onInit() {
+    Get.lazyPut<HomeController>(() => HomeController());
+
     sortSpecs();
 
     ProductService.isProductInCart(product.id).then((res) {
@@ -54,15 +55,15 @@ class ProductDetailsController extends GetxController {
 
   void addToCart() {
     // Updating cart button on home's product card
-    _homeController.addToCart(
-        productId: product.id, size: selectedSizeIndex.value);
+    Get.find<HomeController>()
+        .addToCart(productId: product.id, size: selectedSizeIndex.value);
 
     productsInCart.add(product.id);
   }
 
   void removeFromCart() {
     // Updating cart button on home's product card
-    _homeController.removeFromCart(product.id);
+    Get.find<HomeController>().removeFromCart(product.id);
 
     productsInCart.remove(product.id);
   }

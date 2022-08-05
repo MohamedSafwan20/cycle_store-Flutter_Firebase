@@ -27,7 +27,7 @@ class SignupPage extends StatelessWidget {
                   child: Align(
                       alignment: Alignment.topCenter,
                       child: Image.asset(
-                        "assets/images/logo.jpg",
+                        "assets/images/logo.png",
                         width: 130,
                         height: 130,
                       )),

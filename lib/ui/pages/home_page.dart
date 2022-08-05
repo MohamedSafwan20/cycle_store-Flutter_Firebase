@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Image.asset(
-              "assets/images/logo.jpg",
+              "assets/images/logo.png",
               fit: BoxFit.cover,
               width: 50,
               height: 50,

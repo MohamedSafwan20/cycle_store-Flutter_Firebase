@@ -9,6 +9,7 @@ import 'package:cycle_store/ui/widgets/product_card.dart';
 import 'package:cycle_store/ui/widgets/secondary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class Categories extends StatelessWidget {
   const Categories({Key? key}) : super(key: key);
@@ -18,7 +19,6 @@ class Categories extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     final _controller = Get.put(CategoryController());
-    _controller.getAllProducts();
 
     return Stack(
       children: [
@@ -62,7 +62,7 @@ class Categories extends StatelessWidget {
                         height: size.height - 300,
                         alignment: Alignment.center,
                         child: const Loading())
-                    : _controller.products.isNotEmpty
+                    : _controller.popularProducts.isNotEmpty
                         ? Expanded(
                             child: SingleChildScrollView(
                                 physics: const BouncingScrollPhysics(),
@@ -70,7 +70,21 @@ class Categories extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     GestureDetector(
-                                        child: const CustomCarousel(),
+                                        child: _controller
+                                                .carouselImages.isEmpty
+                                            ? const SizedBox()
+                                            : _controller
+                                                    .isCarouselLoading.value
+                                                ? SizedBox(
+                                                    height: 200,
+                                                    child: Loading(
+                                                        loader:
+                                                            LoadingAnimationWidget
+                                                                .prograssiveDots))
+                                                : CustomCarousel(
+                                                    images: _controller
+                                                        .carouselImages,
+                                                  ),
                                         onTap: () {
                                           Get.toNamed(PRODUCT_LIST_ROUTE,
                                               arguments: {
