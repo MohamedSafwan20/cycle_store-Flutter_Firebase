@@ -26,11 +26,11 @@ class PopularProducts extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 470,
+          height: 490,
           child: isLoading
               ? const Loading()
               : GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: products.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
