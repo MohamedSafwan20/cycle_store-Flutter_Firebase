@@ -38,7 +38,7 @@ class AuthService {
       return {"status": true, "data": res.user};
     } on FirebaseAuthException catch (e) {
       if (e.code == "user-not-found") {
-        Utils.showErrorSnackbar(text: "User doesn't exist");
+        Utils.showErrorSnackbar(text: "Account not found");
       }
 
       if (e.code == "wrong-password") {

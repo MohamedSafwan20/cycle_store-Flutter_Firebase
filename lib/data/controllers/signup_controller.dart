@@ -59,8 +59,7 @@ class SignupController extends GetxController {
       if (value != null) {
         await value.updateDisplayName(nameController.text);
 
-        Get.toNamed(EMAIL_VERIFICATION_ROUTE,
-            arguments: {"email": value.email});
+        Get.offAllNamed(HOME_ROUTE);
       }
     }).catchError((e) {
       Utils.showErrorSnackbar(text: "Couldn't signup");
