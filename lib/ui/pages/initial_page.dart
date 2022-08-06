@@ -1,7 +1,6 @@
 import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/services/auth_service.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,10 +11,7 @@ class InitialPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Future.delayed(const Duration(milliseconds: 560), () {
       try {
-        User user = AuthService.getCurrentUser();
-        if (!user.emailVerified) {
-          throw Exception("Email not verified");
-        }
+        AuthService.getCurrentUser();
 
         Get.offAllNamed(HOME_ROUTE);
       } catch (e) {

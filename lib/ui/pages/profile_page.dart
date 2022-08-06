@@ -202,7 +202,9 @@ class ProfilePage extends StatelessWidget {
                                   SizedBox(
                                     height: 50,
                                     child: TextField(
-                                      enabled: false,
+                                      onChanged: (email) {
+                                        _controller.onEmailChange(email);
+                                      },
                                       controller: _controller.emailController,
                                       keyboardType: TextInputType.emailAddress,
                                       decoration: InputDecoration(
@@ -231,15 +233,17 @@ class ProfilePage extends StatelessWidget {
                             const SizedBox(
                               width: 10,
                             ),
-                            IconButton(
-                              icon: const Icon(
-                                Icons.edit,
-                                color: PRIMARY_COLOR,
-                              ),
-                              onPressed: () {
-                                _controller.showPasswordBottomSheet();
-                              },
-                            )
+                            _controller.isEmailChanged.value
+                                ? IconButton(
+                                    icon: const Icon(
+                                      Icons.check_outlined,
+                                      color: PRIMARY_COLOR,
+                                    ),
+                                    onPressed: () {
+                                      _controller.showPasswordBottomSheet();
+                                    },
+                                  )
+                                : const SizedBox()
                           ],
                         ),
                         const SizedBox(

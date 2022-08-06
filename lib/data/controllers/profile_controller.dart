@@ -16,12 +16,14 @@ class ProfileController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final loginPasswordController = TextEditingController();
+  User user = AuthService.getCurrentUser();
 
   RxBool isInvalidFirstName = false.obs;
   RxBool isInvalidLastName = false.obs;
   RxBool isInvalidLoginPassword = false.obs;
   RxBool isLoading = false.obs;
   RxBool isModalBottomSheetConfirmLoading = false.obs;
+  RxBool isEmailChanged = false.obs;
 
   @override
   void onInit() {
@@ -31,8 +33,6 @@ class ProfileController extends GetxController {
   }
 
   void getUserDetails() {
-    User user = AuthService.getCurrentUser();
-
     List usernameList = user.displayName!.split(" ");
 
     if (usernameList.first == usernameList.last) {
@@ -45,6 +45,15 @@ class ProfileController extends GetxController {
 
     emailController.text = user.email!;
     passwordController.text = "password1";
+  }
+
+  void onEmailChange(email) {
+    if (email != user.email!) {
+      isEmailChanged.value = true;
+      return;
+    }
+
+    isEmailChanged.value = false;
   }
 
   void updateProfile() {
@@ -67,7 +76,7 @@ class ProfileController extends GetxController {
     isLoading.value = true;
 
     UserService.updateDisplayName(
-        "${firstNameController.text} ${lastNameController.text}")
+            "${firstNameController.text} ${lastNameController.text}")
         .then((res) {
       isLoading.value = false;
 
@@ -88,7 +97,7 @@ class ProfileController extends GetxController {
       isModalBottomSheetConfirmLoading.value = false;
 
       if (res["status"]) {
-        Get.offAllNamed(EMAIL_VERIFICATION_ROUTE,
+        Get.toNamed(EMAIL_VERIFICATION_ROUTE,
             arguments: {"email": AuthService.getCurrentUser().email});
       }
     });
