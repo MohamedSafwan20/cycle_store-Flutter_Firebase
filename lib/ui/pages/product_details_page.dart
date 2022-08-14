@@ -150,7 +150,8 @@ class ProductDetailsPage extends StatelessWidget {
                             ),
                             const Text(
                               "WHEEL SIZE",
-                              style: TextStyle(color: SECONDARY_TEXT_COLOR),
+                              style: TextStyle(
+                                  color: SECONDARY_TEXT_COLOR, fontSize: 12),
                             ),
                             const SizedBox(
                               height: 15,
@@ -222,7 +223,10 @@ class ProductDetailsPage extends StatelessWidget {
                                 onPressed: _controller.showDialog,
                                 child: Row(
                                   children: const [
-                                    Text("VIEW SIZE CHART"),
+                                    Text(
+                                      "VIEW SIZE CHART",
+                                      style: TextStyle(fontSize: 12),
+                                    ),
                                     SizedBox(
                                       width: 4,
                                     ),
@@ -256,9 +260,9 @@ class ProductDetailsPage extends StatelessWidget {
                                     color: SECONDARY_TEXT_COLOR,
                                   ),
                                   Text(
-                                    "CASH ON DELIVERY",
+                                    "CASH ON \nDELIVERY",
                                     style: TextStyle(
-                                        fontSize: 13,
+                                        fontSize: 11,
                                         fontWeight: FontWeight.w500),
                                     textAlign: TextAlign.center,
                                   )
@@ -275,9 +279,9 @@ class ProductDetailsPage extends StatelessWidget {
                                     color: SECONDARY_TEXT_COLOR,
                                   ),
                                   Text(
-                                    "FREE SHIPPING",
+                                    "FREE \nSHIPPING",
                                     style: TextStyle(
-                                        fontSize: 13,
+                                        fontSize: 11,
                                         fontWeight: FontWeight.w500),
                                     textAlign: TextAlign.center,
                                   )
@@ -294,9 +298,9 @@ class ProductDetailsPage extends StatelessWidget {
                                     color: SECONDARY_TEXT_COLOR,
                                   ),
                                   Text(
-                                    "EMI AVAILABLE",
+                                    "EMI \nAVAILABLE",
                                     style: TextStyle(
-                                        fontSize: 13,
+                                        fontSize: 11,
                                         fontWeight: FontWeight.w500),
                                     textAlign: TextAlign.center,
                                   )
@@ -313,9 +317,9 @@ class ProductDetailsPage extends StatelessWidget {
                                     color: SECONDARY_TEXT_COLOR,
                                   ),
                                   Text(
-                                    "FULLY ASSEMBLED",
+                                    "FULLY \nASSEMBLED",
                                     style: TextStyle(
-                                        fontSize: 13,
+                                        fontSize: 11,
                                         fontWeight: FontWeight.w500),
                                     textAlign: TextAlign.center,
                                   )

@@ -35,7 +35,7 @@ class CartPage extends StatelessWidget {
                   Obx(() {
                     return Text("${_controller.checkoutProducts.length} Items",
                         style: const TextStyle(
-                            color: SECONDARY_TEXT_COLOR, fontSize: 14));
+                            color: SECONDARY_TEXT_COLOR, fontSize: 13));
                   }),
                 ],
               ),

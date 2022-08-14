@@ -67,6 +67,9 @@ class Utils {
 
     final nameList = name.split(" ");
     for (String name in nameList) {
+      if (name.isEmpty) {
+        break;
+      }
       avatarName += name[0].toUpperCase();
     }
 

@@ -7,7 +7,7 @@ class SizeChartModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
+      width: MediaQuery.of(context).size.width - 10,
       child: Column(
         children: [
           const Divider(
@@ -21,10 +21,10 @@ class SizeChartModal extends StatelessWidget {
                 color: SECONDARY_TEXT_COLOR,
               ),
               columnWidths: const {
-                0: FixedColumnWidth(80),
-                1: FixedColumnWidth(70),
-                2: FixedColumnWidth(70),
-                3: FixedColumnWidth(80),
+                0: FixedColumnWidth(77),
+                1: FixedColumnWidth(65),
+                2: FixedColumnWidth(65),
+                3: FixedColumnWidth(75),
               },
               children: [
                 TableRow(children: [
@@ -39,21 +39,21 @@ class SizeChartModal extends StatelessWidget {
                   const Padding(
                     padding: EdgeInsets.all(12.0),
                     child: Text(
-                      "10-14\ninch",
+                      "10-\n14",
                       style: TextStyle(fontWeight: FontWeight.w500),
                     ),
                   ),
                   const Padding(
                     padding: EdgeInsets.all(12.0),
                     child: Text(
-                      "16-20\ninch",
+                      "16-\n20",
                       style: TextStyle(fontWeight: FontWeight.w500),
                     ),
                   ),
                   const Padding(
                     padding: EdgeInsets.all(12.0),
                     child: Text(
-                      "24-26+\ninch",
+                      "24-\n26+",
                       style: TextStyle(fontWeight: FontWeight.w500),
                     ),
                   ),
@@ -70,21 +70,21 @@ class SizeChartModal extends StatelessWidget {
                   const Padding(
                     padding: EdgeInsets.all(12.0),
                     child: Text(
-                      "1.5-4\nyears",
+                      "1.5-4\nyrs",
                       style: TextStyle(fontWeight: FontWeight.w500),
                     ),
                   ),
                   const Padding(
                     padding: EdgeInsets.all(12.0),
                     child: Text(
-                      "5-8\nyears",
+                      "5-8\nyrs",
                       style: TextStyle(fontWeight: FontWeight.w500),
                     ),
                   ),
                   const Padding(
                     padding: EdgeInsets.all(12.0),
                     child: Text(
-                      "9-13+\nyears",
+                      "9-13+\nyrs",
                       style: TextStyle(fontWeight: FontWeight.w500),
                     ),
                   ),
@@ -101,21 +101,21 @@ class SizeChartModal extends StatelessWidget {
                   const Padding(
                     padding: EdgeInsets.all(12.0),
                     child: Text(
-                      "29-46\ncm",
+                      "29-\n46",
                       style: TextStyle(fontWeight: FontWeight.w500),
                     ),
                   ),
                   const Padding(
                     padding: EdgeInsets.all(12.0),
                     child: Text(
-                      "44-56\ncm",
+                      "44-\n56",
                       style: TextStyle(fontWeight: FontWeight.w500),
                     ),
                   ),
                   const Padding(
                     padding: EdgeInsets.all(12.0),
                     child: Text(
-                      "57-71+\ncm",
+                      "57-\n71+",
                       style: TextStyle(fontWeight: FontWeight.w500),
                     ),
                   ),
