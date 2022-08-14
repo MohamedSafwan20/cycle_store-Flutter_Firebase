@@ -5,20 +5,23 @@ import 'package:cycle_store/ui/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class TrendingProducts extends StatelessWidget {
-  const TrendingProducts({Key? key, required this.products}) : super(key: key);
+class BrandProducts extends StatelessWidget {
+  const BrandProducts(
+      {Key? key, required this.products, required this.brandName})
+      : super(key: key);
 
   final List<Product> products;
+  final String brandName;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.symmetric(horizontal: 4.0, vertical: 10),
           child: Text(
-            "Trending",
+            brandName.capitalize!,
             style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900),
           ),
         ),
@@ -43,7 +46,7 @@ class TrendingProducts extends StatelessWidget {
             text: "See all",
             onPressed: () {
               Get.toNamed(PRODUCT_LIST_ROUTE, arguments: {
-                "searchText": "Trending",
+                "searchText": brandName,
                 "products": products,
               });
             })

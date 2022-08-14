@@ -1,8 +1,7 @@
 import 'package:cycle_store/data/controllers/my_orders_controller.dart';
 import 'package:cycle_store/data/services/user_service.dart';
-import 'package:cycle_store/ui/widgets/primary_ghost_button.dart';
 import 'package:cycle_store/utils/utils.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrderSummaryController extends GetxController {
@@ -53,10 +52,8 @@ class OrderSummaryController extends GetxController {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  PrimaryGhostButton(
-                    width: 50,
-                    height: 40,
-                    text: "Yes",
+                  TextButton(
+                    child: Text("Yes"),
                     onPressed: () {
                       Get.back();
                       cancelOrder();
@@ -65,10 +62,8 @@ class OrderSummaryController extends GetxController {
                   const SizedBox(
                     width: 10,
                   ),
-                  PrimaryGhostButton(
-                      width: 50,
-                      height: 40,
-                      text: "No",
+                  TextButton(
+                      child: Text("No"),
                       onPressed: () {
                         Get.back();
                       }),

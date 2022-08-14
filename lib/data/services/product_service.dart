@@ -20,49 +20,10 @@ class ProductService {
     }
   }
 
-  static Future<Map> getPopularProducts() async {
-    try {
-      QuerySnapshot res = await FirebaseFirestore.instance
-          .collection("products")
-          .orderBy("buy_count", descending: true)
-          .limit(15)
-          .get();
-
-      List<Product> data = res.docs.map((e) {
-        Map data = {"id": e.id, ...e.data() as Map};
-        return Product.toProduct(data);
-      }).toList();
-
-      return {"status": true, "data": data};
-    } catch (e) {
-      return {"status": false, "data": []};
-    }
-  }
-
-  static Future<Map> getTrendingProducts() async {
-    try {
-      QuerySnapshot res = await FirebaseFirestore.instance
-          .collection("products")
-          .orderBy("is_trending", descending: true)
-          .limit(15)
-          .get();
-
-      List<Product> data = res.docs.map((e) {
-        Map data = {"id": e.id, ...e.data() as Map};
-
-        return Product.toProduct(data);
-      }).toList();
-
-      return {"status": true, "data": data};
-    } catch (e) {
-      return {"status": false, "data": []};
-    }
-  }
-
   static Future<Map> getAllProducts() async {
     try {
       QuerySnapshot res =
-      await FirebaseFirestore.instance.collection("products").get();
+          await FirebaseFirestore.instance.collection("products").get();
 
       List<Product> data = res.docs.map((e) {
         Map data = {"id": e.id, ...e.data() as Map};
@@ -103,7 +64,10 @@ class ProductService {
 
       List<Product> data = allProducts.where((product) {
         return product.name.toUpperCase().contains(searchText.toUpperCase()) ||
-            product.category.toUpperCase().contains(searchText.toUpperCase());
+            product.category.toUpperCase().contains(searchText.toUpperCase()) ||
+            product.brand.toUpperCase().contains(searchText.toUpperCase()) ||
+            product.searchKeywords.any((element) =>
+                element.toUpperCase().contains(searchText.toUpperCase()));
       }).toList();
 
       return {"status": true, "data": data};
@@ -112,12 +76,13 @@ class ProductService {
     }
   }
 
-  static Future<Map> addToCart({required String productId, required String size}) async {
+  static Future<Map> addToCart(
+      {required String productId, required String size}) async {
     try {
       User user = AuthService.getCurrentUser();
 
       final productRef =
-      FirebaseFirestore.instance.collection("products").doc(productId);
+          FirebaseFirestore.instance.collection("products").doc(productId);
 
       await FirebaseFirestore.instance
           .collection("users")
@@ -139,7 +104,7 @@ class ProductService {
       User user = AuthService.getCurrentUser();
 
       final productRef =
-      FirebaseFirestore.instance.collection("products").doc(productId);
+          FirebaseFirestore.instance.collection("products").doc(productId);
 
       final res = await FirebaseFirestore.instance
           .collection("users")

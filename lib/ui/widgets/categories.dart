@@ -89,31 +89,10 @@ class Categories extends StatelessWidget {
                                           Get.toNamed(PRODUCT_LIST_ROUTE,
                                               arguments: {
                                                 "searchText": _controller
-                                                            .currentCategoryIndex
-                                                            .value ==
-                                                        0
-                                                    ? "All"
-                                                    : _controller
-                                                                .currentCategoryIndex
-                                                                .value ==
-                                                            1
-                                                        ? "Mountain"
-                                                        : _controller
-                                                                    .currentCategoryIndex
-                                                                    .value ==
-                                                                2
-                                                            ? "Sports"
-                                                            : _controller
-                                                                        .currentCategoryIndex
-                                                                        .value ==
-                                                                    3
-                                                                ? "Kids"
-                                                                : _controller
-                                                                            .currentCategoryIndex
-                                                                            .value ==
-                                                                        4
-                                                                    ? "Urban"
-                                                                    : "Trending",
+                                                        .categories[
+                                                    _controller
+                                                        .currentCategoryIndex
+                                                        .value],
                                                 "products":
                                                     _controller.popularProducts,
                                               });
@@ -130,31 +109,7 @@ class Categories extends StatelessWidget {
                                                 CrossAxisAlignment.center,
                                             children: [
                                               Text(
-                                                _controller.currentCategoryIndex
-                                                            .value ==
-                                                        0
-                                                    ? "Popular in all bikes"
-                                                    : _controller
-                                                                .currentCategoryIndex
-                                                                .value ==
-                                                            1
-                                                        ? "Popular in mountain bikes"
-                                                        : _controller
-                                                                    .currentCategoryIndex
-                                                                    .value ==
-                                                                2
-                                                            ? "Popular in sports bikes"
-                                                            : _controller
-                                                                        .currentCategoryIndex
-                                                                        .value ==
-                                                                    3
-                                                                ? "Popular in kids bikes"
-                                                                : _controller
-                                                                            .currentCategoryIndex
-                                                                            .value ==
-                                                                        4
-                                                                    ? "Popular in urban bikes"
-                                                                    : "Popular",
+                                                "Popular in ${_controller.categories[_controller.currentCategoryIndex.value]} bikes",
                                                 style: const TextStyle(
                                                     fontSize: 17,
                                                     fontWeight:
@@ -227,26 +182,7 @@ class Categories extends StatelessWidget {
                                                               .center,
                                                       children: [
                                                         Text(
-                                                          _controller.currentCategoryIndex
-                                                                      .value ==
-                                                                  0
-                                                              ? "Trending in all bikes"
-                                                              : _controller
-                                                                          .currentCategoryIndex
-                                                                          .value ==
-                                                                      1
-                                                                  ? "Trending in mountain bikes"
-                                                                  : _controller
-                                                                              .currentCategoryIndex
-                                                                              .value ==
-                                                                          2
-                                                                      ? "Trending in sports bikes"
-                                                                      : _controller.currentCategoryIndex.value ==
-                                                                              3
-                                                                          ? "Trending in kids bikes"
-                                                                          : _controller.currentCategoryIndex.value == 4
-                                                                              ? "Trending in urban bikes"
-                                                                              : "Trending",
+                                                          "Trending in ${_controller.categories[_controller.currentCategoryIndex.value]} bikes",
                                                           style: const TextStyle(
                                                               fontSize: 17,
                                                               fontWeight:
@@ -316,59 +252,16 @@ class Categories extends StatelessWidget {
                                                 )
                                               : const SizedBox(),
                                           PrimaryGhostButton(
-                                              text: _controller
-                                                          .currentCategoryIndex
-                                                          .value ==
-                                                      0
-                                                  ? "See all bikes"
-                                                  : _controller
-                                                              .currentCategoryIndex
-                                                              .value ==
-                                                          1
-                                                      ? "See all mountain bikes"
-                                                      : _controller
-                                                                  .currentCategoryIndex
-                                                                  .value ==
-                                                              2
-                                                          ? "See all sports bikes"
-                                                          : _controller
-                                                                      .currentCategoryIndex
-                                                                      .value ==
-                                                                  3
-                                                              ? "See all kids bikes"
-                                                              : _controller
-                                                                          .currentCategoryIndex
-                                                                          .value ==
-                                                                      4
-                                                                  ? "See all urban bikes"
-                                                                  : "See all",
+                                              text:
+                                                  "See ${_controller.categories[_controller.currentCategoryIndex.value]} bikes",
                                               onPressed: () {
                                                 Get.toNamed(PRODUCT_LIST_ROUTE,
                                                     arguments: {
                                                       "searchText": _controller
-                                                                  .currentCategoryIndex
-                                                                  .value ==
-                                                              0
-                                                          ? "All"
-                                                          : _controller
-                                                                      .currentCategoryIndex
-                                                                      .value ==
-                                                                  1
-                                                              ? "Mountain"
-                                                              : _controller
-                                                                          .currentCategoryIndex
-                                                                          .value ==
-                                                                      2
-                                                                  ? "Sports"
-                                                                  : _controller
-                                                                              .currentCategoryIndex
-                                                                              .value ==
-                                                                          3
-                                                                      ? "Kids"
-                                                                      : _controller.currentCategoryIndex.value ==
-                                                                              4
-                                                                          ? "Urban"
-                                                                          : "Trending",
+                                                              .categories[
+                                                          _controller
+                                                              .currentCategoryIndex
+                                                              .value],
                                                       "products": _controller
                                                           .popularProducts,
                                                     });

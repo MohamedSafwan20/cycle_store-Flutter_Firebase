@@ -1,3 +1,4 @@
+import 'package:cycle_store/config/constants.dart';
 import 'package:cycle_store/data/models/product_model.dart';
 import 'package:cycle_store/data/services/product_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,38 +16,17 @@ class ProductListController extends GetxController {
 
   @override
   void onInit() {
-    switch (searchText.toUpperCase()) {
-      case "POPULAR":
-        products.value = Get.arguments["products"];
-        copyProducts.value = Get.arguments["products"];
-        break;
-      case "TRENDING":
-        products.value = Get.arguments["products"];
-        copyProducts.value = Get.arguments["products"];
-        break;
-      case "ALL":
-        products.value = Get.arguments["products"];
-        copyProducts.value = Get.arguments["products"];
-        break;
-      case "MOUNTAIN":
-        products.value = Get.arguments["products"];
-        copyProducts.value = Get.arguments["products"];
-        break;
-      case "SPORTS":
-        products.value = Get.arguments["products"];
-        copyProducts.value = Get.arguments["products"];
-        break;
-      case "KIDS":
-        products.value = Get.arguments["products"];
-        copyProducts.value = Get.arguments["products"];
-        break;
-      case "URBAN":
-        products.value = Get.arguments["products"];
-        copyProducts.value = Get.arguments["products"];
-        break;
-      default:
-        getProducts();
+    if (searchText.toUpperCase() == "POPULAR" ||
+        searchText.toUpperCase() == "TRENDING" ||
+        searchText.toUpperCase() == "ALL" ||
+        BRANDS.contains(searchText.toUpperCase()) ||
+        CATEGORIES.contains(searchText.toUpperCase())) {
+      products.value = Get.arguments["products"];
+      copyProducts.value = Get.arguments["products"];
+      return;
     }
+
+    getProducts();
 
     super.onInit();
   }

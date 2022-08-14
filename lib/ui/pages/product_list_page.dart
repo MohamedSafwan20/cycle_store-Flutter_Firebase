@@ -109,7 +109,7 @@ class ProductListPage extends StatelessWidget {
                                         crossAxisCount: 2,
                                         childAspectRatio:
                                             (MediaQuery.of(context).size.width /
-                                                448),
+                                                498),
                                         mainAxisSpacing: 8,
                                         crossAxisSpacing: 1),
                                 itemBuilder: (_, index) {

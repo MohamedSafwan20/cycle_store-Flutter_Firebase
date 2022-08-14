@@ -1,3 +1,4 @@
+import 'package:cycle_store/config/colors.dart';
 import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/controllers/cart_controller.dart';
 import 'package:cycle_store/firebase_options.dart';
@@ -52,8 +53,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // fontFamily: "TitilliumWeb",
-        primarySwatch: Colors.blue,
+        primaryColor: PRIMARY_COLOR,
       ),
       initialRoute: INITIAL_ROUTE,
       initialBinding: InitialBinding(),

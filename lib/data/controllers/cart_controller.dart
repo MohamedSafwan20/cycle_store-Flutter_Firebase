@@ -28,7 +28,6 @@ class CartController extends GetxController {
       if (!res["status"]) {
         throw Exception("Failed to fetch Cart products");
       }
-
       products.value = res["data"];
       checkoutProducts.value = res["data"];
 
@@ -68,17 +67,22 @@ class CartController extends GetxController {
     }
   }
 
-  void deleteCartItem({required String productId,
-    required String size,
-    required double productPrice}) {
+  void deleteCartItem(
+      {required String productId,
+      required String size,
+      required double productPrice}) {
     ProductService.removeFromCart(productId).then((res) {
       if (!res["status"]) {
         throw Exception();
       }
 
-      checkoutProducts.value = products.where((product) {
-        return product["product"].id != productId;
-      }).toList();
+      if (checkoutProducts.length == 1) {
+        checkoutProducts.value = [];
+      } else {
+        checkoutProducts.value = products.where((product) {
+          return product["product"].id != productId;
+        }).toList();
+      }
 
       price.value -= productPrice;
       // Updating product card cart button
@@ -90,6 +94,10 @@ class CartController extends GetxController {
   }
 
   void handleProceedBtn() {
+    if (checkoutProducts.isEmpty) {
+      return;
+    }
+
     List sizes = checkoutProducts.map((product) {
       return product["size"];
     }).toList();

@@ -33,7 +33,7 @@ class CartPage extends StatelessWidget {
                 children: [
                   Text("My Bag", style: HEADING_1),
                   Obx(() {
-                    return Text("${_controller.products.length} Items",
+                    return Text("${_controller.checkoutProducts.length} Items",
                         style: const TextStyle(
                             color: SECONDARY_TEXT_COLOR, fontSize: 14));
                   }),

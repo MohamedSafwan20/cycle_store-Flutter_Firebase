@@ -10,7 +10,7 @@ class ContactPage extends StatelessWidget {
   Widget build(BuildContext context) {
     const cycleQueryNo = "+919645071880";
     const appQueryNo = "+919961624194";
-    const email = "example@gmail.com";
+    const email = "help.fastbikes@gmail.com";
 
     return Scaffold(
       backgroundColor: PRIMARY_COLOR,

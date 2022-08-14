@@ -1,3 +1,4 @@
+import 'package:cycle_store/config/constants.dart';
 import 'package:cycle_store/data/models/product_model.dart';
 import 'package:cycle_store/data/services/product_service.dart';
 import 'package:cycle_store/ui/widgets/select_category_modal.dart';
@@ -5,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CategoryController extends GetxController {
-  RxList categories = ["All", "Mountain", "Sports", "Kids", "Urban"].obs;
+  RxList categories = [].obs;
   RxInt currentCategoryIndex = 0.obs;
   RxList<Product> popularProducts = <Product>[].obs;
   RxList<Product> trendingProducts = <Product>[].obs;
@@ -16,6 +17,8 @@ class CategoryController extends GetxController {
 
   @override
   void onInit() {
+    categories.value = CATEGORIES;
+
     getAllProducts();
     getCarouselImages(category: "ALL");
 
@@ -25,28 +28,14 @@ class CategoryController extends GetxController {
   void onCategoryChange({required int index}) {
     currentCategoryIndex.value = index;
 
-    switch (index) {
-      case 0:
-        getAllProducts();
-        getCarouselImages(category: "ALL");
-        break;
-      case 1:
-        getProductsByCategory("MOUNTAIN");
-        getCarouselImages(category: "MOUNTAIN");
-        break;
-      case 2:
-        getProductsByCategory("SPORTS");
-        getCarouselImages(category: "SPORTS");
-        break;
-      case 3:
-        getProductsByCategory("KIDS");
-        getCarouselImages(category: "KIDS");
-        break;
-      case 4:
-        getProductsByCategory("URBAN");
-        getCarouselImages(category: "URBAN");
-        break;
+    if (index == 0) {
+      getAllProducts();
+      getCarouselImages(category: "ALL");
+      return;
     }
+
+    getProductsByCategory(categories[index].toUpperCase());
+    getCarouselImages(category: categories[index].toUpperCase());
   }
 
   void getCarouselImages({required String category}) async {
@@ -105,9 +94,8 @@ class CategoryController extends GetxController {
       popularProducts.value = value["data"];
       popularProducts
           .sort((first, second) => second.buyCount.compareTo(first.buyCount));
-
       trendingProducts.value =
-          value["data"].where((e) => e.isTrending).toList();
+          value["data"].where((Product e) => e.isTrending).toList();
 
       isLoading.value = false;
     }).catchError((e) {

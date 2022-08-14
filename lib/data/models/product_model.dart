@@ -6,11 +6,13 @@ class Product {
   num stock;
   double price;
   List sizes;
+  List searchKeywords;
   Map thumbnail;
   List images;
   num buyCount;
   String storageId;
   String category;
+  String brand;
   bool isTrending;
   Timestamp createdAt;
   Map specs;
@@ -21,12 +23,14 @@ class Product {
     required this.stock,
     required this.price,
     required this.sizes,
+    required this.searchKeywords,
     required this.thumbnail,
     required this.images,
     required this.createdAt,
     required this.buyCount,
     required this.storageId,
     required this.category,
+    required this.brand,
     required this.isTrending,
     required this.specs,
   });
@@ -37,10 +41,12 @@ class Product {
         stock = json['stock'],
         price = json['price'].toDouble(),
         sizes = json['sizes'],
+        searchKeywords = json['searchKeywords'],
         thumbnail = json['thumbnail'],
         images = json['images'],
         buyCount = json['buy_count'],
         category = json['category'],
+        brand = json['brand'],
         storageId = json['storage_id'],
         isTrending = json['is_trending'],
         specs = json['specs'],
@@ -52,10 +58,12 @@ class Product {
         stock = data['stock'],
         price = data['price'].toDouble(),
         sizes = data['sizes'],
+        searchKeywords = data['searchKeywords'],
         thumbnail = data['thumbnail'],
         images = data['images'],
         buyCount = data['buy_count'],
         category = data['category'],
+        brand = data['brand'],
         storageId = data['storage_id'],
         isTrending = data['is_trending'],
         specs = data['specs'],

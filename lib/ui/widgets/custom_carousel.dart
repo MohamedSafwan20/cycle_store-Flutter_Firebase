@@ -23,7 +23,7 @@ class CustomCarousel extends StatelessWidget {
               carouselController: _controller.carouselController,
               options: CarouselOptions(
                 onPageChanged: _controller.onCarouselChange,
-                height: 200,
+                height: 235,
                 viewportFraction: 1,
                 initialPage: 0,
                 scrollDirection: Axis.horizontal,

@@ -1,3 +1,4 @@
+import 'package:cycle_store/config/constants.dart';
 import 'package:cycle_store/data/models/product_model.dart';
 import 'package:cycle_store/data/services/product_service.dart';
 import 'package:flutter/material.dart';
@@ -6,24 +7,31 @@ import 'package:get/get.dart';
 import '../../config/colors.dart';
 
 class HomeController extends GetxController {
+  final List brands = BRANDS;
+
   RxList<Product> popularProducts = <Product>[].obs;
   RxList popularCarouselImages = [].obs;
   RxList<Product> trendingProducts = <Product>[].obs;
   RxList trendingCarouselImages = [].obs;
   RxList<String> productsInCart = <String>[].obs;
+  RxMap brandsData = {}.obs;
+  RxList brandsCarouselImages = [].obs;
 
-  RxBool isPopularProductsLoading = false.obs;
-  RxBool isPopularCarouselLoading = false.obs;
-  RxBool isTrendingProductsLoading = false.obs;
-  RxBool isTrendingCarouselLoading = false.obs;
+  RxBool isLoading = false.obs;
   RxList<String> isCartBtnLoadingList = <String>[].obs;
+  RxBool isPopularCarouselLoading = false.obs;
+  RxBool isTrendingCarouselLoading = false.obs;
 
   @override
   void onInit() {
+    for (String brand in brands) {
+      brandsData[brand] = {"data": <Product>[], "carousel_images": []};
+    }
+
     getPopularCarouselImages();
     getTrendingCarouselImages();
-    getPopularProducts();
-    getTrendingProducts();
+    getBrandsCarouselImages();
+    getAllProducts();
 
     super.onInit();
   }
@@ -58,31 +66,48 @@ class HomeController extends GetxController {
     });
   }
 
-  void getPopularProducts() {
-    isPopularProductsLoading.value = true;
+  void getBrandsCarouselImages() async {
+    for (String brand in brands) {
+      Map res = await ProductService.getCarouselImages(folder: brand);
 
-    ProductService.getPopularProducts().then((res) {
-      if (!res["status"]) throw Exception("Failed to get popular products");
+      if (res["status"]) {
+        brandsData[brand]["carousel_images"] = res["data"];
+      } else {
+        brandsData[brand]["carousel_images"] = [];
+      }
+    }
+    brandsData.refresh();
+  }
 
-      popularProducts.value = res["data"];
+  void getAllProducts() {
+    isLoading.value = true;
 
-      isPopularProductsLoading.value = false;
+    ProductService.getAllProducts().then((res) {
+      if (!res["status"]) throw Exception("Failed to get all products");
+
+      getPopularProducts(res["data"]);
+      getTrendingProducts(res["data"]);
+      getBrandProducts(res["data"]);
+
+      isLoading.value = false;
     }).catchError((e) {
-      isPopularProductsLoading.value = false;
+      isLoading.value = false;
     });
   }
 
-  void getTrendingProducts() {
-    isTrendingProductsLoading.value = true;
+  void getPopularProducts(List<Product> data) {
+    popularProducts.value = data;
+    popularProducts
+        .sort((first, second) => second.buyCount.compareTo(first.buyCount));
+  }
 
-    ProductService.getTrendingProducts().then((res) {
-      if (!res["status"]) throw Exception("Failed to get trending products");
+  void getTrendingProducts(List<Product> data) {
+    trendingProducts.value = data.where((Product e) => e.isTrending).toList();
+  }
 
-      trendingProducts.value = res["data"];
-
-      isTrendingProductsLoading.value = false;
-    }).catchError((e) {
-      isTrendingProductsLoading.value = false;
+  void getBrandProducts(List<Product> data) {
+    data.forEach((Product e) {
+      brandsData[e.brand]["data"].add(e);
     });
   }
 
@@ -92,7 +117,6 @@ class HomeController extends GetxController {
       isCartBtnLoadingList.remove(productId);
 
       if (res["status"]) {
-        Get.back();
         productsInCart.add(productId);
         update(["cartBtn - $productId"]);
       }
@@ -139,6 +163,7 @@ class HomeController extends GetxController {
                         InkWell(
                           onTap: () {
                             addToCart(productId: productId, size: size);
+                            Get.back();
                           },
                           child: Container(
                             decoration: BoxDecoration(

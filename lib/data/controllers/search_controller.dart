@@ -41,7 +41,10 @@ class SearchController extends GetxController {
   void onSearchValueChange(String value) {
     searchProducts.value = allProducts.where((product) {
       return product.name.toUpperCase().contains(value.toUpperCase()) ||
-          product.category.toUpperCase().contains(value.toUpperCase());
+          product.category.toUpperCase().contains(value.toUpperCase()) ||
+          product.brand.toUpperCase().contains(value.toUpperCase()) ||
+          product.searchKeywords.any(
+              (element) => element.toUpperCase().contains(value.toUpperCase()));
     }).toList();
   }
 

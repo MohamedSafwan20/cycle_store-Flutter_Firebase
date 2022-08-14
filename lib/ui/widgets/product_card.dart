@@ -117,7 +117,6 @@ class ProductCard extends StatelessWidget {
                                               _controller.showBottomSheet(
                                                   sizes: product.sizes,
                                                   productId: product.id);
-                                              // _controller.addToCart(product.id);
                                             }
                                           },
                                           child: _controller
