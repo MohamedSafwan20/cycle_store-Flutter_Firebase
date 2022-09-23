@@ -15,6 +15,7 @@ class SignupController extends GetxController {
   RxBool isInvalidEmail = false.obs;
   RxBool isInvalidPassword = false.obs;
   RxBool isInvalidConfirmPassword = false.obs;
+  RxBool isAgreed = false.obs;
 
   RxBool isLoading = false.obs;
 
@@ -47,7 +48,8 @@ class SignupController extends GetxController {
     if (isInvalidName.value ||
         isInvalidEmail.value ||
         isInvalidPassword.value ||
-        isInvalidConfirmPassword.value) return;
+        isInvalidConfirmPassword.value ||
+        !isAgreed.value) return;
 
     isLoading.value = true;
 

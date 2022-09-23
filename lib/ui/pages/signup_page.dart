@@ -3,6 +3,7 @@ import 'package:cycle_store/config/routes.dart';
 import 'package:cycle_store/data/controllers/signup_controller.dart';
 import 'package:cycle_store/ui/widgets/loading.dart';
 import 'package:cycle_store/ui/widgets/primary_button.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -235,7 +236,53 @@ class SignupPage extends StatelessWidget {
                       )
                     : const SizedBox(),
                 const SizedBox(
-                  height: 40,
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Checkbox(
+                      value: _controller.isAgreed.value,
+                      onChanged: (value) {
+                        _controller.isAgreed.value = value!;
+                      },
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4)),
+                    ),
+                    Expanded(
+                      child: RichText(
+                        overflow: TextOverflow.clip,
+                        text: TextSpan(
+                          style: TextStyle(fontSize: 25, color: Colors.black),
+                          children: <TextSpan>[
+                            TextSpan(text: 'By Signup you agree to the '),
+                            TextSpan(
+                                text: 'terms and conditions ',
+                                style: TextStyle(
+                                    color: PRIMARY_COLOR,
+                                    decoration: TextDecoration.underline,
+                                    fontWeight: FontWeight.w600),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () =>
+                                      Get.toNamed(TERMS_AND_CONDITIONS_ROUTE)),
+                            TextSpan(text: 'and '),
+                            TextSpan(
+                                text: 'privacy policy ',
+                                style: TextStyle(
+                                    color: PRIMARY_COLOR,
+                                    decoration: TextDecoration.underline,
+                                    fontWeight: FontWeight.w600),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap =
+                                      () => Get.toNamed(PRIVACY_POLICY_ROUTE)),
+                          ],
+                        ),
+                        textScaleFactor: 0.5,
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 _controller.isLoading.value
                     ? const Loading()

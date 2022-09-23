@@ -139,7 +139,7 @@ class Account extends StatelessWidget {
                   onTap: () => Get.toNamed(MY_ORDERS_ROUTE),
                   child: Padding(
                     padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+                        const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -179,7 +179,7 @@ class Account extends StatelessWidget {
                   onTap: () => Get.toNamed(PROFILE_ROUTE),
                   child: Padding(
                     padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+                        const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -202,6 +202,46 @@ class Account extends StatelessWidget {
                             ),
                             const Text(
                               "Profile",
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.w700),
+                            )
+                          ],
+                        ),
+                        const Icon(
+                          Icons.chevron_right_outlined,
+                          size: 26,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () => Get.toNamed(LEGAL_ROUTE),
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              width: 45,
+                              height: 45,
+                              decoration: BoxDecoration(
+                                  color: const Color(0xFFF0FDF7),
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: const Icon(
+                                Icons.article_outlined,
+                                color: Color(0xFFAFE9DB),
+                                size: 25,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            const Text(
+                              "Legal",
                               style: TextStyle(
                                   fontSize: 15, fontWeight: FontWeight.w700),
                             )

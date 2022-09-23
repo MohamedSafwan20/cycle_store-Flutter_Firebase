@@ -18,3 +18,6 @@ const RESET_PASSWORD_ROUTE = "/reset-password";
 const EMAIL_SENT_ROUTE = "/email-sent";
 const IMAGE_VIEWER_ROUTE = "/image-viewer";
 const ORDER_PLACED_ROUTE = "/order-placed";
+const LEGAL_ROUTE = "/legal";
+const PRIVACY_POLICY_ROUTE = "/privacy-policy";
+const TERMS_AND_CONDITIONS_ROUTE = "/terms-and-conditions";

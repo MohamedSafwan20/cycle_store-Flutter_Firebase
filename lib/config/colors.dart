@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-const PRIMARY_COLOR = Color(0xFF03a0d5);
-const PRIMARY_TEXT_COLOR = Color(0xFFe4eeff);
+const PRIMARY_COLOR = Color(0xFF5177fe);
+const PRIMARY_TEXT_COLOR = Color(0xFFe6ebff);
 const SECONDARY_COLOR = Color(0xFFf0f1f3);
 const SECONDARY_TEXT_COLOR = Color(0xFF9c9fa4);
 const ERROR_COLOR = Color(0xFFf45c5b);
