@@ -49,6 +49,17 @@ class ProductCard extends StatelessWidget {
                 },
               ),
             ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [Colors.black.withOpacity(0.35), Colors.transparent],
+                )),
+              ),
+            ),
             Positioned(
               bottom: 10,
               child: Align(
@@ -80,7 +91,7 @@ class ProductCard extends StatelessWidget {
                               "₹${product.price}",
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
-                                  color: PRIMARY_COLOR,
+                                  color: PRIMARY_TEXT_COLOR,
                                   fontWeight: FontWeight.w700,
                                   fontSize: 15),
                             ),
