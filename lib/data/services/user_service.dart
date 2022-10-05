@@ -347,7 +347,6 @@ class UserService {
             .doc(products[i]["product"].id)
             .update({
           "buy_count": data["buy_count"] + quantities[i],
-          "stock": data["stock"] - quantities[i],
         });
       }
 

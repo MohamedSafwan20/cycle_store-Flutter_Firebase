@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../../ui/widgets/sort_product_modal.dart';
 
 class ProductListController extends GetxController {
-  String searchText = Get.arguments["searchText"];
+  String searchText = Get.arguments["searchText"] ?? "";
   RxList<Product> products = <Product>[].obs;
   RxList<Product> copyProducts = <Product>[].obs;
   RxInt currentPriceSortIndex = 0.obs;

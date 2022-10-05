@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Product {
   String id;
   String name;
-  num stock;
   double price;
   List sizes;
   List searchKeywords;
@@ -20,7 +19,6 @@ class Product {
   Product({
     required this.id,
     required this.name,
-    required this.stock,
     required this.price,
     required this.sizes,
     required this.searchKeywords,
@@ -38,7 +36,6 @@ class Product {
   Product.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         name = json['name'],
-        stock = json['stock'],
         price = json['price'].toDouble(),
         sizes = json['sizes'],
         searchKeywords = json['searchKeywords'],
@@ -55,7 +52,6 @@ class Product {
   Product.toProduct(Map data)
       : id = data['id'],
         name = data['name'],
-        stock = data['stock'],
         price = data['price'].toDouble(),
         sizes = data['sizes'],
         searchKeywords = data['searchKeywords'],
